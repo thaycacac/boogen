@@ -180,7 +180,7 @@ const Selection = styled.div`
 	border: 2px solid red;
 	pointer-events: none;
 	display: none;
-  background: none;
+  background: none !important;
   z-index: 0;
   &:after{
 		position: absolute;
