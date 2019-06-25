@@ -27,6 +27,7 @@ const WrapApp = styled.div`
   height: 100vh;
   .main-space {
     display: flex;
+    height: calc(100vh - 61px);
   }
 `
 
