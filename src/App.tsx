@@ -1,11 +1,33 @@
 import React from 'react';
-// import PageEditer from './PageEditor'
-import PageEditer from './WorkingSpace/EditorSpace'
+import styled from 'styled-components'
+import {
+  NavbarSpace,
+  EditorSpace,
+  ControllerSpace,
+  FooterSpace,
+  ElementorSpace
+} from './space'
 
 const App: React.FC = () => {
   return (
-    <PageEditer />
+    <WrapApp>
+      <NavbarSpace className="header-space" />
+      <div className="main-space">
+        <ElementorSpace />
+        <EditorSpace />
+        <ControllerSpace />
+      </div>
+      <FooterSpace className="footer-space" />
+    </WrapApp>
   );
 }
+
+const WrapApp = styled.div`
+  width: 100vw;
+  height: 100vh;
+  .main-space {
+    display: flex;
+  }
+`
 
 export default App;

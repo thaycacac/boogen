@@ -1,7 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import INTERATION from '../reuse/interaction'
-import Button from '../components/UI/UIButton'
 
 class EditorSpace extends React.Component<any> {
   refSel!: HTMLElement;
@@ -153,7 +152,6 @@ class EditorSpace extends React.Component<any> {
             ))
           }
         </Inspetor>
-        <Button>Hello</Button>
       </WrapperEditorSpace>
     </>
   }
