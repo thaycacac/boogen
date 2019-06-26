@@ -1,15 +1,27 @@
+import React, { Component } from 'react'
 import styled from 'styled-components'
-import theme from '../../../theme/variable'
+import variable from '../../../theme/variable'
 
-const Button = styled.button`
-  border: none;
-  color: ${theme.colors.primary};
-  cursor: pointer;
-  display: inline-block;
-  line-height: 2.5;
-  padding: 0 12px;
-  position: relative;
-  text-align: center;
-`;
+const optionType = [
+  'primary',
+  'secondary',
+  'success',
+  'danger',
+  'warning',
+  'info',
+  'light',
+  'dark',
+  'link'
+]
 
-export default Button
+const optionSize = [
+  'small',
+  'medium',
+  'large'
+]
+
+export default class Button extends Component {
+  render() {
+    return <div>abcde</div>
+  }
+}
