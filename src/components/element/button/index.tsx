@@ -1,17 +1,15 @@
-import * as React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components'
+import theme from '../../../theme/variable'
 
-interface IUIButton {
-    width ?: any
-    height ?:any
-    children?: any
-}
-export default function UIButton({ 
-  children,
-  width,
-  height
-}: IUIButton) {
-    return <button>
-      {children}
-    </button>
-}
+const Button = styled.button`
+  border: none;
+  color: ${theme.colors.primary};
+  cursor: pointer;
+  display: inline-block;
+  line-height: 2.5;
+  padding: 0 12px;
+  position: relative;
+  text-align: center;
+`;
+
+export default Button

@@ -1,5 +1,6 @@
-import React from 'react';
+import React from 'react'
 import styled from 'styled-components'
+import ThemeProviderContext from './theme'
 import {
   NavbarSpace,
   EditorSpace,
@@ -10,15 +11,17 @@ import {
 
 const App: React.FC = () => {
   return (
-    <WrapApp>
-      <NavbarSpace className="header-space" />
-      <div className="main-space">
-        <ElementorSpace />
-        <EditorSpace />
-        <ControllerSpace />
-      </div>
-      <FooterSpace className="footer-space" />
-    </WrapApp>
+    <ThemeProviderContext>
+      <WrapApp>
+        <NavbarSpace className="header-space" />
+        <div className="main-space">
+          <ElementorSpace />
+          <EditorSpace />
+          <ControllerSpace />
+        </div>
+        <FooterSpace className="footer-space" />
+      </WrapApp>
+    </ThemeProviderContext>
   );
 }
 
