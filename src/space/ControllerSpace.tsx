@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
+import {
+  Button,
+  Loading
+} from '../controller-space'
 
 class ControllerSpace extends Component<any> {
   render() {
     return (
       <WrappAll>
-        <div>Controller Space</div>
+        <Button>Button</Button>
+        <Loading />
       </WrappAll>
     )
   }
