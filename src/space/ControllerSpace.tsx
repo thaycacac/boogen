@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import styled from 'styled-components';
 import {
   Button,
-  Loading
+  Loading,
+  Input
 } from '../controller-space'
 
 class ControllerSpace extends Component<any> {
@@ -11,6 +12,10 @@ class ControllerSpace extends Component<any> {
       <WrappAll>
         <Button>Button</Button>
         <Loading />
+        <Input
+          placeholder="Hello world"
+          type="text"
+        />
       </WrappAll>
     )
   }
