@@ -26,6 +26,11 @@ export const theme = {
     fontNormal: 400,
     fontSemibold: 600,
     fontBold: 700,
+  },
+  button: {
+    btnFontFamily: '\'Source Sans Pro\', Arial, sans-serif',
+    btnFontWeight: 400,
+    btnBorderWidth: 1
   }
 }
 

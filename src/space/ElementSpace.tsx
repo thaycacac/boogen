@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import Button from '../components/base/button'
 
 class ElementorSpace extends Component<any> {
   render() {
     return (
       <WrapAll>{
           [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1].map(item => (
-            <p>abcde</p>
+            <Button variant='danger' outline className="demo">abcde</Button>
           ))
         }
       </WrapAll>
