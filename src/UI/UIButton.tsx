@@ -4,15 +4,8 @@ import { Link } from 'react-router-dom';
 
 interface IUIButton {
     width ?: any
-    height ?:any
-    children?: any
-}
-export default function UIButton({ 
-  children,
-  width,
-  height
-}: IUIButton) {
-    return <button>
-      {children}
-    </button>
+    height ? :any
+    children? : any
+    onmousedown? : (e: any) => any,
+    style? : any
 }
