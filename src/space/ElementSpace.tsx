@@ -7,7 +7,7 @@ class ElementorSpace extends Component<any> {
     return (
       <WrapAll>{
           [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1].map(item => (
-            <Button variant='danger' outline className="demo">abcde</Button>
+            <Button variant='danger' className="demo">abcde</Button>
           ))
         }
       </WrapAll>

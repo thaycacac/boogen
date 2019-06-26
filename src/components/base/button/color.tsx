@@ -21,6 +21,28 @@ const getColor = (variant: string) => {
   }
 }
 
+const getColorEffect = (variant: string) => {
+  switch (variant) {
+    case 'primary':
+      return '#0062cc'
+    case 'secondary':
+      return '#545b62'
+    case 'success':
+      return '#1e7e34'
+    case 'info':
+      return '#117a8b'
+    case 'warning':
+      return '#d39e00'
+    case 'danger':
+      return '#bd2130'
+    case 'light':
+      return '#dae0e5'
+    default:
+      return '#0062cc'
+  }
+}
+
 export {
-  getColor
+  getColor,
+  getColorEffect
 }

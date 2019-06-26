@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import variables from '../../../theme/variable'
 import { getSize, sizeMedium } from './size'
-import { getColor } from './color'
+import { getColor, getColorEffect } from './color'
 
 interface IBaseButton {
   href?: string,
@@ -24,34 +24,43 @@ interface IBaseButton {
   | 'link',
   type?: string
   rounded?: boolean,
-  squared?: boolean,
   outline?: boolean,
   click?: (e: any) => any
 }
 
 const BaseButton = styled.button<IBaseButton>`
-  display: inline-block;
+  margin: 0;
   font-weight: 400;
   line-height: 1.5;
+  display: inline-block;
   box-sizing: border-box;
-  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
   text-transform: none;
   overflow: visible;
-  margin: 0;
-  color: ${props => (props.outline) ? (
-      (props.variant) ? getColor(props.variant) : variables.colors.primary
-    ) : 'white'};
   text-align: center;
   vertical-align: middle;
   user-select: none;
   border: 1px solid transparent;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  color: ${props => (props.outline) ? (
+      (props.variant) ? getColor(props.variant) : variables.colors.primary
+    ) : 'white'};
   background-color: ${props => (props.outline) ? 'white' : (
       (props.variant) ? getColor(props.variant) : variables.colors.primary
     )};
   border-color: ${props => (props.outline) ? (
       (props.variant) ? getColor(props.variant) : variables.colors.primary
     ) : 'white'};
-  ${props => (props.size ? getSize(props.size): sizeMedium)}
+  border-radius: ${props => (props.rounded ? '50rem!important': '')};
+  ${props => (props.size ? getSize(props.size): sizeMedium)};
+
+  &:hover {
+    color: ${props => (props.outline) ? (
+      (props.variant) ? getColorEffect(props.variant) : variables.colors.primary
+    ) : 'white'};
+    background-color: ${props => (props.outline) ? 'white' : (
+      (props.variant) ? getColorEffect(props.variant) : variables.colors.primary
+    )};
+  }
 `
 
 export default BaseButton
