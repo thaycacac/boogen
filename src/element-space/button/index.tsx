@@ -1,9 +1,9 @@
 import styled from 'styled-components'
-import variables from '../../../theme/variable'
+import variables from '../../theme/variable'
 import { getSize, sizeMedium } from './size'
 import { getColor, getColorEffect } from './color'
 
-interface IBaseButton {
+interface IButton {
   href?: string,
   rel?: string,
   target?: string,
@@ -28,7 +28,7 @@ interface IBaseButton {
   click?: (e: any) => any
 }
 
-const BaseButton = styled.button<IBaseButton>`
+const Button = styled.button<IButton>`
   margin: 0;
   font-weight: 400;
   line-height: 1.5;
@@ -63,4 +63,4 @@ const BaseButton = styled.button<IBaseButton>`
   }
 `
 
-export default BaseButton
+export default Button

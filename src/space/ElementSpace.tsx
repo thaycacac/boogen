@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import Button from '../components/base/button'
+import Button from '../element-space/button'
 
 class ElementorSpace extends Component<any> {
   render() {
