@@ -1,16 +1,12 @@
-import React, { Component } from 'react'
+import React, { FunctionComponent } from 'react'
 import styled from 'styled-components'
 
 interface ILoading {
   keyButton?: number,
 }
 
-class Loading extends Component<ILoading> {
-  render() {
-    return (
-      <UILoading />
-    )
-  }
+const Loading:FunctionComponent<ILoading> = () => {
+    return <UILoading />
 }
 
 const UILoading = styled.div`
