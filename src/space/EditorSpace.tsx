@@ -128,7 +128,6 @@ class EditorSpace extends React.Component<any> {
   }
 
   render() {
-    const listElement = ['div', 'a', 'span', 'button', 'input', 'section']
     return <>
       <WrapperEditorSpace
         draggable
@@ -139,19 +138,6 @@ class EditorSpace extends React.Component<any> {
         >
         <Selection ref={e => this.refSel = e as HTMLInputElement} />
         <Flow ref={e => this.refFlow = e as HTMLInputElement}/>
-        <Inspetor>
-          {
-            listElement.map((item, index) => (
-              <DragItem
-                key={index}
-                data-element={item}
-                draggable
-              >
-                {item}
-              </DragItem>
-            ))
-          }
-        </Inspetor>
       </WrapperEditorSpace>
     </>
   }
@@ -177,7 +163,7 @@ const WrapperEditorSpace = styled.div`
 const Selection = styled.div`
   position: fixed;
 	box-sizing: border-box;
-	border: 2px solid red;
+	border: 2px dashed red;
 	pointer-events: none;
 	display: none;
   background: none !important;
@@ -201,16 +187,5 @@ const Flow = styled.div`
   z-index: 9999;
   padding: 0 !important;
   background: black !important;
-`
-
-const Inspetor = styled.div`
-  display : flex;
-`
-
-const DragItem = styled.div`
-  width: 50px;
-  background: red;
-  margin: 10px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `
 export default EditorSpace
