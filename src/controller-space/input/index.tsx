@@ -1,53 +1,36 @@
-import React, { Component } from 'react'
+import React, { FunctionComponent, useRef, useState } from 'react'
 import styled from 'styled-components'
 
 interface IInput {
   value?: string | number,
-  placeholder: string,
-  type: string,
-  refInput?: string,
-  autoFocus?: boolean,
-  onChange?: (e: any) => any,
-  onKeyPress?: (e: any) => any,
-  onForcus?: (e:any) => any,
+  placeholder?: string,
+  type?: string,
+  onChange: (e: any) => any,
 }
 
-class Input extends Component<IInput> {
-  inputRef: any = React.createRef()
-  state = {
-    isFocus: false
-  }
+const Input:FunctionComponent<IInput> = ({
+  value = '',
+  placeholder = 'Please input here',
+  type = 'text',
+  onChange
+}) => {
 
-  handleOnChange = (e: any) => {
-    console.log("this.inputRef.value", this.inputRef.value)
-    if (this.props.onChange)
-      this.props.onChange(e.target.value)
-  }
+  const refInput = useRef(null)
+  const [valueInput, setValueInput] = useState(value)
 
-  render() {
-    const {
-      value,
-      placeholder,
-      type,
-      refInput,
-      autoFocus,
-      onChange,
-      onKeyPress,
-      onForcus,
-    } = this.props
-    return(
-      <UIInput
-        value={value}
-        placeholder={placeholder}
-        type={type}
-        // ref={ref}
-        autoFocus={autoFocus}
-        onChange={onChange}
-        onKeyPress={onKeyPress}
-        onFocus={onForcus}
-      />
-    )
+  const handleOnChange = (e: any) => {
+    onChange(e.target.value)
+    setValueInput(e.target.value)
   }
+  return(
+    <UIInput
+      value={valueInput}
+      placeholder={placeholder}
+      type={type}
+      ref={refInput}
+      onChange={handleOnChange}
+    />
+  )
 }
 
 const UIInput = styled.input`

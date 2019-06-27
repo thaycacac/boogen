@@ -7,6 +7,14 @@ import {
 } from '../controller-space'
 
 class ControllerSpace extends Component<any> {
+  
+  constructor(props: any) {
+    super(props)
+    this.state = {
+      text: ''
+    }
+  }
+
   render() {
     return (
       <WrappAll>
@@ -15,6 +23,12 @@ class ControllerSpace extends Component<any> {
         <Input
           placeholder="Hello world"
           type="text"
+          value="15"
+          onChange={e => {
+            this.setState({
+              text: e
+            })
+          }}
         />
       </WrappAll>
     )
