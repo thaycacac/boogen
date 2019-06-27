@@ -16,7 +16,8 @@ class ElementorSpace extends Component<any> {
       {
         id: 0,
         type: 'Section',
-        children: [1] },
+        children: [1] 
+      },
       {
         id: 1,
         type: 'Button',

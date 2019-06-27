@@ -1,18 +1,12 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import INTERATION from '../reuse/interaction'
+import { ConvertDataToContainer } from '../utils'
 
 class EditorSpace extends React.Component<any> {
   refSel!: HTMLElement;
   refFlow: HTMLElement
   | undefined
-
-  handleDragStart = (event: any) => {
-    event.stopPropagation()
-    const data = event.target.dataset.element
-    console.log('data start', data)
-    event.dataTransfer.setData('element', data)
-  }
 
   handleDrapOverCapture = (event: any) => {
     event.preventDefault()
@@ -89,6 +83,8 @@ class EditorSpace extends React.Component<any> {
     event.preventDefault()
     event.stopPropagation()
     const nameDom = event.dataTransfer.getData('element')
+    ConvertDataToContainer()
+
     console.log('Target Drop element: ', event.target)
     console.log('Name Drop element: ', nameDom)
 
@@ -131,7 +127,6 @@ class EditorSpace extends React.Component<any> {
     return <>
       <WrapperEditorSpace
         draggable
-        onDragStartCapture={this.handleDragStart}
         onDragOverCapture={this.handleDrapOverCapture}
         onDragLeaveCapture={this.handleDragLeaveCapture}
         onDropCapture={this.handleDropCapture}
