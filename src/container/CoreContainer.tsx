@@ -5,7 +5,8 @@ const storeElement = new Map()
 
 class BaseContainer extends Container<any> {
   
-  constructors(state: any) {
+  constructor(state: any) {
+    super()
     let { id, children } = state
     
     id ? id : id=uuid()
