@@ -3,14 +3,14 @@ import uuid from 'uuid'
 
 const storeElement = new Map()
 
-class BaseContainer extends Container<any> {
+class CoreContainer extends Container<any> {
   
   constructor(state: any) {
     super()
-    let { id, children } = state
+    let { children, id } = state
     
-    id ? id : id=uuid()
-    children ? children : this.state.children = []
+    if(!id) id=uuid()
+    if(!children) children = []
 
     this.state = {...state, ...{id}}
     console.log('this of container', this)
@@ -22,4 +22,4 @@ class BaseContainer extends Container<any> {
   }
 }
 
-export default BaseContainer
+export default CoreContainer

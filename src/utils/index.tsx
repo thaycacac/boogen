@@ -1,3 +1,5 @@
+import ElementContainer from '../container/ElementContainer'
+
 const fakeData = [
   { id: 0, type: 'Section', children: [1] },
   {
@@ -15,13 +17,15 @@ function ConvertDataToContainer () {
       const listChildren = fakeData.filter(
         element => rootData.children.includes(element.id)
       )
-      listChildren.map(child => {
+      listChildren.map((child: any) => {
         const element: any = addItem(child)
         const id = element.state.id
         rootData.children = []
         rootData.children.push(id)
+        return null
       })
     }
+    return new ElementContainer({...rootData, id: undefined })
   }
   return addItem(rootData)
 }
