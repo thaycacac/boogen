@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import variables from '../../theme/variable'
 import { getSize, sizeMedium } from './size'
 import { getColor, getColorEffect } from './color'
+import EnhanceElement from '../../core/EnhanceElement'
 
 interface IButton {
   href?: string,
@@ -63,4 +64,4 @@ const Button = styled.button<IButton>`
   }
 `
 
-export default Button
+export default EnhanceElement(Button)

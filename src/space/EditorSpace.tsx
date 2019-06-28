@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import INTERATION from '../reuse/interaction'
 import { ConvertDataToContainer } from '../utils'
 import { Page } from '../element-space'
-import { Body } from '../element-space'
+import { Text } from '../element-space'
 
 class EditorSpace extends React.Component<any> {
   refSel!: HTMLElement;
@@ -15,7 +15,7 @@ class EditorSpace extends React.Component<any> {
 
     const target = event.target as HTMLElement
     const { width, height, top, left } = target.getBoundingClientRect()
-    
+
     Object.assign(this.refSel.style, {
       width: width + 'px',
       height: height + 'px',
@@ -23,14 +23,14 @@ class EditorSpace extends React.Component<any> {
       left: left + 'px',
       display: 'block'
     })
-    
+
     const positionX = event.nativeEvent.offsetX
     const positionY = event.nativeEvent.offsetY
     const scrollTop = window.scrollY
     console.log('position: ', positionX, positionY)
     const distance = 7
-    
-    let caseTest: String = ''
+
+    let caseTest: string = ''
     if (positionX > 0 && positionX < distance) {
       caseTest = 'left'
       if(this.refFlow) {
@@ -86,16 +86,13 @@ class EditorSpace extends React.Component<any> {
     event.stopPropagation()
     const nameDom = event.dataTransfer.getData('element')
     const rootContainer = ConvertDataToContainer()
-    
+
     const domDrop = event.target.closest('[data-element]')
-    // if(!domDrop) return
-    // const dropId  = domDrop.getAttribute('data-element')
-    // console.log('dropId',dropId)
+    if(!domDrop) return
+    // get id of element target
+    const dropId  = domDrop.dataset.element
 
-    console.log('Target Drop element: ', event.target)
-    console.log('Name Drop element: ', nameDom)
-
-    // check exist
+    // change root id
     if (!nameDom || nameDom.length === 0) return
 
     // create new Dom
@@ -121,7 +118,7 @@ class EditorSpace extends React.Component<any> {
       default: event.target.appendChild(dom)
     }
     console.dir(event.target.parentElement)
-    
+
     INTERATION.reset()
 
     if ( this.refFlow) {

@@ -1,17 +1,17 @@
 import ElementContainer from '../container/ElementContainer'
 
 const fakeData = [
-  { id: 0, type: 'Section', children: [1] },
+  { id: 'abcde', type: 'Section', children: [1] },
   {
-    id: 1, type: 'Button', children: [2], styles: {
+    id: 'fhgik', type: 'Button', children: [2], styles: {
       backgroundColor: 'red'
     }
   },
-  { id: 2, type: 'Text', data: { value: 'Button' } }
+  { id: 'lmnop', type: 'Text', data: { value: 'Button' } }
 ]
 
 function ConvertDataToContainer () {
-  const rootData = fakeData.find(item => item.id === 1)
+  const rootData = fakeData.find(item => item.id === 'abcde')
   const addItem = (rootData: any) => {
     if (rootData.children) {
       const listChildren = fakeData.filter(

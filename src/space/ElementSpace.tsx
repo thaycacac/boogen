@@ -14,19 +14,19 @@ class ElementorSpace extends Component<any> {
     const listElement = ['div', 'a', 'span', 'button', 'input', 'section']
     const listElementFake = [
       {
-        id: 0,
+        id: 'abcde',
         type: 'Section',
         children: [1] 
       },
       {
-        id: 1,
+        id: 'fhgik',
         type: 'Button',
         children: [2],
         styles: {
           backgroundColor: 'red'
         }
       },
-      { id: 2,
+      { id: 'lmnop',
         type: 'Text',
         data: {
           value: 'Example'

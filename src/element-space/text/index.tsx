@@ -12,7 +12,7 @@ interface IText {
 class Text extends Component<IText> {
   refText: any
 
-  static defaultProps = {
+  static PropsDefault = {
     value: 'Text Example'
   }
 
