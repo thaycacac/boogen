@@ -11,7 +11,7 @@ class CoreContainer extends Container<any> {
     if(!children) children = []
 
     this.state = {...state, ...{id}}
-    console.log('this of container', this)
+    console.log('container in container/CoreContainer', this)
     StoreElement.set(id, this)
   }
 
