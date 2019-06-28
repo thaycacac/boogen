@@ -84,8 +84,6 @@ class EditorSpace extends React.Component<any> {
   handleDropCapture = (event: any) => {
     event.preventDefault()
     event.stopPropagation()
-    const nameDom = event.dataTransfer.getData('element')
-    const rootContainer = ConvertDataToContainer()
 
     const domDrop = event.target.closest('[data-element]')
     if(!domDrop) return
@@ -93,7 +91,12 @@ class EditorSpace extends React.Component<any> {
     const dropId  = domDrop.dataset.element
 
     // change root id
-    if (!nameDom || nameDom.length === 0) return
+    switch(INTERATION.category) {
+      case 'DRAG_ELEMENT':
+        // get data
+        const nameDom = event.dataTransfer.getData("element")
+        const containerElement = convertDataToContainer(nameDom)
+    }
 
     // create new Dom
     const dom = document.createElement(nameDom) as HTMLElement
