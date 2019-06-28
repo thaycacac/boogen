@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Subscribe } from 'unstated'
+import EnhanceElement from '../../core/EnhanceElement'
+import RenderElement from '../../core/renderElement'
 
 interface IText {
   value: string,
@@ -41,7 +43,7 @@ class Text extends Component<IText> {
   }
 
   render() {
-    console.log('props text ', this.props);
+    console.log('props text in Element-space/text/index.tsx', this.props);
     return (
       <Span
         contentEditable
@@ -57,4 +59,4 @@ const Span = styled.span`
   color: red
 `
 
-export default Text
+export default EnhanceElement(Text)

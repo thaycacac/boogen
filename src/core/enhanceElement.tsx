@@ -1,7 +1,26 @@
-import React, { ElementType } from 'react'
+import React from 'react'
 
-const EnhanceElement = () => {
-  console.log('EnhanceElement');
+function EnhanceElement(Element: any) {
+  return class extends Element {
+    render() {
+      console.log('Element in core/EnhanceElement', this.props);
+      const { elementContainer } = this.props
+      const instance = super.render()
+      const { 
+        id,
+        type,
+        children,
+        parentId
+      } = elementContainer.state
+      const props = {
+        'data-element': id,
+        'data-type': type,
+        ref: (e: any) => elementContainer.state.domElement = e
+      }
+      console.log('instance.props in core/EnhanceElement', instance.props)
+      return React.cloneElement(instance, { ...props, ...this.props , ...instance.props })
+    }
+  }
 }
 
 export default EnhanceElement

@@ -23,7 +23,6 @@ class Page extends Component<any> {
   static type = 'Page'
   
   render() {
-    console.log('render Element (idBody)', );
     return RenderElement(initIdPage, '')
   }
 }
