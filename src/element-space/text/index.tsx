@@ -56,3 +56,5 @@ class Text extends Component<IText> {
 const Span = styled.span`
   color: red
 `
+
+export default Text

@@ -1,8 +1,6 @@
 import { Container } from 'unstated'
 import uuid from 'uuid'
-
-const storeElement = new Map()
-
+import StoreElement from './StoreElement'
 class CoreContainer extends Container<any> {
   
   constructor(state: any) {
@@ -14,7 +12,7 @@ class CoreContainer extends Container<any> {
 
     this.state = {...state, ...{id}}
     console.log('this of container', this)
-    storeElement.set(id, this)
+    StoreElement.set(id, this)
   }
 
   setState(state: any, callback: any) {

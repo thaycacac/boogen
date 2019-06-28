@@ -2,6 +2,7 @@ import * as React from 'react'
 import styled from 'styled-components'
 import INTERATION from '../reuse/interaction'
 import { ConvertDataToContainer } from '../utils'
+import { Page } from '../element-space'
 
 class EditorSpace extends React.Component<any> {
   refSel!: HTMLElement;
@@ -135,7 +136,8 @@ class EditorSpace extends React.Component<any> {
         onDragOverCapture={this.handleDrapOverCapture}
         onDragLeaveCapture={this.handleDragLeaveCapture}
         onDropCapture={this.handleDropCapture}
-        >
+      >
+        <Page />
         <Selection ref={e => this.refSel = e as HTMLInputElement} />
         <Flow ref={e => this.refFlow = e as HTMLInputElement}/>
       </WrapperEditorSpace>
