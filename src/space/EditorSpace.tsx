@@ -83,7 +83,12 @@ class EditorSpace extends React.Component<any> {
     event.preventDefault()
     event.stopPropagation()
     const nameDom = event.dataTransfer.getData('element')
-    ConvertDataToContainer()
+    const rootContainer = ConvertDataToContainer()
+    
+    const domDrop = event.target.closest('[data-element]')
+    // if(!domDrop) return
+    // const dropId  = domDrop.getAttribute('data-element')
+    // console.log('dropId',dropId)
 
     console.log('Target Drop element: ', event.target)
     console.log('Name Drop element: ', nameDom)
