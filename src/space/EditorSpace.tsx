@@ -140,7 +140,6 @@ class EditorSpace extends React.Component<any> {
       >
         <Page />
         {/* <Text value="hello" /> */}
-        {/* <Body /> */}
         <Selection ref={e => this.refSel = e as HTMLInputElement} />
         <Flow ref={e => this.refFlow = e as HTMLInputElement}/>
       </WrapperEditorSpace>

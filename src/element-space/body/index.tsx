@@ -15,5 +15,7 @@ class Body extends Component<any> {
   }
 }
 const UIBody = styled.div`
+  width: calc(100% - 20px);
+  height: calc(100vh - 81px);
 `
 export default EnhanceElement(Body)
