@@ -1,21 +1,35 @@
 import ElementContainer from '../container/ElementContainer'
+import INTERACTION from '../reuse/interaction'
+import { StoreElement } from '../container'
 
 const fakeData = [
-  { id: 'abcde', type: 'Section', children: [1] },
-  {
-    id: 'fhgik', type: 'Button', children: [2], styles: {
-      backgroundColor: 'red'
-    }
-  },
-  { id: 'lmnop', type: 'Text', data: { value: 'Button' } }
+  [
+      { id: 'a', type: 'Section', children: ['b', 'c'] },
+      {
+          id: 'b', type: 'Button', children: ['c'], styles: {
+              backgroundColor: 'red'
+          }
+      },
+      { id: 'c', type: 'Text', data: { value: 'Button' } }
+  ],
+  [
+      { id: 'a', type: 'Section', children: ['b'] } ,
+      {
+          id : 'b' , type : 'Input' ,tyles: {
+              backgroundColor: 'red'
+          }
+      }
+  ]
 ]
 
-function ConvertDataToContainer () {
-  const rootData = fakeData.find(item => item.id === 'abcde')
+function ConvertDataToContainer(data: any) {
+  const rootData = JSON.parse(data).find(
+    (item: any) => item.id === 'a'
+  )
   const addItem = (rootData: any) => {
     if (rootData.children) {
       const listChildren = fakeData.filter(
-        element => rootData.children.includes(element.id)
+        (element: any) => rootData.children.includes(element.id)
       )
       listChildren.map((child: any) => {
         const element: any = addItem(child)
@@ -30,6 +44,13 @@ function ConvertDataToContainer () {
   return addItem(rootData)
 }
 
+function UpdatePositionElement(dropId: string, rootId: string ) {
+  const rootContainer = StoreElement.get(rootId)
+  const { parentId } = rootContainer.state
+  return null
+}
 export {
-  ConvertDataToContainer
+  fakeData,
+  ConvertDataToContainer,
+  UpdatePositionElement
 }

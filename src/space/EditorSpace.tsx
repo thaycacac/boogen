@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import INTERATION from '../reuse/interaction'
-import { ConvertDataToContainer } from '../utils'
+import { ConvertDataToContainer, UpdatePositionElement } from '../utils'
 import { Page } from '../element-space'
 import { Text } from '../element-space'
 
@@ -74,7 +74,7 @@ class EditorSpace extends React.Component<any> {
         this.refFlow.style.display = 'none'
       }
     }
-    INTERATION.position = caseTest
+    // INTERATION.position = caseTest
   }
 
   handleDragLeaveCapture = (event: any) => {
@@ -90,15 +90,23 @@ class EditorSpace extends React.Component<any> {
     // get id of element target
     const dropId  = domDrop.dataset.element
 
+    let idRoot: string = ''
     // change root id
     switch(INTERATION.category) {
-      case 'DRAG_ELEMENT':
+      case 'DRAG':
         // get data
         const nameDom = event.dataTransfer.getData("element")
-        const containerElement = convertDataToContainer(nameDom)
+        const containerElement = ConvertDataToContainer(nameDom)
+        idRoot = containerElement.state.id
+        break
+      case 'MOVE':
+        console.log('move')
+        break
     }
 
-    // create new Dom
+    UpdatePositionElement(dropId, idRoot)
+/*
+    create new Dom
     const dom = document.createElement(nameDom) as HTMLElement
     dom.innerHTML = nameDom
     dom.setAttribute('draggable', 'true')
@@ -127,7 +135,7 @@ class EditorSpace extends React.Component<any> {
     if ( this.refFlow) {
         this.refSel.style.display = 'none'
         this.refFlow.style.display = 'none'
-    }
+    }*/
   }
 
   render() {

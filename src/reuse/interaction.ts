@@ -1,7 +1,9 @@
+type TypePosition = 'TOP'|'BOTTOM'|'LEFT'|'RIGHT'|'INSIDE'|''
+type TypeCategory = 'DRAG'|'MOVE'
 class Interation {
   dropTarget: any = null
-  position: string = ''
-  category: string = ''
+  position: TypePosition = ''
+  category: TypeCategory = 'DRAG'
   doing: boolean = false
   reset(): void {
     setTimeout(() => {

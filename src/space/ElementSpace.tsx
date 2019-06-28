@@ -1,37 +1,19 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import { fakeData } from '../utils'
+import INTERACTION from '../reuse/interaction'
 
 class ElementorSpace extends Component<any> {
 
   handleDragStart = (event: any) => {
     event.stopPropagation()
     const data = event.target.dataset.element
-    console.log('data start', data)
+    INTERACTION.category = 'DRAG'
     event.dataTransfer.setData('element', data)
   }
 
   render() {
     const listElement = ['div', 'a', 'span', 'button', 'input', 'section']
-    const listElementFake = [
-      {
-        id: 'abcde',
-        type: 'Section',
-        children: [1] 
-      },
-      {
-        id: 'fhgik',
-        type: 'Button',
-        children: [2],
-        styles: {
-          backgroundColor: 'red'
-        }
-      },
-      { id: 'lmnop',
-        type: 'Text',
-        data: {
-          value: 'Example'
-        } }
-    ]
     return (
       <WrapAll>{
           listElement.map((item, index) => (
@@ -46,7 +28,7 @@ class ElementorSpace extends Component<any> {
           ))
         }
         {
-          listElementFake.map((item, index) => {
+          fakeData.map((item, index) => {
             const dataString = JSON.stringify(item)
             return <DrapItem
               key={index}
@@ -59,7 +41,7 @@ class ElementorSpace extends Component<any> {
       </WrapAll>
     )
   }
-} 
+}
 
 const WrapAll = styled.div`
   width: 250px;
