@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import INTERATION from '../reuse/interaction'
 import { ConvertDataToContainer } from '../utils'
 import { Page } from '../element-space'
-import { Text } from '../element-space'
+import { Body } from '../element-space'
 
 class EditorSpace extends React.Component<any> {
   refSel!: HTMLElement;
@@ -140,6 +140,7 @@ class EditorSpace extends React.Component<any> {
       >
         <Page />
         {/* <Text value="hello" /> */}
+        {/* <Body /> */}
         <Selection ref={e => this.refSel = e as HTMLInputElement} />
         <Flow ref={e => this.refFlow = e as HTMLInputElement}/>
       </WrapperEditorSpace>
