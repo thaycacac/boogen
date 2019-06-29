@@ -2,12 +2,12 @@ import { Container } from 'unstated'
 import uuid from 'uuid'
 import StoreElement from './StoreElement'
 class CoreContainer extends Container<any> {
-  
+
   constructor(state: any) {
     super()
     let { children, id } = state
-    
-    if(!id) id=uuid()
+
+    if(!id || typeof id === 'number') id=uuid()
     if(!children) children = []
 
     this.state = {...state, ...{id}}

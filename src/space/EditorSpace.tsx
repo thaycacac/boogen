@@ -87,10 +87,10 @@ class EditorSpace extends React.Component<any> {
     event.preventDefault()
     event.stopPropagation()
 
-    const domDrag = event.target.closest('[data-element]')
-    if(!domDrag) return
+    const domDrop = event.target.closest('[data-element]')
+    if(!domDrop) return
     // get id of element target
-    const dropId  = domDrag.dataset.element
+    const dropId  = domDrop.dataset.element
 
     let dragId: string = ''
     // change root id

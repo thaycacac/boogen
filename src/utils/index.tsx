@@ -4,18 +4,18 @@ import { StoreElement } from '../container'
 
 const fakeData = [
   [
-      { id: 'a', type: 'Section', children: ['b', 'c'] },
+      { id: 1, type: 'Button', children: [] },
       {
-          id: 'b', type: 'Button', children: ['c'], styles: {
+          id: 2, type: 'Button', children: [3], styles: {
               backgroundColor: 'red'
           }
       },
-      { id: 'c', type: 'Text', data: { value: 'Button' } }
+      { id: 3, type: 'Text', data: { value: 'Button' } }
   ],
   [
-      { id: 'a', type: 'Section', children: ['b'] } ,
+      { id: 1, type: 'Section', children: [2] } ,
       {
-          id : 'b' , type : 'Input' ,tyles: {
+          id : 2 , type : 'Input' ,tyles: {
               backgroundColor: 'red'
           }
       }
@@ -24,7 +24,7 @@ const fakeData = [
 
 function ConvertDataToContainer(data: any) {
   const rootData = JSON.parse(data).find(
-    (item: any) => item.id === 'a'
+    (item: any) => item.id === 1
   )
   const addItem = (rootData: any) => {
     if (rootData.children) {
@@ -51,18 +51,23 @@ function UpdatePositionElement(dragId: string, dropId: string ) {
   const dragChildren = dragContainer.state.children
   const dropChildren = dropContainer.state.children
 
+    if (INTERACTION.position === 'INSIDE') {
+        dropChildren.push(dragId)
+        dropContainer.setState({ children: dropChildren })
+        return
+    }
 
   // if (INTERACTION.position === 'INSIDE') {
 
   // }
 
-  switch(INTERACTION.position) {
-    case 'INSIDE':
-      dropChildren.push(dropId)
-      dropContainer.setState({ children: dropChildren })
-      INTERACTION.reset()
-      return
-  }
+  // switch(INTERACTION.position) {
+  //   case 'INSIDE':
+  //     dropChildren.push(dropId)
+  //     dropContainer.setState({ children: dropChildren })
+  //     INTERACTION.reset()
+  //     return
+  // }
 
   return null
 }
