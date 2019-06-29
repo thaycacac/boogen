@@ -8,9 +8,7 @@ function EnhanceElement(Element: any) {
       const instance = super.render()
       const {
         id,
-        type,
-        children,
-        parentId
+        type
       } = elementContainer.state
       const props = {
         'data-element': id,

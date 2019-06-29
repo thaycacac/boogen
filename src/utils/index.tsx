@@ -4,43 +4,47 @@ import { StoreElement } from '../container'
 
 const fakeData = [
   [
-      { id: 1, type: 'Button', children: [] },
-      {
-          id: 2, type: 'Button', children: [3], styles: {
-              backgroundColor: 'red'
-          }
-      },
-      { id: 3, type: 'Text', data: { value: 'Button' } }
+    { id: 1, type: 'Section', children: [2, 2] },
+    {
+      id: 2, type: 'Button', children: [], styles: {
+        backgroundColor: 'red'
+      }
+    },
+    { id: 3, type: 'Text', data: { value: 'Button' } }
   ],
   [
-      { id: 1, type: 'Section', children: [2] } ,
-      {
-          id : 2 , type : 'Input' ,tyles: {
-              backgroundColor: 'red'
-          }
-      }
+    { id: 1, type: 'Section', children: [2] } ,
+    {
+      id : 2 , type : 'Input' ,styles: {
+        backgroundColor: 'red'
+      },
+      children: []
+    }
   ]
 ]
 
+const addItem = (rootData: any): any => {
+  if (rootData.children) {
+    // TODO: change this in fake data
+    const listChildren = fakeData[0].filter(
+      (element: any) => rootData.children.includes(element.id)
+    )
+    listChildren.map((child: any) => {
+      const element: any = addItem(child)
+      const id = element.state.id
+      rootData.children = []
+      rootData.children.push(id)
+      return null
+    })
+  }
+  return new ElementContainer(rootData)
+}
+
 function ConvertDataToContainer(data: any) {
+  // get root data
   const rootData = JSON.parse(data).find(
     (item: any) => item.id === 1
   )
-  const addItem = (rootData: any) => {
-    if (rootData.children) {
-      const listChildren = fakeData.filter(
-        (element: any) => rootData.children.includes(element.id)
-      )
-      listChildren.map((child: any) => {
-        const element: any = addItem(child)
-        const id = element.state.id
-        rootData.children = []
-        rootData.children.push(id)
-        return null
-      })
-    }
-    return new ElementContainer({...rootData, id: undefined })
-  }
   return addItem(rootData)
 }
 

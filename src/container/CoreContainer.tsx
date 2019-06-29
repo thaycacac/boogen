@@ -6,12 +6,10 @@ class CoreContainer extends Container<any> {
   constructor(state: any) {
     super()
     let { children, id } = state
-
     if(!id || typeof id === 'number') id=uuid()
-    if(!children) children = []
 
     this.state = {...state, ...{id}}
-    console.log('container in container/CoreContainer', this)
+    console.log('Container in container/CoreContainer', this)
     StoreElement.set(id, this)
   }
 

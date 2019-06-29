@@ -2,10 +2,6 @@ import CoreContainer from './CoreContainer'
 
 class ElementContainer extends CoreContainer {
 
-  constructor(state: any) {
-    super(state)
-  }
-
   setState(state: any, callback: any) {
     return super.setState(state, callback)
   }

@@ -13,5 +13,5 @@ export default {
   'Text': Text,
   'Body': Body,
   'Section': Section,
-  'Button': Button
+  'Button': Button,
 }
