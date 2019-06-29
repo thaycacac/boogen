@@ -92,9 +92,9 @@ class EditorSpace extends React.Component<any> {
     // element can't drop
     if(!domDrop) return
     let dropId  = domDrop.dataset.element
-    if (INTERACTION.position !== 'INSIDE') {
-      dropId = domDrop.parentNode.dataset.element
-    }
+    // if (INTERACTION.position !== 'INSIDE') {
+    //   dropId = domDrop.parentNode.dataset.element
+    // }
 
     let dragId: string = ''
     switch(INTERACTION.category) {

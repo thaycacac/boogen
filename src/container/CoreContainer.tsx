@@ -5,7 +5,7 @@ class CoreContainer extends Container<any> {
 
   constructor(state: any) {
     super()
-    let { children, id } = state
+    let { children = [], id, data = {} } = state
     if(!id || typeof id === 'number') id=uuid()
 
     this.state = {...state, ...{id}}
