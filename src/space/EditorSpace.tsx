@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import INTERACTION, { TypePosition } from '../reuse/interaction'
-import { ConvertDataToContainer, UpdatePositionElement } from '../utils'
+import { ConvertDataToContainer, UpdatePositionElement, getElementCanInteract } from '../utils'
 import { Page } from '../element-space'
 import { Text } from '../element-space'
 
@@ -87,16 +87,18 @@ class EditorSpace extends React.Component<any> {
     event.preventDefault()
     event.stopPropagation()
 
-    const domDrop = event.target.closest('[data-element]')
+    const domDrop = getElementCanInteract(event)
+    console.log(domDrop.parentNode);
+    // element can't drop
     if(!domDrop) return
-    // get id of element target
-    const dropId  = domDrop.dataset.element
+    let dropId  = domDrop.dataset.element
+    if (INTERACTION.position !== 'INSIDE') {
+      dropId = domDrop.parentNode.dataset.element
+    }
 
     let dragId: string = ''
-    // change root id
     switch(INTERACTION.category) {
       case 'DRAG':
-        // get data
         const nameDom = event.dataTransfer.getData("element")
         const containerElement = ConvertDataToContainer(nameDom)
         dragId = containerElement.state.id

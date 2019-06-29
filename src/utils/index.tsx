@@ -48,35 +48,34 @@ function ConvertDataToContainer(data: any) {
   return addItem(rootData)
 }
 
-function UpdatePositionElement(dragId: string, dropId: string ) {
+function UpdatePositionElement(dragId: string, dropId: string ): void {
   const dropContainer = StoreElement.get(dropId)
   const dragContainer = StoreElement.get(dragId)
   const dropParent = dropContainer.state.parentId
   const dragChildren = dragContainer.state.children
   const dropChildren = dropContainer.state.children
 
-    if (INTERACTION.position === 'INSIDE') {
-        dropChildren.push(dragId)
-        dropContainer.setState({ children: dropChildren })
-        return
-    }
-
-  // if (INTERACTION.position === 'INSIDE') {
-
-  // }
-
-  // switch(INTERACTION.position) {
-  //   case 'INSIDE':
-  //     dropChildren.push(dropId)
-  //     dropContainer.setState({ children: dropChildren })
-  //     INTERACTION.reset()
-  //     return
-  // }
-
-  return null
+  switch(INTERACTION.position) {
+    case 'INSIDE':
+      dropChildren.push(dragId)
+      break
+    case 'BOTTOM':
+      dropChildren.push(dragId)
+      break
+    case 'TOP':
+      dropChildren.unshift(dragId)
+      break
+    case 'LEFT':
+      break
+  }
+  dropContainer.setState({ children: dropChildren })
+  INTERACTION.reset()
+  return
 }
 export {
   fakeData,
   ConvertDataToContainer,
   UpdatePositionElement
 }
+
+export { default as getElementCanInteract } from './getElementCanInteract'
