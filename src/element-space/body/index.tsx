@@ -15,6 +15,7 @@ class Body extends Component<any> {
   }
 }
 const UIBody = styled.div`
+  background: white !important;
   width: calc(100% - 20px);
   height: calc(100vh - 81px);
 `

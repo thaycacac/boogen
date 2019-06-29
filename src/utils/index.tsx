@@ -44,9 +44,25 @@ function ConvertDataToContainer(data: any) {
   return addItem(rootData)
 }
 
-function UpdatePositionElement(dropId: string, rootId: string ) {
-  const rootContainer = StoreElement.get(rootId)
-  const { parentId } = rootContainer.state
+function UpdatePositionElement(dragId: string, dropId: string ) {
+  const dropContainer = StoreElement.get(dropId)
+  const dragContainer = StoreElement.get(dragId)
+  const dropParent = dropContainer.state.parentId
+  const dragChildren = dragContainer.state.children
+  const dropChildren = dropContainer.state.children
+
+
+  // if (INTERACTION.position === 'INSIDE') {
+
+  // }
+
+  switch(INTERACTION.position) {
+    case 'INSIDE':
+      dropChildren.push(dropId)
+      dropContainer.setState({ children: dropChildren })
+      INTERACTION.reset()
+      return
+  }
 
   return null
 }

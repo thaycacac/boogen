@@ -87,26 +87,26 @@ class EditorSpace extends React.Component<any> {
     event.preventDefault()
     event.stopPropagation()
 
-    const domDrop = event.target.closest('[data-element]')
-    if(!domDrop) return
+    const domDrag = event.target.closest('[data-element]')
+    if(!domDrag) return
     // get id of element target
-    const dropId  = domDrop.dataset.element
+    const dropId  = domDrag.dataset.element
 
-    let idRoot: string = ''
+    let dragId: string = ''
     // change root id
     switch(INTERACTION.category) {
       case 'DRAG':
         // get data
         const nameDom = event.dataTransfer.getData("element")
         const containerElement = ConvertDataToContainer(nameDom)
-        idRoot = containerElement.state.id
+        dragId = containerElement.state.id
         break
       case 'MOVE':
         console.log('move')
         break
     }
 
-    UpdatePositionElement(dropId, idRoot)
+    UpdatePositionElement(dragId, dropId)
 /*
     create new Dom
     const dom = document.createElement(nameDom) as HTMLElement

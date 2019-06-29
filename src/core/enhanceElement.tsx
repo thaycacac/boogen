@@ -6,7 +6,7 @@ function EnhanceElement(Element: any) {
       console.log('Element in core/EnhanceElement', this.props);
       const { elementContainer } = this.props
       const instance = super.render()
-      const { 
+      const {
         id,
         type,
         children,
@@ -17,7 +17,6 @@ function EnhanceElement(Element: any) {
         'data-type': type,
         ref: (e: any) => elementContainer.state.domElement = e
       }
-      console.log('instance.props in core/EnhanceElement', instance.props)
       return React.cloneElement(instance, { ...props, ...this.props , ...instance.props })
     }
   }

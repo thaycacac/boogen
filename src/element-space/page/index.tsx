@@ -4,10 +4,18 @@ import { ElementContainer } from '../../container'
 import RenderElement from '../../core/RenderElement'
 
 const initIdPage = uuid()
+const initIdSection  = uuid()
+
+// Auto run and create element container
 const initData = {
   idPage: new ElementContainer({
     id: initIdPage,
     type: 'Body',
+    children: [initIdSection]
+  }),
+  idSection : new ElementContainer({
+    id  : initIdSection ,
+    type : 'Section',
     children: []
   }),
 }

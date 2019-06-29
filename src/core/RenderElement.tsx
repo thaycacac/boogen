@@ -20,7 +20,9 @@ function RenderElement(id: string, parentId: string) {
         const props = { ...Element.PropsDefault, ...{elementContainer}, }
         return <Element {...props}>
           {
-            children.map((childrenId: string) => RenderElement(childrenId, id))
+            children.map((childrenId: string) =>
+              RenderElement(childrenId, id)
+            )
           }
         </Element>
       }
