@@ -1,5 +1,5 @@
-type TypePosition = 'TOP'|'BOTTOM'|'LEFT'|'RIGHT'|'INSIDE'|''
-type TypeCategory = 'DRAG'|'MOVE'
+export type TypePosition = 'TOP'|'BOTTOM'|'LEFT'|'RIGHT'|'INSIDE'|''
+export type TypeCategory = 'DRAG'|'MOVE'
 class Interation {
   dropTarget: any = null
   position: TypePosition = ''
@@ -13,4 +13,5 @@ class Interation {
     },100)
   }
 }
+
 export default new Interation()

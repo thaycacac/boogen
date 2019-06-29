@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import INTERATION from '../reuse/interaction'
+import INTERACTION, { TypePosition } from '../reuse/interaction'
 import { ConvertDataToContainer, UpdatePositionElement } from '../utils'
 import { Page } from '../element-space'
 import { Text } from '../element-space'
@@ -13,12 +13,14 @@ class EditorSpace extends React.Component<any> {
   handleDrapOverCapture = (event: any) => {
     event.preventDefault()
 
-    const target = event.target as HTMLElement
+    const target = event.target.closest('[data-element]')
+    if(!target) return
+
     const { width, height, top, left } = target.getBoundingClientRect()
 
     Object.assign(this.refSel.style, {
-      width: width + 'px',
-      height: height + 'px',
+      width: width + 2 + 'px',
+      height: height + 2 + 'px',
       top: top + 'px',
       left: left + 'px',
       display: 'block'
@@ -30,9 +32,9 @@ class EditorSpace extends React.Component<any> {
     console.log('position: ', positionX, positionY)
     const distance = 7
 
-    let caseTest: string = ''
+    let casePosition: TypePosition = ''
     if (positionX > 0 && positionX < distance) {
-      caseTest = 'left'
+      casePosition = 'LEFT'
       if(this.refFlow) {
         console.log('case: left')
         this.refFlow.style.display = 'block'
@@ -42,39 +44,39 @@ class EditorSpace extends React.Component<any> {
         this.refFlow.style.top = (top + scrollTop) + 'px'
       }
     } else if (positionX > width - distance && positionX < width) {
-      caseTest = 'right'
+      casePosition = 'RIGHT'
       if(this.refFlow) {
         this.refFlow.style.display = 'block'
-        this.refFlow.style.width = '3px'
+        this.refFlow.style.width = '2px'
         this.refFlow.style.height = height + 'px'
         this.refFlow.style.left = left + width + 'px'
         this.refFlow.style.top = (top + scrollTop) + 'px'
       }
     } else if (positionY > 0 && positionY < distance) {
-      caseTest = 'top'
+      casePosition = 'TOP'
       if(this.refFlow) {
         this.refFlow.style.display = 'block'
         this.refFlow.style.width = width + 'px'
-        this.refFlow.style.height = '3px'
+        this.refFlow.style.height = '2px'
         this.refFlow.style.left = left + 'px'
         this.refFlow.style.top = (top + scrollTop) + 'px'
       }
     } else if (positionY < height && positionY > (height - distance)) {
-      caseTest = 'bottom'
+      casePosition = 'BOTTOM'
       if ( this.refFlow) {
         this.refFlow.style.display = 'block'
         this.refFlow.style.width = width + 'px'
-        this.refFlow.style.height = '3px'
+        this.refFlow.style.height = '2px'
         this.refFlow.style.left = left + 'px'
         this.refFlow.style.top = (top + scrollTop) + height + 'px'
       }
     } else {
-      caseTest = 'inside'
+      casePosition = 'INSIDE'
       if ( this.refFlow) {
         this.refFlow.style.display = 'none'
       }
     }
-    // INTERATION.position = caseTest
+    INTERACTION.position = casePosition
   }
 
   handleDragLeaveCapture = (event: any) => {
@@ -92,7 +94,7 @@ class EditorSpace extends React.Component<any> {
 
     let idRoot: string = ''
     // change root id
-    switch(INTERATION.category) {
+    switch(INTERACTION.category) {
       case 'DRAG':
         // get data
         const nameDom = event.dataTransfer.getData("element")
