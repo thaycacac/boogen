@@ -1,14 +1,18 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import INTERACTION, { TypePosition } from '../reuse/interaction'
-import { ConvertDataToContainer, UpdatePositionElement, getElementCanInteract } from '../utils'
+import { convertDataToContainer, updatePositionElement, getElementCanInteract } from '../utils'
 import { Page } from '../element-space'
-import { Text } from '../element-space'
 
 class EditorSpace extends React.Component<any> {
   refSel!: HTMLElement;
   refFlow: HTMLElement
   | undefined
+
+  handleDragStartCapture = (event: any) => {
+    event.stopPropagation()
+    INTERACTION.category='MOVE'
+  }
 
   handleDrapOverCapture = (event: any) => {
     event.preventDefault()
@@ -92,66 +96,36 @@ class EditorSpace extends React.Component<any> {
     // element can't drop
     if(!domDrop) return
     let dropId  = domDrop.dataset.element
-    // if (INTERACTION.position !== 'INSIDE') {
-    //   dropId = domDrop.parentNode.dataset.element
-    // }
 
     let dragId: string = ''
     switch(INTERACTION.category) {
       case 'DRAG':
         const nameDom = event.dataTransfer.getData("element")
-        const containerElement = ConvertDataToContainer(nameDom)
+        const containerElement = convertDataToContainer(nameDom)
         dragId = containerElement.state.id
         break
       case 'MOVE':
-        console.log('move')
         break
     }
 
-    UpdatePositionElement(dragId, dropId)
-/*
-    create new Dom
-    const dom = document.createElement(nameDom) as HTMLElement
-    dom.innerHTML = nameDom
-    dom.setAttribute('draggable', 'true')
-    dom.setAttribute('data-element', nameDom)
-    const section = document.createElement('section')
-    console.log('INTERATION.position',INTERATION.position)
-    switch (INTERATION.position) {
-      case 'bottom':
-        event.target.parentElement.appendChild(dom)
-        break;
-      case 'top':
-        event.target.parentElement.appendChild(section.appendChild(dom),'section')
-        break;
-      case 'left':
-        event.target.before(dom)
-        break;
-      case 'right':
-        event.target.after(dom)
-        break;
-      default: event.target.appendChild(dom)
-    }
-    console.dir(event.target.parentElement)
-
-    INTERATION.reset()
+    updatePositionElement(dragId, dropId)
 
     if ( this.refFlow) {
         this.refSel.style.display = 'none'
         this.refFlow.style.display = 'none'
-    }*/
+    }
   }
 
   render() {
     return <>
       <WrapperEditorSpace
         draggable
+        onDragStartCapture={this.handleDragStartCapture}
         onDragOverCapture={this.handleDrapOverCapture}
         onDragLeaveCapture={this.handleDragLeaveCapture}
         onDropCapture={this.handleDropCapture}
       >
         <Page />
-        {/* <Text value="hello" /> */}
         <Selection ref={e => this.refSel = e as HTMLInputElement} />
         <Flow ref={e => this.refFlow = e as HTMLInputElement}/>
       </WrapperEditorSpace>
