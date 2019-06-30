@@ -5,7 +5,8 @@ import INTERACTION, { TypePosition } from '../../reuse/interaction'
 import {
   convertDataToContainer,
   updatePositionElement,
-  getElementCanInteract
+  getElementCanInteract,
+  setBorderElement
 } from '../../utils'
 import { Page } from '../../element-space'
 import { EditorSpaceContainer, StoreElement } from '../../container'
@@ -29,13 +30,7 @@ class EditorSpace extends React.Component<any> {
 
     const { width, height, top, left } = target.getBoundingClientRect()
 
-    Object.assign(this.dropElement.style, {
-      width: width + 2 + 'px',
-      height: height + 2 + 'px',
-      top: top + 'px',
-      left: left + 'px',
-      display: 'block'
-    })
+    setBorderElement(width + 2, height + 2, left, top, this.dropElement as HTMLElement)
 
     const positionX = event.nativeEvent.offsetX
     const positionY = event.nativeEvent.offsetY
@@ -46,41 +41,16 @@ class EditorSpace extends React.Component<any> {
     let casePosition: TypePosition = ''
     if (positionX > 0 && positionX < distance) {
       casePosition = 'LEFT'
-      if(this.refFlow) {
-        console.log('case: left')
-        this.refFlow.style.display = 'block'
-        this.refFlow.style.width = '3px'
-        this.refFlow.style.height = height + 'px'
-        this.refFlow.style.left = left + 'px'
-        this.refFlow.style.top = (top + scrollTop) + 'px'
-      }
+      setBorderElement(3, height, left, top +scrollTop, this.refFlow as HTMLElement)
     } else if (positionX > width - distance && positionX < width) {
       casePosition = 'RIGHT'
-      if(this.refFlow) {
-        this.refFlow.style.display = 'block'
-        this.refFlow.style.width = '2px'
-        this.refFlow.style.height = height + 'px'
-        this.refFlow.style.left = left + width + 'px'
-        this.refFlow.style.top = (top + scrollTop) + 'px'
-      }
+      setBorderElement(2, height, left + width, top + scrollTop, this.refFlow as HTMLElement)
     } else if (positionY > 0 && positionY < distance) {
       casePosition = 'TOP'
-      if(this.refFlow) {
-        this.refFlow.style.display = 'block'
-        this.refFlow.style.width = width + 'px'
-        this.refFlow.style.height = '2px'
-        this.refFlow.style.left = left + 'px'
-        this.refFlow.style.top = (top + scrollTop) + 'px'
-      }
+      setBorderElement(width, 2, left, top + scrollTop, this.refFlow as HTMLElement)
     } else if (positionY < height && positionY > (height - distance)) {
       casePosition = 'BOTTOM'
-      if ( this.refFlow) {
-        this.refFlow.style.display = 'block'
-        this.refFlow.style.width = width + 'px'
-        this.refFlow.style.height = '2px'
-        this.refFlow.style.left = left + 'px'
-        this.refFlow.style.top = (top + scrollTop) + height + 'px'
-      }
+      setBorderElement(width, 2, left, top + height + scrollTop, this.refFlow as HTMLElement)
     } else {
       casePosition = 'INSIDE'
       if ( this.refFlow) {
@@ -200,14 +170,14 @@ const DropHover = styled.div`
   background: none !important;
   z-index: 0;
   &:after{
-		position: absolute;
-		top:-2px;
-		right: -2px;
-		bottom: -2px;
-		left: -2px;
-		content: '';
-		border: 2px dashed red;
-	}
+    position: absolute;
+    top:-2px;
+    right: -2px;
+    bottom: -2px;
+    left: -2px;
+    content: '';
+    border: 2px dashed red;
+  }
 `
 
 // show when drag over border element parent

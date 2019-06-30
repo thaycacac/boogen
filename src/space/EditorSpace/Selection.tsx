@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Subscribe } from 'unstated'
 import { EditorSpaceContainer, StoreElement }from '../../container'
+import { setBorderElement } from '../../utils'
 
 function Selection(props: any) {
   let refSel!: HTMLElement
@@ -12,13 +13,7 @@ function Selection(props: any) {
       const target: any = document.querySelector(`[data-element="${selectedId}"]`)
       const { width, height, top, left } = target.getBoundingClientRect()
       const scrollTop = window.scrollY
-      Object.assign(refSel.style, {
-        width: width + 'px',
-        height: height + 'px',
-        top: top +scrollTop+ 'px',
-        left: left + 'px',
-        display: 'block'
-      })
+      setBorderElement(width, height, left, top + scrollTop, refSel)
     }
   }, [props.selectedId])
 
