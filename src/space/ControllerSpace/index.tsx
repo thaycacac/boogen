@@ -4,10 +4,10 @@ import {
   Button,
   Loading,
   Input
-} from '../controller-space'
+} from '../../controller-space'
 
 class ControllerSpace extends Component<any> {
-  
+
   constructor(props: any) {
     super(props)
     this.state = {

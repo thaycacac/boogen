@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { fakeData } from '../utils'
-import INTERACTION from '../reuse/interaction'
+import { fakeData } from '../../utils'
+import INTERACTION from '../../reuse/interaction'
 
 class ElementorSpace extends Component<any> {
 

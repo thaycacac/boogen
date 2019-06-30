@@ -1,11 +1,18 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import INTERACTION, { TypePosition } from '../reuse/interaction'
-import { convertDataToContainer, updatePositionElement, getElementCanInteract } from '../utils'
-import { Page } from '../element-space'
+import Selection from './Selection'
+import INTERACTION, { TypePosition } from '../../reuse/interaction'
+import {
+  convertDataToContainer,
+  updatePositionElement,
+  getElementCanInteract
+} from '../../utils'
+import { Page } from '../../element-space'
+import { EditorSpaceContainer } from '../../container'
+import { Subscribe } from 'unstated';
 
 class EditorSpace extends React.Component<any> {
-  refSel!: HTMLElement;
+  dropElement!: HTMLElement
   refFlow: HTMLElement
   | undefined
 
@@ -22,7 +29,7 @@ class EditorSpace extends React.Component<any> {
 
     const { width, height, top, left } = target.getBoundingClientRect()
 
-    Object.assign(this.refSel.style, {
+    Object.assign(this.dropElement.style, {
       width: width + 2 + 'px',
       height: height + 2 + 'px',
       top: top + 'px',
@@ -111,9 +118,18 @@ class EditorSpace extends React.Component<any> {
     updatePositionElement(dragId, dropId)
 
     if ( this.refFlow) {
-        this.refSel.style.display = 'none'
+        this.dropElement.style.display = 'none'
         this.refFlow.style.display = 'none'
     }
+  }
+
+  handleMouseDown = (event: any) => {
+    const target = getElementCanInteract(event)
+    if(!target) return
+    const selectedId = target.dataset.element
+    EditorSpaceContainer.setState({
+      selected: selectedId
+    }, null)
   }
 
   render() {
@@ -124,10 +140,19 @@ class EditorSpace extends React.Component<any> {
         onDragOverCapture={this.handleDrapOverCapture}
         onDragLeaveCapture={this.handleDragLeaveCapture}
         onDropCapture={this.handleDropCapture}
+        onMouseDown={this.handleMouseDown}
       >
         <Page />
-        <Selection ref={e => this.refSel = e as HTMLInputElement} />
+        {/* <Selections ref={e => this.refSel = e as HTMLInputElement} /> */}
         <Flow ref={e => this.refFlow = e as HTMLInputElement}/>
+        <Subscribe to={[EditorSpaceContainer]}>
+          {
+            () => {
+              const { selected } = EditorSpaceContainer.state
+              return <Selection selectedId={selected} />
+            }
+          }
+        </Subscribe>
       </WrapperEditorSpace>
     </>
   }
@@ -150,7 +175,7 @@ const WrapperEditorSpace = styled.div`
   }
 `
 
-const Selection = styled.div`
+const Selections = styled.div`
   position: fixed;
 	box-sizing: border-box;
 	border: 2px dashed red;
