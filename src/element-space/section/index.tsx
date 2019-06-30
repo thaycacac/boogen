@@ -16,9 +16,10 @@ class Section extends Component {
 }
 
 const UISection = styled.div`
-    padding : 40px;
-    height: 50px;
-    background : gray;
+  padding : 40px;
+  height: 50px;
+  background : gray;
+  display: block;
 `
 
 export default EnhanceElement(Section)

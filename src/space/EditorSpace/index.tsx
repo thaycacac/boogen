@@ -116,6 +116,9 @@ class EditorSpace extends React.Component<any> {
     }
 
     updatePositionElement(dragId, dropId)
+    EditorSpaceContainer.setState({
+      selected: dragId
+    }, null)
 
     if ( this.refFlow) {
         this.dropElement.style.display = 'none'
@@ -143,8 +146,8 @@ class EditorSpace extends React.Component<any> {
         onMouseDown={this.handleMouseDown}
       >
         <Page />
-        {/* <Selections ref={e => this.refSel = e as HTMLInputElement} /> */}
         <Flow ref={e => this.refFlow = e as HTMLInputElement}/>
+        <DropHover ref={e => this.dropElement = e as HTMLInputElement} />
         <Subscribe to={[EditorSpaceContainer]}>
           {
             () => {
@@ -175,7 +178,7 @@ const WrapperEditorSpace = styled.div`
   }
 `
 
-const Selections = styled.div`
+const DropHover = styled.div`
   position: fixed;
 	box-sizing: border-box;
 	border: 2px dashed red;
