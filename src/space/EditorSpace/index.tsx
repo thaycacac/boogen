@@ -8,7 +8,7 @@ import {
   getElementCanInteract,
   setBorderElement
 } from '../../utils'
-import { Page } from '../../element-space'
+import { Page } from '../../element/editor'
 import { EditorSpaceContainer, StoreElement } from '../../container'
 import { Subscribe } from 'unstated';
 

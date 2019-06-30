@@ -1,4 +1,4 @@
-import variables from '../../theme/variable'
+import variables from '../../../theme/variable'
 
 const getColor = (variant: string) => {
   switch (variant) {

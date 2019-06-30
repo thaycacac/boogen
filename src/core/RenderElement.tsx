@@ -1,7 +1,7 @@
 import React from 'react'
 import { Subscribe } from 'unstated'
 import { StoreElement } from '../container'
-import ListElement from '../element-space'
+import ListElement from '../element/editor'
 
 function RenderElement(id: string, parentId: string) {
   const container = StoreElement.get(id)

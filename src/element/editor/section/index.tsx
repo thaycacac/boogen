@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import EnhanceElement from '../../core/EnhanceElement'
+import EnhanceElement from '../../../core/EnhanceElement'
 import styled from 'styled-components'
 
 class Section extends Component {
@@ -17,7 +17,7 @@ class Section extends Component {
 
 const UISection = styled.div`
   padding : 40px;
-  height: 50px;
+  min-height: 50px;
   background : gray;
   display: block;
 `

@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Subscribe } from 'unstated'
-// @ts-ignore
-import EnhanceElement from '../../core/EnhanceElement'
+import EnhanceElement from '../../../core/EnhanceElement'
 
 interface IText {
   value: string,

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { fakeData } from '../../utils'
 import INTERACTION from '../../reuse/interaction'
+import { Button } from '../../element/preview'
 
 class ElementorSpace extends Component<any> {
 
@@ -13,20 +14,14 @@ class ElementorSpace extends Component<any> {
   }
 
   render() {
-    const listElement = ['div', 'a', 'span', 'button', 'input', 'section']
     return (
-      <WrapAll>{
-          listElement.map((item, index) => (
-            <DrapItem
-              key={index}
-              onDragStartCapture={this.handleDragStart}
-              data-element={item}
-              draggable
-            >
-              {item}
-            </DrapItem>
-          ))
-        }
+      <WrapAll>
+        <Button
+          variant="danger"
+          draggable
+        >
+            Example
+        </Button>
         {
           fakeData.map((item, index) => {
             const dataString = JSON.stringify(item)
@@ -35,7 +30,9 @@ class ElementorSpace extends Component<any> {
               onDragStartCapture={this.handleDragStart}
               data-element={dataString}
               draggable
-            />
+            >
+              Example
+            </DrapItem>
           })
         }
       </WrapAll>

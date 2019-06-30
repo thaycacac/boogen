@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import uuid from 'uuid'
-import { ElementContainer } from '../../container'
-import RenderElement from '../../core/RenderElement'
+import { ElementContainer } from '../../../container'
+import RenderElement from '../../../core/RenderElement'
 
 const initIdPage = uuid()
 const initIdSection  = uuid()

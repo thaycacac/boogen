@@ -1,27 +1,21 @@
 import styled from 'styled-components'
-import variables from '../../theme/variable'
+import variables from '../../../theme/variable'
 import { getSize, sizeMedium } from './size'
 import { getColor, getColorEffect } from './color'
-import EnhanceElement from '../../core/EnhanceElement'
+import EnhanceElement from '../../../core/EnhanceElement'
 
 interface IButton {
-  href?: string,
-  rel?: string,
-  target?: string,
-  active?: boolean,
   disable?: boolean,
-  to?: any,
   size?: 'small' | 'medium' | 'large',
-  event?: any,
   block?: boolean,
-  variant?: 'primary' 
-  | 'secondary' 
+  variant?: 'primary'
+  | 'secondary'
   | 'success'
   | 'danger'
   | 'warning'
   | 'info'
   | 'light'
-  | 'dark' 
+  | 'dark'
   | 'link',
   type?: string
   rounded?: boolean,
@@ -64,4 +58,4 @@ const Button = styled.button<IButton>`
   }
 `
 
-export default EnhanceElement(Button)
+export default Button

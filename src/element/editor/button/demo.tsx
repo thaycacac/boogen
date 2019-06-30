@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import EnhanceElement from '../../core/EnhanceElement'
+import EnhanceElement from '../../../core/EnhanceElement'
 import styled from 'styled-components'
 
 class Button extends Component {
-  static type = 'Section'
+  static type = 'Button'
   static PropsDefault = {
   }
   render() {
