@@ -13,6 +13,7 @@ function EnhanceElement(Element: any) {
       const props = {
         'data-element': id,
         'data-type': type,
+        'draggable': true,
         ref: (e: any) => elementContainer.state.domElement = e
       }
       return React.cloneElement(instance, { ...props, ...this.props , ...instance.props })

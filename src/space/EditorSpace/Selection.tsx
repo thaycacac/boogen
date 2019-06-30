@@ -26,7 +26,7 @@ function Selection(props: any) {
     <Subscribe to={[EditorSpaceContainer]}>
       {
         () => {
-          const { selected } = EditorSpaceContainer.state
+          const { selectedId } = EditorSpaceContainer.state
           return <UISelection ref={ e => refSel = e as HTMLInputElement}/>
         }
       }

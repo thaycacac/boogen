@@ -8,7 +8,7 @@ import {
   getElementCanInteract
 } from '../../utils'
 import { Page } from '../../element-space'
-import { EditorSpaceContainer } from '../../container'
+import { EditorSpaceContainer, StoreElement } from '../../container'
 import { Subscribe } from 'unstated';
 
 class EditorSpace extends React.Component<any> {
@@ -99,7 +99,6 @@ class EditorSpace extends React.Component<any> {
     event.stopPropagation()
 
     const domDrop = getElementCanInteract(event)
-    console.log(domDrop.parentNode);
     // element can't drop
     if(!domDrop) return
     let dropId  = domDrop.dataset.element
@@ -112,17 +111,32 @@ class EditorSpace extends React.Component<any> {
         dragId = containerElement.state.id
         break
       case 'MOVE':
+        const { selectedId } = EditorSpaceContainer.state
+        const elementContainer = StoreElement.get(selectedId)
+        const { id, parentId } = elementContainer.state
+        dragId = id
+
+        const parentContainer = StoreElement.get(parentId)
+        const newChildrenOfParent = parentContainer.state.children.filter(
+          (children: string) => children !== id
+        )
+        parentContainer.setState({
+          children: newChildrenOfParent
+        })
+        EditorSpaceContainer.setState({
+          selectedId: null
+        }, null)
         break
     }
 
     updatePositionElement(dragId, dropId)
     EditorSpaceContainer.setState({
-      selected: dragId
+      selectedId: dragId
     }, null)
 
     if ( this.refFlow) {
-        this.dropElement.style.display = 'none'
-        this.refFlow.style.display = 'none'
+      this.dropElement.style.display = 'none'
+      this.refFlow.style.display = 'none'
     }
   }
 
@@ -131,28 +145,27 @@ class EditorSpace extends React.Component<any> {
     if(!target) return
     const selectedId = target.dataset.element
     EditorSpaceContainer.setState({
-      selected: selectedId
+      selectedId: selectedId
     }, null)
   }
 
   render() {
     return <>
       <WrapperEditorSpace
-        draggable
         onDragStartCapture={this.handleDragStartCapture}
         onDragOverCapture={this.handleDrapOverCapture}
         onDragLeaveCapture={this.handleDragLeaveCapture}
         onDropCapture={this.handleDropCapture}
         onMouseDown={this.handleMouseDown}
       >
-        <Page />
+        <Page/>
         <Flow ref={e => this.refFlow = e as HTMLInputElement}/>
         <DropHover ref={e => this.dropElement = e as HTMLInputElement} />
         <Subscribe to={[EditorSpaceContainer]}>
           {
             () => {
-              const { selected } = EditorSpaceContainer.state
-              return <Selection selectedId={selected} />
+              const { selectedId } = EditorSpaceContainer.state
+              return <Selection selectedId={selectedId} />
             }
           }
         </Subscribe>

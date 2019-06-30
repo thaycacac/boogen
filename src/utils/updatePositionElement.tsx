@@ -1,7 +1,7 @@
 import INTERACTION from '../reuse/interaction'
 import { StoreElement } from '../container'
 
-function updatePositionElement(dragId: string, dropId: string ): void {
+function updatePositionElement(dragId: string, dropId: string ) {
   const dropContainer = StoreElement.get(dropId)
   const dragContainer = StoreElement.get(dragId)
   const dropChildren = dropContainer.state.children

@@ -2,10 +2,10 @@ import CoreContainer from './CoreContainer'
 
 class EditorSpaceContainer extends CoreContainer {
   state = {
-    selected: null
+    selectedId: null
   }
 }
 
 export default new EditorSpaceContainer({
-  selected: null
+  selectedId: null
 })
