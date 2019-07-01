@@ -16,15 +16,13 @@ const Input:FunctionComponent<IInput> = ({
 }) => {
 
   const refInput = useRef(null)
-  const [valueInput, setValueInput] = useState(value)
 
   const handleOnChange = (e: any) => {
     onChange(e.target.value)
-    setValueInput(e.target.value)
   }
   return(
     <UIInput
-      value={valueInput}
+      value={value}
       placeholder={placeholder}
       type={type}
       ref={refInput}
@@ -47,7 +45,7 @@ const UIInput = styled.input`
   overflow: visible;
   box-sizing: border-box;
   transition-property: color,background-color,border;
-  
+
   &:focus {
     border-color: #666;
     outline-width: 0;
@@ -55,3 +53,7 @@ const UIInput = styled.input`
 `
 
 export default Input
+
+/**
+ * When user change text then return content of text
+ */

@@ -1,5 +1,5 @@
-export { default as Button } from './button'
+export { default as ButtonController } from './button'
 
-export { default as Loading } from './loading'
+export { default as LoadingController } from './loading'
 
-export { default as Input } from './input'
+export { default as InputController } from './input'

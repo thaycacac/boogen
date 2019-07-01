@@ -25,7 +25,7 @@ class Button extends Component<any> {
   }
   render() {
     return <UIButton>
-      hello
+      { this.props.children }
     </UIButton>
   }
 }

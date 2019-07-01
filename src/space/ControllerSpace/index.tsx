@@ -1,37 +1,29 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
-import {
-  Button,
-  Loading,
-  Input
-} from '../../element/controller'
-
+import { Subscribe } from 'unstated'
+import { EditorSpaceContainer, StoreElement } from '../../container'
+import ListElement from '../../element/editor'
 class ControllerSpace extends Component<any> {
 
-  constructor(props: any) {
-    super(props)
-    this.state = {
-      text: ''
-    }
-  }
-
   render() {
-    return (
-      <WrappAll>
-        <Button>Button</Button>
-        <Loading />
-        <Input
-          placeholder="Hello world"
-          type="text"
-          value="15"
-          onChange={e => {
-            this.setState({
-              text: e
-            })
-          }}
-        />
-      </WrappAll>
-    )
+    return <Subscribe to={[EditorSpaceContainer]}>
+      {
+        editorSpaceContainer => {
+          const { selectedId } = editorSpaceContainer.state
+          const ElementContainer = StoreElement.get(selectedId)
+          if (!ElementContainer) return null
+          const { type } = ElementContainer.state
+          // @ts-ignore
+          const InspectorElement = ListElement[type].Inspector
+          return <WrappAll>
+            {InspectorElement
+              ? InspectorElement(ElementContainer)
+              : <div>Not inspector</div>
+            }
+          </WrappAll>
+        }
+      }
+    </Subscribe>
   }
 }
 
@@ -41,3 +33,8 @@ const WrappAll = styled.div`
 `
 
 export default ControllerSpace
+
+/**
+ * When user change selected (watch by editor container)
+ * Then render inspector corresponding
+ */
