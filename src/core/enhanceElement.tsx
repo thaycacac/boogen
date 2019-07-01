@@ -8,15 +8,23 @@ function EnhanceElement(Element: any) {
       const instance = super.render()
       const {
         id,
-        type
+        type,
+        data
       } = elementContainer.state
       const props = {
-        'data-element': id,
-        'data-type': type,
-        'draggable': true,
-        ref: (e: any) => elementContainer.state.domElement = e
+        ...{
+          'data-element': id,
+          'data-type': type,
+          // text can't drag
+          'draggable': Element.type !== 'Text',
+          ref: (e: any) => elementContainer.state.domElement = e,
+          instanceElement: instance,
+          onChange: elementContainer.setState
+        },
+        ...this.props,
+        ...instance.props
       }
-      return React.cloneElement(instance, { ...props, ...this.props , ...instance.props })
+      return React.cloneElement(instance, props)
     }
   }
 }

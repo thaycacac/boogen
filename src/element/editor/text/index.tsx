@@ -11,10 +11,6 @@ interface IText {
 class Text extends Component<IText> {
   refText: any
 
-  static PropsDefault = {
-    value: 'Text Example'
-  }
-
   static type: string = 'Text'
 
   static Inspector(container: any) {

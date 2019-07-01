@@ -4,8 +4,7 @@ import styled from 'styled-components'
 
 class Section extends Component {
   static type = 'Section'
-  static PropsDefault = {
-  }
+
   render() {
     return (
       <UISection>

@@ -24,9 +24,6 @@ class Page extends Component<any> {
 
   static type = 'Page'
 
-  static PropsDefault = {
-  }
-
   render() {
     return RenderElement(initIdPage, '')
   }
