@@ -5,11 +5,7 @@ import EnhanceElement from '../../../core/EnhanceElement'
 import { InputController } from '../../controller'
 import { ElementContainer } from '../../../container';
 
-interface IText {
-  elementContainer: any
-}
-
-class Text extends Component<IText> {
+class Text extends Component<any> {
   static type: string = 'Text'
 
   static Inspector(container: ElementContainer) {
@@ -75,6 +71,7 @@ class Text extends Component<IText> {
     return (
       <Span
         contentEditable={true}
+        suppressContentEditableWarning
         onInputCapture={(e) => this.onChangeText(e)}
       >
         { this.props.elementContainer.state.data.value }

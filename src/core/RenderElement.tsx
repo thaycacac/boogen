@@ -17,7 +17,10 @@ function RenderElement(id: string, parentId: string) {
       elementContainer => {
         elementContainer.state.parentId = parentId
         const { id, children, data, styles } = elementContainer.state
-        const props = { elementContainer }
+        const props = {
+          elementContainer,
+          ref : (e: any) => elementContainer.state.instance = e
+        }
         return <Element { ...props }>
           {
             children.map((childrenId: string) =>
