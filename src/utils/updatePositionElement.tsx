@@ -3,7 +3,6 @@ import { StoreElement } from '../container'
 
 function updatePositionElement(dragId: string, dropId: string ) {
   const dropContainer = StoreElement.get(dropId)
-  const dragContainer = StoreElement.get(dragId)
   const dropChildren = dropContainer.state.children
   let parentDropContainer = null
   let parentDropChildren = null

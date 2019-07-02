@@ -2,7 +2,6 @@ import styled from 'styled-components'
 import variables from '../../../theme/variable'
 import { getSize, sizeMedium } from './size'
 import { getColor, getColorEffect } from './color'
-import EnhanceElement from '../../../core/EnhanceElement'
 
 interface IButton {
   disable?: boolean,

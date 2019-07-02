@@ -25,6 +25,7 @@ class Page extends Component<any> {
   static type = 'Page'
 
   render() {
+    console.log(initData)
     return RenderElement(initIdPage, '')
   }
 }

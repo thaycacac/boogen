@@ -1,6 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import Selection from './Selection'
+import Styles from './Styles'
 import INTERACTION, { TypePosition } from '../../reuse/interaction'
 import {
   convertDataToContainer,
@@ -10,7 +11,7 @@ import {
 } from '../../utils'
 import { Page } from '../../element/editor'
 import { EditorSpaceContainer, StoreElement } from '../../container'
-import { Subscribe } from 'unstated';
+import { Subscribe } from 'unstated'
 
 class EditorSpace extends React.Component<any> {
   dropElement!: HTMLElement
@@ -129,6 +130,7 @@ class EditorSpace extends React.Component<any> {
         onMouseDown={this.handleMouseDown}
       >
         <Page/>
+        <Styles />
         <Flow ref={e => this.refFlow = e as HTMLInputElement}/>
         <DropHover ref={e => this.dropElement = e as HTMLInputElement} />
         <Subscribe to={[EditorSpaceContainer]}>
