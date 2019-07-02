@@ -46,12 +46,15 @@ class ElementContainer extends CoreContainer {
     return this.state.componentStyle.lastClassName
   }
 
-  checkExistRule(styleSheet: any) {
+  checkExistRule(styleSheet: any): boolean {
     const check = Array.from(
       styleSheet.cssRules
     ).find(
       (rule: any) => rule.selectorText.includes(this.getSelector()))
-    return check
+    if (check) {
+      return true
+    }
+    return false
   }
 
   setStyleString(css: any) {
