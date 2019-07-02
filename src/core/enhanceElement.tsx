@@ -10,16 +10,12 @@ function EnhanceElement(Element: any) {
           state: {
             id,
             type,
-            data,
             className
           }
         }
       } = this.props
       const instance = super.render()
-      elementContainer.setState({
-        // TODO: abcde
-        selector: instance.stype.componentStyle.lastClassName
-      })
+      elementContainer.state.componentStyle = instance.type.componentStyle
       const props = {
         ...{
           'data-element': id,
@@ -27,8 +23,8 @@ function EnhanceElement(Element: any) {
           // text can't drag
           'draggable': Element.type !== 'Text',
           ref: (e: any) => elementContainer.state.domElement = e,
-          className,
           instanceElement: instance,
+          className,
           onChange: elementContainer.setState
         },
         ...this.props,

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import EnhanceElement from '../../../core/EnhanceElement'
 import styled from 'styled-components'
-import { SketchPicker, CirclePicker } from 'react-color'
+import { SketchPicker } from 'react-color'
 import { Subscribe } from 'unstated'
 
 class Section extends Component {
@@ -18,7 +18,11 @@ class Section extends Component {
                   container.setStyleString(event.target.value)
                 }
               } />
-              <SketchPicker />
+              <SketchPicker onChangeComplete={ (color) => {
+                container.setStyle({
+                  background : color.hex
+                })
+              }}/>
             </>
           }
         }

@@ -18,12 +18,13 @@ class ElementContainer extends CoreContainer {
   }
 
   setStyle(state: any) {
-    const styles = this.getStyle
+    const styles = this.getStyle()
+    console.log('SET STYLE', styles)
     // TODO: read more
     const arrState = Object.entries(state)[0]
     // @ts-ignore
     styles.style[arrState[0]] = arrState[1]
-  }
+  } 
 
   getStyle() {
     const { className } = this.state
@@ -36,17 +37,18 @@ class ElementContainer extends CoreContainer {
     console.log('getStyle of', className, 'in container/ElementContainer', ruleOfThisElement)
     if (!ruleOfThisElement) {
       instanceStyleOfEditor.insertRule(`.${className}{}`, arrayInstanceStyle.length)
-      return instanceStyleOfEditor.cssRule[arrayInstanceStyle.length]
+      // rerutn css of class boogen-***
+      return  instanceStyleOfEditor.cssRules[arrayInstanceStyle.length]
     }
     return ruleOfThisElement
   }
 
   // TODO: read more
-  getSelector(): string {
+  private getSelector(): string {
     return this.state.componentStyle.lastClassName
   }
 
-  checkExistRule(styleSheet: any): boolean {
+  public checkExistRule(styleSheet: any): boolean {
     const check = Array.from(
       styleSheet.cssRules
     ).find(

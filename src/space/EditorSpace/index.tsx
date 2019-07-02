@@ -129,8 +129,9 @@ class EditorSpace extends React.Component<any> {
         onDropCapture={this.handleDropCapture}
         onMouseDown={this.handleMouseDown}
       >
-        <Page/>
-        <Styles />
+        <Styles>
+          <Page/>
+        </Styles>
         <Flow ref={e => this.refFlow = e as HTMLInputElement}/>
         <DropHover ref={e => this.dropElement = e as HTMLInputElement} />
         <Subscribe to={[EditorSpaceContainer]}>
@@ -152,7 +153,6 @@ const WrapperEditorSpace = styled.div`
   background: white;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   div {
-    background: #f1f1f1;
     padding: 10px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   }

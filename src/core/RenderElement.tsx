@@ -2,7 +2,6 @@ import React from 'react'
 import { Subscribe } from 'unstated'
 import { StoreElement } from '../container'
 import ListElement from '../element/editor'
-import StyleContainer from '../space/EditorSpace/StyleContext'
 import StyleContext from '../space/EditorSpace/StyleContext'
 import uuid from 'uuid'
 
@@ -26,6 +25,7 @@ function RenderElement(id: string, parentId: string) {
                   const { id, children, data, styles, className } = elementContainer.state
                   Object.assign(elementContainer.state, {
                     parentId,
+                    styles,
                     styleSheet,
                     className: className ? className : `boogen-${uuid().split('-')[0]}`,
                     data: data ? data : {}
