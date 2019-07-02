@@ -1,13 +1,12 @@
 import React,{ Component } from 'react'
-
-export const StyleContext = React.createContext(null)
+import StyleContext from './StyleContext'
 
 class Styles extends Component<any> {
   refStyle: any
   state = {
     sheets: null
   }
-  
+
   render() {
     return <>
       <style ref={e => this.refStyle = e}></style>
@@ -15,7 +14,7 @@ class Styles extends Component<any> {
         this.refStyle ?
         <StyleContext.Provider value={this.refStyle.sheet}>
           { this.props.children }
-        </StyleContext.Provider> : 
+        </StyleContext.Provider> :
         null
       }
     </>

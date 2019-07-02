@@ -7,3 +7,5 @@ export { default as ElementContainer } from './ElementContainer'
 export { default as HistoryContainer } from './HistoryContainer'
 
 export { default as EditorSpaceContainer } from './EditorSpaceContainer'
+
+export { default as StyleContainer } from './StyleContainer'

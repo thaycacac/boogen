@@ -6,8 +6,8 @@ import styled from 'styled-components'
 class Button extends Component<any> {
   static type = 'Button'
   static Inspector(container: any) {
-    return {
-      general: <Subscribe to={[container]}>
+    return (
+      <Subscribe to={[container]}>
         {
           () => {
             const { value } = container.state
@@ -21,7 +21,7 @@ class Button extends Component<any> {
           }
         }
       </Subscribe>
-    }
+    )
   }
   render() {
     return <UIButton>
