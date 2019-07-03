@@ -5,13 +5,9 @@ import { camelCase } from 'lodash'
 
 class ElementContainer extends CoreContainer {
 
-  instanceStyle: any = null
-  styles = new StyleContainer()
-  listenerStyle = [] as any[]
-
-  constructor(state: any) {
-    super(state)
-  }
+  private instanceStyle: any = null
+  private styles = new StyleContainer()
+  private listenerStyle = [] as any[]
 
   setState(state: any, callback: any) {
     return super.setState(state, callback)
@@ -24,7 +20,7 @@ class ElementContainer extends CoreContainer {
    *   color: blue
    * }
    */
-  public setStyle(css: Object) {
+  public setStyle(css: Object): void {
     const styles: any = this.getStyle()
     for(let [property, value] of Object.entries(css)) {
       styles.style[property] = value

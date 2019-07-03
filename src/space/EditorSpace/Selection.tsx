@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { Subscribe } from 'unstated'
-import { EditorSpaceContainer, StoreElement }from '../../container'
+import { EditorSpaceContainer }from '../../container'
 import { setBorderElement } from '../../utils'
 
 function Selection(props: any) {
@@ -15,13 +15,12 @@ function Selection(props: any) {
       const scrollTop = window.scrollY
       setBorderElement(width, height, left, top + scrollTop, refSel)
     }
-  }, [props.selectedId])
+  })
 
   return (
     <Subscribe to={[EditorSpaceContainer]}>
       {
         () => {
-          const { selectedId } = EditorSpaceContainer.state
           return <UISelection ref={ e => refSel = e as HTMLInputElement}/>
         }
       }
