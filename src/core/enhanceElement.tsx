@@ -4,7 +4,7 @@ function EnhanceElement(Element: any) {
   return class extends Element {
     render() {
       console.log('Element in core/EnhanceElement', this.props);
-      const {
+      let {
         elementContainer,
         elementContainer: {
           state: {

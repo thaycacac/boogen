@@ -17,7 +17,7 @@ function RenderElement(id: string, parentId: string) {
   return (
     <StyleContext.Consumer>
       {
-        styleSheet => {
+        styleContext => {
           return (
             <Subscribe to={[container]} key={id}>
               {
@@ -26,7 +26,7 @@ function RenderElement(id: string, parentId: string) {
                   Object.assign(elementContainer.state, {
                     parentId,
                     styles,
-                    styleSheet,
+                    styleContext,
                     className: className ? className : `boogen-${uuid().split('-')[0]}`,
                     data: data ? data : {}
                   })

@@ -17,16 +17,25 @@ class ElementContainer extends CoreContainer {
     return super.setState(state, callback)
   }
 
-  setStyle(state: any) {
-    const styles = this.getStyle()
-    console.log('SET STYLE', styles)
-    // TODO: read more
-    const arrState = Object.entries(state)[0]
-    // @ts-ignore
-    styles.style[arrState[0]] = arrState[1]
-  } 
+  /**
+   * @param  css - List css in a object
+   * @example {
+   *   background: red;
+   *   color: blue
+   * }
+   */
+  public setStyle(css: Object) {
+    const styles: any = this.getStyle()
+    for(let [property, value] of Object.entries(css)) {
+      styles.style[property] = value
+    }
+  }
 
-  getStyle() {
+  /**
+   * Find rules of element have class name denerate,
+   * if found this rule then return, elese then insert rule with data empty
+   */
+  private getStyle() {
     const { className } = this.state
     // have 3 styleSheet, and styleSheet of Editor space is 1(check by console.log)
     const instanceStyleOfEditor: any = document.styleSheets[1]
@@ -34,10 +43,8 @@ class ElementContainer extends CoreContainer {
     const ruleOfThisElement = arrayInstanceStyle.find(
       (rule: any) => rule.selectorText === `.${className}`
     )
-    console.log('getStyle of', className, 'in container/ElementContainer', ruleOfThisElement)
     if (!ruleOfThisElement) {
       instanceStyleOfEditor.insertRule(`.${className}{}`, arrayInstanceStyle.length)
-      // rerutn css of class boogen-***
       return  instanceStyleOfEditor.cssRules[arrayInstanceStyle.length]
     }
     return ruleOfThisElement
@@ -48,9 +55,9 @@ class ElementContainer extends CoreContainer {
     return this.state.componentStyle.lastClassName
   }
 
-  public checkExistRule(styleSheet: any): boolean {
+  public checkExistRule(styleContext: any): boolean {
     const check = Array.from(
-      styleSheet.cssRules
+      styleContext.cssRules
     ).find(
       (rule: any) => rule.selectorText.includes(this.getSelector()))
     if (check) {
@@ -61,11 +68,11 @@ class ElementContainer extends CoreContainer {
 
   setStyleString(css: any) {
     const selector = this.getSelector()
-    const { styleSheet } = this.state
-    if (!this.checkExistRule(styleSheet)) {
-      styleSheet.insertRules(`.${selector}{${css}}`, styleSheet.length)
+    const { styleContext } = this.state
+    if (!this.checkExistRule(styleContext)) {
+      styleContext.insertRules(`.${selector}{${css}}`, styleContext.length)
     } else {
-      const arrayInstanceStyle = Array.from(styleSheet.cssRules)
+      const arrayInstanceStyle = Array.from(styleContext.cssRules)
       const ruleOfThisElement: any = arrayInstanceStyle.find(
         (rule: any) => rule.selectorText.includes(this.getSelector())
       )

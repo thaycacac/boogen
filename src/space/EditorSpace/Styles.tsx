@@ -20,7 +20,7 @@ class Styles extends Component<any> {
 
   render() {
     return <>
-      <style ref={e => this.refStyle = e}></style>
+      <style ref={e => this.refStyle = e} />
       {
         this.refStyle ?
         <StyleContext.Provider value={this.refStyle.sheet}>
