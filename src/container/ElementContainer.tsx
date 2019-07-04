@@ -28,7 +28,7 @@ class ElementContainer extends CoreContainer {
   }
 
   /**
-   * Find rules of element have class name denerate,
+   * @description Find rules of element have class name denerate,
    * if found this rule then return, elese then insert rule with data empty
    */
   private getStyle() {
@@ -62,35 +62,40 @@ class ElementContainer extends CoreContainer {
     return false
   }
 
-  setStyleString(css: any) {
-    const selector = this.getSelector()
-    const { styleContext } = this.state
-    if (!this.checkExistRule(styleContext)) {
-      styleContext.insertRules(`.${selector}{${css}}`, styleContext.length)
-    } else {
-      const arrayInstanceStyle = Array.from(styleContext.cssRules)
-      const ruleOfThisElement: any = arrayInstanceStyle.find(
-        (rule: any) => rule.selectorText.includes(this.getSelector())
-      )
-      const cssCamelCase = camelCase(css)
-      const array = cssCamelCase.split(':')
-      const methodCss = camelCase(array[0])
-      ruleOfThisElement.style[methodCss] = array[1]
-    }
+  /**
+   * @description 
+   * @param css list css as object
+   */
+  // TODO: continue custom style
+  public customStyle(css: any) {
+    const { className, styleContext } = this.state
+    const listCss = Array.from(css.split(';'))
+    listCss.forEach((css: any) => {
+      if(css) {
+        const [property, value] = css.split(':')
+        console.log(property.replace(/[\n\r\s\t]+/g, ' '))
+        console.log(value.replace(/[\n\r\s\t]+/g, ' '))
+      }
+      // const [key: value] = css
+    });
+    // if (!this.checkExistRule(styleContext)) {
+    //   styleContext.insertRule(`.${className}{${css}}`, styleContext.length)
+    // } else {
+    //   const arrayInstanceStyle = Array.from(styleContext.cssRules)
+    //   const ruleOfThisElement: any = arrayInstanceStyle.find(
+    //     (rule: any) => rule.selectorText.includes(this.getSelector())
+    //   )
+    //   const cssCamelCase = camelCase(css)
+    //   const array = cssCamelCase.split(':')
+    //   const methodCss = camelCase(array[0])
+    //   ruleOfThisElement.style[methodCss] = array[1]
+    // }
   }
 
   saveStyle(selector: any, css: any) {
     if( this.listenerStyle.find((item : any) =>  item.css === css).length){
       this.listenerStyle.push({selector  , css})
     }
-  }
-
-  pushEventToListense(func: any){
-    this.instanceStyle.push(func)
-  }
-
-  static getElement(id: string) {
-    return StoreElement.get(id)
   }
 }
 

@@ -13,9 +13,9 @@ class Section extends Component {
         {
           () => {
             return <>
-              <input type="text" value={container.getStyle['background-color']} onChange={
+              <textarea onChange={
                 (event : any) =>{
-                  container.setStyleString(event.target.value)
+                  container.customStyle(event.target.value)
                 }
               } />
               <SketchPicker onChangeComplete={ (color) => {
