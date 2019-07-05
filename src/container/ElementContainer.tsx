@@ -1,4 +1,3 @@
-import StoreElement from './StoreElement'
 import CoreContainer from './CoreContainer'
 import StyleContainer from './StyleContainer'
 import { camelCase } from 'lodash'
@@ -28,7 +27,7 @@ class ElementContainer extends CoreContainer {
   }
 
   /**
-   * @description Find rules of element have class name denerate,
+   * @description Find rules of element have class name generate,
    * if found this rule then return, elese then insert rule with data empty
    */
   private getStyle() {
@@ -51,45 +50,55 @@ class ElementContainer extends CoreContainer {
     return this.state.componentStyle.lastClassName
   }
 
-  public checkExistRule(styleContext: any): boolean {
-    const check = Array.from(
-      styleContext.cssRules
-    ).find(
-      (rule: any) => rule.selectorText.includes(this.getSelector()))
-    if (check) {
-      return true
-    }
-    return false
+  /**
+   * @description
+   * @param css list css as object
+   */
+  public customStyle(css: any) {
+    const { className, styleContext } = this.state
+    const listCss = Array.from(css.split('\n'))
+    listCss.forEach((css: any) => {
+      if(css) {
+        const indexLastRule = styleContext.cssRules.length
+        const existIndexRule = this.existIndexRule(this.formatText(css.split(':')[0]), styleContext)
+        if (existIndexRule !== indexLastRule) {
+          styleContext.deleteRule(existIndexRule)
+          styleContext.insertRule(`.${className}{${css}}`, indexLastRule-1)
+        } else {
+          styleContext.insertRule(`.${className}{${css}}`, indexLastRule)
+          if (styleContext.cssRules[indexLastRule].cssText === `.${className} { }`) {
+            styleContext.deleteRule(indexLastRule)
+          }
+        }
+      }
+      console.log(styleContext)
+      }
+    );
   }
 
   /**
-   * @description 
-   * @param css list css as object
+   *
+   * @param key - Key of property css (example: background-image)
+   * @param styleContext - StyleContext of this element
    */
-  // TODO: continue custom style
-  public customStyle(css: any) {
-    const { className, styleContext } = this.state
-    const listCss = Array.from(css.split(';'))
-    listCss.forEach((css: any) => {
-      if(css) {
-        const [property, value] = css.split(':')
-        console.log(property.replace(/[\n\r\s\t]+/g, ' '))
-        console.log(value.replace(/[\n\r\s\t]+/g, ' '))
+  private existIndexRule(key: string, styleContext: any) {
+    const cssRules = styleContext.cssRules
+    const indexLastRule = cssRules.length
+    const existIndexRule = Object.keys(cssRules).find(keyIndex => {
+      const styleOfRule = cssRules[keyIndex].style
+      if(styleOfRule && styleOfRule[camelCase(key)] !== '') {
+        return keyIndex
       }
-      // const [key: value] = css
-    });
-    // if (!this.checkExistRule(styleContext)) {
-    //   styleContext.insertRule(`.${className}{${css}}`, styleContext.length)
-    // } else {
-    //   const arrayInstanceStyle = Array.from(styleContext.cssRules)
-    //   const ruleOfThisElement: any = arrayInstanceStyle.find(
-    //     (rule: any) => rule.selectorText.includes(this.getSelector())
-    //   )
-    //   const cssCamelCase = camelCase(css)
-    //   const array = cssCamelCase.split(':')
-    //   const methodCss = camelCase(array[0])
-    //   ruleOfThisElement.style[methodCss] = array[1]
-    // }
+    })
+    return existIndexRule !== indexLastRule && existIndexRule ? existIndexRule : indexLastRule
+  }
+
+  /**
+   * @description remove space, enter,...
+   * @param text Text want to format
+   */
+  private formatText(text: string): string {
+    return text.replace(/[\n\r\s\t]+/g, '')
   }
 
   saveStyle(selector: any, css: any) {

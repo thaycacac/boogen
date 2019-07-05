@@ -13,7 +13,8 @@ class Section extends Component {
         {
           () => {
             return <>
-              <textarea onChange={
+              <textarea
+              onChange={
                 (event : any) =>{
                   container.customStyle(event.target.value)
                 }
