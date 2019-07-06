@@ -51,8 +51,11 @@ class ElementContainer extends CoreContainer {
   }
 
   /**
-   * @description
-   * @param css list css as object
+   * @description - User can custom css by write css good-looking
+   *   if exist index in list first delete css rule that index, then insert
+   *   new css rule. Else then insert css rule in last. Finally check css rule
+   *   created, if empty then delete it.
+   * @param css - List css as object
    */
   public customStyle(css: any) {
     const { className, styleContext } = this.state
@@ -63,12 +66,11 @@ class ElementContainer extends CoreContainer {
         const existIndexRule = this.existIndexRule(this.formatText(css.split(':')[0]), styleContext)
         if (existIndexRule !== indexLastRule) {
           styleContext.deleteRule(existIndexRule)
-          styleContext.insertRule(`.${className}{${css}}`, indexLastRule-1)
+          styleContext.insertRule(`.${className}{${css}}`, indexLastRule - 1)
+          // this.checkCssRuleAndDelete(styleContext, 0, className)
         } else {
           styleContext.insertRule(`.${className}{${css}}`, indexLastRule)
-          if (styleContext.cssRules[indexLastRule].cssText === `.${className} { }`) {
-            styleContext.deleteRule(indexLastRule)
-          }
+          this.checkCssRuleAndDelete(styleContext, indexLastRule, className)
         }
       }
       console.log(styleContext)
@@ -77,7 +79,17 @@ class ElementContainer extends CoreContainer {
   }
 
   /**
-   *
+   * @description - Check css rule empty, if empty then delete that rule
+   */
+  private checkCssRuleAndDelete(styleContext: any, index: number, className: string) {
+    if (styleContext.cssRules[index].cssText === `.${className} { }`) {
+      styleContext.deleteRule(index)
+    }
+  }
+
+  /**
+   * @description - Check css rule exist in list or not if exist return
+   *    index of attribute, else then return last index inrule
    * @param key - Key of property css (example: background-image)
    * @param styleContext - StyleContext of this element
    */
@@ -101,6 +113,7 @@ class ElementContainer extends CoreContainer {
     return text.replace(/[\n\r\s\t]+/g, '')
   }
 
+  // TODO: not complete
   saveStyle(selector: any, css: any) {
     if( this.listenerStyle.find((item : any) =>  item.css === css).length){
       this.listenerStyle.push({selector  , css})
