@@ -4,10 +4,6 @@ import { camelCase } from 'lodash'
 
 class ElementContainer extends CoreContainer {
 
-  private instanceStyle: any = null
-  private styles = new StyleContainer()
-  private listenerStyle = [] as any[]
-
   setState(state: any, callback: any) {
     return super.setState(state, callback)
   }
@@ -18,18 +14,18 @@ class ElementContainer extends CoreContainer {
    * @param value - Value of style css
    */
   public setStyle(key: string, value: string): void {
-    const lastClassName = this.getLastClassName()
-    const { styleContext } = this.state
+    const { id, styleContext } = this.state
 
     const indexLastRule = styleContext.cssRules.length
     const existIndexRule = this.existIndexRule(key, styleContext)
 
     if (existIndexRule !== indexLastRule) {
-      styleContext.insertRule(`.${lastClassName}{${key}: ${value};}`,styleContext.cssRules.length)
+      styleContext.insertRule(`#boogen-${id}{${key}: ${value}}`,styleContext.cssRules.length)
       styleContext.deleteRule(existIndexRule)
     } else {
-      styleContext.insertRule(`.${lastClassName}{${key}: ${value};}`, styleContext.cssRules.length)
+      styleContext.insertRule(`#boogen-${id}{${key}: ${value}}`, styleContext.cssRules.length)
     }
+    console.log(styleContext);
   }
 
   /**
@@ -42,13 +38,6 @@ class ElementContainer extends CoreContainer {
     console.log(styleContext)
     // const styleOfRule = styleContext.cssRules[keyIndex].style
     // return styleOfRule[camelCase(key)]
-  }
-
-  /**
-   * @description - Return last class name
-   */
-  private getLastClassName(): string {
-    return this.state.componentStyle.lastClassName
   }
 
   /**

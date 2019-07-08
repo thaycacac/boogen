@@ -1,4 +1,5 @@
 import React from 'react'
+import { camelCase } from 'lodash'
 
 function EnhanceElement(Element: any) {
   return class extends Element {
@@ -15,7 +16,6 @@ function EnhanceElement(Element: any) {
         }
       } = this.props
       const instance = super.render()
-      elementContainer.state.componentStyle = instance.type.componentStyle
       const { children } = instance.props
       const props = {
         ...this.props,
@@ -25,6 +25,7 @@ function EnhanceElement(Element: any) {
           'data-type': type,
           // text can't drag
           'draggable': Element.type !== 'Text',
+          'id': 'boogen-' + id,
           className,
           ref: (e: any) => elementContainer.state.domElement = e,
           instanceElement: instance,
