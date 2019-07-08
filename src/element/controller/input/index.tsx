@@ -21,13 +21,16 @@ const Input:FunctionComponent<IInput> = ({
     onChange(e.target.value)
   }
   return(
-    <UIInput
-      value={value}
-      placeholder={placeholder}
-      type={type}
-      ref={refInput}
-      onChange={handleOnChange}
-    />
+    <>
+      <p>abcde</p>
+      <UIInput
+        value={value}
+        placeholder={placeholder}
+        type={type}
+        ref={refInput}
+        onChange={handleOnChange}
+      />
+    </>
   )
 }
 

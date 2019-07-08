@@ -10,7 +10,7 @@ const fakeData = [
       type: 'Text',
       children: [],
       data: {
-        value: 'Text In Button'
+        value: 'Text In Section'
       },
       styles: {
         backgroundColor: 'red'

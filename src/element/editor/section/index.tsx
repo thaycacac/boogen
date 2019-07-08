@@ -14,15 +14,14 @@ class Section extends Component {
           () => {
             return <>
               <textarea
-              onChange={
-                (event : any) =>{
-                  container.customStyle(event.target.value)
+                onChange={
+                  (event : any) => {
+                    container.customStyle(event.target.value)
+                  }
                 }
-              } />
+              />
               <SketchPicker onChangeComplete={ (color) => {
-                container.setStyle({
-                  background : color.hex
-                })
+                container.setStyle('background', color.hex)
               }}/>
             </>
           }

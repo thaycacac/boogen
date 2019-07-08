@@ -13,40 +13,41 @@ class ElementContainer extends CoreContainer {
   }
 
   /**
-   * @param  css - List css in a object
-   * @example {
-   *   background: red;
-   *   color: blue
-   * }
+   * @description - Save style to element
+   * @param  key - Key of style css
+   * @param value - Value of style css
    */
-  public setStyle(css: Object): void {
-    const styles: any = this.getStyle()
-    for(let [property, value] of Object.entries(css)) {
-      styles.style[property] = value
+  public setStyle(key: string, value: string): void {
+    const lastClassName = this.getLastClassName()
+    const { styleContext } = this.state
+
+    const indexLastRule = styleContext.cssRules.length
+    const existIndexRule = this.existIndexRule(key, styleContext)
+
+    if (existIndexRule !== indexLastRule) {
+      styleContext.insertRule(`.${lastClassName}{${key}: ${value};}`,styleContext.cssRules.length)
+      styleContext.deleteRule(existIndexRule)
+    } else {
+      styleContext.insertRule(`.${lastClassName}{${key}: ${value};}`, styleContext.cssRules.length)
     }
   }
 
   /**
-   * @description Find rules of element have class name generate,
-   * if found this rule then return, elese then insert rule with data empty
+   * @description - Get value of style
+   * @param  key - Key of style css
+   * @param value - Value of style css
    */
-  private getStyle() {
-    const { className } = this.state
-    // have 3 styleSheet, and styleSheet of Editor space is 1(check by console.log)
-    const instanceStyleOfEditor: any = document.styleSheets[1]
-    const arrayInstanceStyle = Array.from(instanceStyleOfEditor.cssRules)
-    const ruleOfThisElement = arrayInstanceStyle.find(
-      (rule: any) => rule.selectorText === `.${className}`
-    )
-    if (!ruleOfThisElement) {
-      instanceStyleOfEditor.insertRule(`.${className}{}`, arrayInstanceStyle.length)
-      return  instanceStyleOfEditor.cssRules[arrayInstanceStyle.length]
-    }
-    return ruleOfThisElement
+  private getStyle(key: string) {
+    const { styleContext } = this.state
+    console.log(styleContext)
+    // const styleOfRule = styleContext.cssRules[keyIndex].style
+    // return styleOfRule[camelCase(key)]
   }
 
-  // TODO: read more
-  private getSelector(): string {
+  /**
+   * @description - Return last class name
+   */
+  private getLastClassName(): string {
     return this.state.componentStyle.lastClassName
   }
 
@@ -79,6 +80,14 @@ class ElementContainer extends CoreContainer {
   }
 
   /**
+   * @description remove space, enter,...
+   * @param text Text want to format
+   */
+  private formatText(text: string): string {
+    return text.replace(/[\n\r\s\t]+/g, '')
+  }
+
+  /**
    * @description - Check css rule empty, if empty then delete that rule
    */
   private checkCssRuleAndDelete(styleContext: any, index: number, className: string) {
@@ -103,29 +112,6 @@ class ElementContainer extends CoreContainer {
       }
     })
     return existIndexRule !== indexLastRule && existIndexRule ? existIndexRule : indexLastRule
-  }
-
-  /**
-   * @description remove space, enter,...
-   * @param text Text want to format
-   */
-  private formatText(text: string): string {
-    return text.replace(/[\n\r\s\t]+/g, '')
-  }
-
-  public subcribeStyle(func: any) {
-    this.listenerStyle.push(func)
-  }
-
-  public unSubcribeStyle(func: any) {
-    this.listenerStyle = this.listenerStyle.filter(item => item !== func)
-  }
-
-  // TODO: not complete
-  saveStyle(selector: any, css: any) {
-    if( this.listenerStyle.find((item : any) =>  item.css === css).length){
-      this.listenerStyle.push({selector  , css})
-    }
   }
 }
 
