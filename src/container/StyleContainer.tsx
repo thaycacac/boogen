@@ -13,15 +13,24 @@ class StyleContainer extends Container<any> {
 
 interface UISubcribeStyle {
   children: any,
-  to: any
+  to: any,
+  bind: String,
 }
 
 export class SubcribeStyle extends Component<UISubcribeStyle> {
-  componentDidUpdate(){
-    this.props.to.state._listenersStyle.push('ok')
+
+  private rule = this.props.to.getStyle
+
+  componentDidMount() {
+    this.props.to.subcribeStyle(this.forceUpdate())
   }
+
+  componentWillUnmount() {
+    this.props.to.unSubscribeStyle(this.forceUpdate())
+  }
+
   render() {
-    return this.props.children('a', 'b')
+    return this.props.children(this.props.to, this.rule)
   }
 }
 

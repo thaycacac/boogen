@@ -182,7 +182,6 @@ const DropHover = styled.div`
   }
 `
 
-// show when drag over border element parent
 const Flow = styled.div`
   position: absolute;
   pointer-events: none;

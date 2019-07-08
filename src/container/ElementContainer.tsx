@@ -113,6 +113,14 @@ class ElementContainer extends CoreContainer {
     return text.replace(/[\n\r\s\t]+/g, '')
   }
 
+  public subcribeStyle(func: any) {
+    this.listenerStyle.push(func)
+  }
+
+  public unSubcribeStyle(func: any) {
+    this.listenerStyle = this.listenerStyle.filter(item => item !== func)
+  }
+
   // TODO: not complete
   saveStyle(selector: any, css: any) {
     if( this.listenerStyle.find((item : any) =>  item.css === css).length){

@@ -16,19 +16,21 @@ function EnhanceElement(Element: any) {
       } = this.props
       const instance = super.render()
       elementContainer.state.componentStyle = instance.type.componentStyle
+      const { children } = instance.props
       const props = {
+        ...this.props,
+        ...{ children },
         ...{
           'data-element': id,
           'data-type': type,
           // text can't drag
           'draggable': Element.type !== 'Text',
+          className,
           ref: (e: any) => elementContainer.state.domElement = e,
           instanceElement: instance,
-          className,
           onChange: elementContainer.setState
         },
-        ...this.props,
-        ...instance.props
+        key: id
       }
       return React.cloneElement(instance, props)
     }
