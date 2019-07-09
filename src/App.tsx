@@ -6,7 +6,6 @@ import {
   NavbarSpace,
   EditorSpace,
   ControllerSpace,
-  FooterSpace,
   ElementorSpace
 } from './space'
 
@@ -21,7 +20,7 @@ const App: React.FC = () => {
             <EditorSpace />
             <ControllerSpace />
           </div>
-          <FooterSpace className="footer-space" />
+          {/* <FooterSpace className="footer-space" /> */}
         </WrapApp>
       </Provider>
     </ThemeProviderContext>

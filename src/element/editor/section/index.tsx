@@ -3,7 +3,7 @@ import EnhanceElement from '../../../core/EnhanceElement'
 import styled from 'styled-components'
 import { SketchPicker } from 'react-color'
 import { Subscribe } from 'unstated'
-
+import { InputController } from '../../controller'
 class Section extends Component {
   static type = 'Section'
 
@@ -13,9 +13,27 @@ class Section extends Component {
         {
           () => {
             return <>
+              <InputController
+                label="Background"
+                keyCSS="background-color"
+                typeChange="style"
+                container={container}
+              />
+              <InputController
+                label="Width"
+                keyCSS="width"
+                typeChange="style"
+                container={container}
+              />
+              <InputController
+                label="Height"
+                keyCSS="height"
+                typeChange="style"
+                container={container}
+              />
               <textarea
                 onChange={
-                  (event : any) => {
+                  (event: any) => {
                     container.customStyle(event.target.value)
                   }
                 }

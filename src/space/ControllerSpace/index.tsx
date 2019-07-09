@@ -29,7 +29,7 @@ class ControllerSpace extends Component<any> {
 
 const WrappAll = styled.div`
   width: 350px;
-  height: 500px;
+  padding: 10px;
 `
 
 export default ControllerSpace

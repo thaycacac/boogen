@@ -15,10 +15,11 @@ class Text extends Component<any> {
             (elementContainer) => {
               const { data: { value } } = elementContainer.state
               return <>
-                <InputController
+                {/* <InputController
                   placeholder="Hello world"
                   type="text"
                   value={value}
+                  title="Content"
                   onChange={(e: any) => {
                     elementContainer.setState({
                       data: {
@@ -26,7 +27,7 @@ class Text extends Component<any> {
                       }
                     })
                   }}
-                />
+                /> */}
               </>
             }
           }

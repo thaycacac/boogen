@@ -1,32 +1,41 @@
-import React, { FunctionComponent, useRef } from 'react'
+import React, { FunctionComponent, useRef, useState } from 'react'
 import styled from 'styled-components'
 
 interface IInput {
-  value?: string | number,
+  label: string
   placeholder?: string,
   type?: string,
-  onChange: (e: any) => any,
+  typeChange: 'style' | 'text'
+  keyCSS?: string,
+  container: any
 }
 
 const Input:FunctionComponent<IInput> = ({
-  value = '',
+  label = 'Content',
   placeholder = 'Please input here',
   type = 'text',
-  onChange
+  typeChange,
+  keyCSS,
+  container
 }) => {
 
-  const refInput = useRef(null)
+  const [value, updateValue] = useState(container.getStyle(keyCSS))
 
   const handleOnChange = (e: any) => {
-    onChange(e.target.value)
+    if (typeChange === 'style') {
+      container.setStyle(keyCSS, e.target.value)
+    }
+    updateValue(e.target.value)
   }
+  const refInput = useRef(null)
+
   return(
     <>
-      <p>abcde</p>
+      <UILabel>{ label }</UILabel>
       <UIInput
-        value={value}
         placeholder={placeholder}
         type={type}
+        value={value}
         ref={refInput}
         onChange={handleOnChange}
       />
@@ -48,6 +57,7 @@ const UIInput = styled.input`
   overflow: visible;
   box-sizing: border-box;
   transition-property: color,background-color,border;
+  margin-bottom: 10px;
 
   &:focus {
     border-color: #666;
@@ -55,8 +65,13 @@ const UIInput = styled.input`
   }
 `
 
-export default Input
+const UILabel = styled.label`
+  text-align: center;
+  color: #484848;
+  border-bottom: 2px solid transparent;
+  font-size: 9px;
+  text-transform: uppercase;
+  transition: color .1s ease-in-out;
+`
 
-/**
- * When user change text then return content of text
- */
+export default Input

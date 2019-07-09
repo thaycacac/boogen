@@ -15,16 +15,16 @@ class ElementContainer extends CoreContainer {
   public setStyle(key: string, value: string): void {
     const { id, styleContext } = this.state
 
-    const indexLastRule = styleContext.cssRules.length
-    const existIndexRule = this.existIndexRule(key, styleContext)
-
-    if (existIndexRule !== indexLastRule) {
+    const indexExistRule = this.getIndexExistRule(key)
+    if (indexExistRule) {
       styleContext.insertRule(`#boogen-${id}{${key}: ${value}}`,styleContext.cssRules.length)
-      styleContext.deleteRule(existIndexRule)
+      this.checkLastRuleAndDelete(styleContext, id)
+      styleContext.deleteRule(indexExistRule)
     } else {
       styleContext.insertRule(`#boogen-${id}{${key}: ${value}}`, styleContext.cssRules.length)
+      this.checkLastRuleAndDelete(styleContext, id)
     }
-    console.log(styleContext);
+    console.log(styleContext)
   }
 
   /**
@@ -32,11 +32,30 @@ class ElementContainer extends CoreContainer {
    * @param  key - Key of style css
    * @param value - Value of style css
    */
-  private getStyle(key: string) {
+  public getStyle(key: string): string {
+    let value = ''
+    const { styleContext, id } = this.state
+    const cssRules = styleContext.cssRules
+    Object.keys(cssRules).find(keyIndex => {
+      // ["#boogen-abcde, "", "", "background-color", "", "red", "", "}"]
+      const splitRule = cssRules[keyIndex].cssText.split(/:|{|;| /)
+      if (splitRule[3] === key) {
+        value = splitRule[5]
+      }
+      return splitRule[3] === key
+    })
+    return value
+  }
+
+  private getIndexExistRule(key: string): any {
     const { styleContext } = this.state
-    console.log(styleContext)
-    // const styleOfRule = styleContext.cssRules[keyIndex].style
-    // return styleOfRule[camelCase(key)]
+    const cssRules = styleContext.cssRules
+    const index = Object.keys(cssRules).find(keyIndex => {
+      // ["#boogen-abcde, "", "", "background-color", "", "red", "", "}"]
+      const splitRule = cssRules[keyIndex].cssText.split(/:|{|;| /)
+      return splitRule[3] === key
+    })
+    return index
   }
 
   /**
@@ -47,7 +66,7 @@ class ElementContainer extends CoreContainer {
    * @param css - List css as object
    */
   public customStyle(css: any) {
-    const { className, styleContext } = this.state
+    const { className, styleContext, id } = this.state
     const listCss = Array.from(css.split('\n'))
     listCss.forEach((css: any) => {
       if(css) {
@@ -59,7 +78,7 @@ class ElementContainer extends CoreContainer {
           // this.checkCssRuleAndDelete(styleContext, 0, className)
         } else {
           styleContext.insertRule(`.${className}{${css}}`, indexLastRule)
-          this.checkCssRuleAndDelete(styleContext, indexLastRule, className)
+          this.checkLastRuleAndDelete(styleContext, id)
         }
       }
       console.log(styleContext)
@@ -78,9 +97,9 @@ class ElementContainer extends CoreContainer {
   /**
    * @description - Check css rule empty, if empty then delete that rule
    */
-  private checkCssRuleAndDelete(styleContext: any, index: number, className: string) {
-    if (styleContext.cssRules[index].cssText === `.${className} { }`) {
-      styleContext.deleteRule(index)
+  private checkLastRuleAndDelete(styleContext: any, id: string) {
+    if (styleContext.cssRules[styleContext.cssRules.length - 1].cssText === `#boogen-${id} { }`) {
+      styleContext.deleteRule(styleContext.cssRules.length - 1)
     }
   }
 
