@@ -24,11 +24,6 @@ const elementData = [
     },
     {
       id: 2,
-      type: 'Button',
-      children: [3]
-    },
-    {
-      id: 3,
       type: 'Text',
       children: [],
       data: {

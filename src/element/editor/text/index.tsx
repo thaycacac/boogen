@@ -3,7 +3,8 @@ import styled from 'styled-components'
 import { Subscribe } from 'unstated'
 import EnhanceElement from '../../../core/EnhanceElement'
 import { InputController } from '../../controller'
-import { ElementContainer } from '../../../container';
+import { ElementContainer } from '../../../container'
+import { TwitterPicker } from 'react-color'
 
 class Text extends Component<any> {
   static type: string = 'Text'
@@ -12,22 +13,22 @@ class Text extends Component<any> {
     return (
       <Subscribe to={[container]}>
           {
-            (elementContainer) => {
-              const { data: { value } } = elementContainer.state
+            () => {
               return <>
-                {/* <InputController
-                  placeholder="Hello world"
-                  type="text"
-                  value={value}
-                  title="Content"
-                  onChange={(e: any) => {
-                    elementContainer.setState({
-                      data: {
-                        value: e
-                      }
-                    })
-                  }}
-                /> */}
+                <InputController
+                  label="Content"
+                  typeChange="data"
+                  container={container}
+                />
+                <InputController
+                  label="Color"
+                  keyCSS="color"
+                  typeChange="style"
+                  container={container}
+                />
+                <TwitterPicker onChangeComplete={ (color) => {
+                container.setStyle('color', color.hex)
+              }}/>
               </>
             }
           }

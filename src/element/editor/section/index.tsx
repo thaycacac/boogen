@@ -4,10 +4,12 @@ import styled from 'styled-components'
 import { TwitterPicker } from 'react-color'
 import { Subscribe } from 'unstated'
 import { InputController, MultipleInputController } from '../../controller'
+import { ElementContainer } from '../../../container';
+
 class Section extends Component {
   static type = 'Section'
 
-  static Inspector(container: any) {
+  static Inspector(container: ElementContainer) {
     return (
       <Subscribe to={[container]}>
         {

@@ -18,7 +18,7 @@ class ControllerSpace extends Component<any> {
           return <WrappAll>
             {InspectorElement
               ? InspectorElement(ElementContainer)
-              : <div>Not inspector</div>
+              : <NotInspector>Not inspector</NotInspector>
             }
           </WrappAll>
         }
@@ -32,6 +32,16 @@ const WrappAll = styled.div`
   height: calc(100vh - 80px);
   overflow: scroll;
   padding: 10px;
+`
+
+const NotInspector = styled.div `
+  text-align: center;
+  color: #484848;
+  border-bottom: 2px solid transparent;
+  font-size: 13px;
+  text-transform: uppercase;
+  transition: color .1s ease-in-out;
+  margin-top: 15px;
 `
 
 export default ControllerSpace

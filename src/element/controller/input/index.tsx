@@ -1,11 +1,11 @@
-import React, { FunctionComponent, useRef, useState } from 'react'
+import React, { FunctionComponent, useRef, useState, useEffect } from 'react'
 import styled from 'styled-components'
 
 interface IInput {
   label: string
   placeholder?: string,
   type?: string,
-  typeChange: 'style' | 'text'
+  typeChange: 'style' | 'data'
   keyCSS?: string,
   container: any
 }
@@ -19,11 +19,24 @@ const Input:FunctionComponent<IInput> = ({
   container
 }) => {
 
-  const [value, updateValue] = useState(container.getStyle(keyCSS))
+  const [value, updateValue] = useState('')
+  useEffect(() => {
+    if(typeChange === 'style') {
+      updateValue(container.getStyle(keyCSS))
+    } else {
+      updateValue(container.state.data.value)
+    }
+  }, [container.state.data.value])
 
   const handleOnChange = (e: any) => {
     if (typeChange === 'style') {
       container.setStyle(keyCSS, e.target.value)
+    } else {
+      container.setState({
+        data: {
+          value: e.target.value
+        }
+      })
     }
     updateValue(e.target.value)
   }

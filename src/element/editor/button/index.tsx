@@ -3,20 +3,11 @@ import EnhanceElement from '../../../core/EnhanceElement'
 import { Subscribe } from 'unstated'
 import styled from 'styled-components'
 import { InputController, MultipleInputController } from '../../../element/controller'
+import { ElementContainer } from '../../../container';
 
-/**
- * @param Text - Text inner button
- * @param Shape - Rectangle or rounded
- * @param Type - Type danger, success,...
- * @param Outline - Outline or not
- * @param Size - Small or medium or large
- * @param Block - Blog or not
- * @param Active - Active or diactive
- * @param Link - OPtion for link
-*/
 class Button extends Component<any> {
   static type = 'Button'
-  static Inspector(container: any) {
+  static Inspector(container: ElementContainer) {
     return (
       <Subscribe to={[container]}>
         {
