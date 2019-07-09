@@ -19,7 +19,7 @@ const elementData = [
     {
       id: 1,
       type: 'Section',
-      name: 'Button in Section',
+      name: 'Section',
       children: [2],
     },
     {

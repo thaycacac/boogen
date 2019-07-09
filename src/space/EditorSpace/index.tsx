@@ -148,7 +148,7 @@ class EditorSpace extends React.Component<any> {
 }
 
 const WrapperEditorSpace = styled.div`
-  width: calc(100vw - 470px);
+  width: calc(100vw - 390px);
   height: 100%;
   background: white;
   box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);

@@ -15,20 +15,20 @@ class ElementorSpace extends Component<any> {
   render() {
     return (
       <WrapAll>
+        <Label>Basic</Label>
         {
           elementData.map((item, index) => {
             const dataString: any = JSON.stringify(item)
             return (
-              <>
-                <Label>{ item[0].name }</Label>
                 <DrapItem
                   key={`element-${index}`}
                   onDragStartCapture={this.handleDragStart}
                   data-element={dataString}
                   draggable
-                  src={require('../../assets/images/button.png')}
-                />
-            </>
+                >
+                  <img src={require(`../../assets/images/${item[0].type}.png`)} alt=""/>
+                  <Label>{ item[0].name }</Label>
+                </DrapItem>
             )
           })
         }
@@ -38,7 +38,7 @@ class ElementorSpace extends Component<any> {
 }
 
 const WrapAll = styled.div`
-  width: 180px;
+  width: 100px;
   padding: 10px;
   height: calc(100vh - 60px);
   overflow: scroll;
@@ -47,10 +47,26 @@ const WrapAll = styled.div`
   }
 `
 
-const DrapItem = styled.img`
-  width: 150px;
-  margin: 10px 0 15px 0;
-  display: block;
+const DrapItem = styled.div`
+  border: 1px solid #c3c3c3;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin-top: 10px;
+  border-radius: 5px;
+  background: #d4d4d4;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  padding: 10px;
+  cursor: all-scroll;
+  &:hover {
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.5);
+  }
+  img {
+    width: 80px;
+    margin: 0 auto 3px auto;
+    display: block;
+  }
+
 `
 
 const Label = styled.label`
