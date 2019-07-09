@@ -1,27 +1,26 @@
-const fakeData = [
+const elementData = [
   [
     {
       id: 1,
       type: 'Button',
-      children: [2]
+      name: 'Button',
+      children: [2],
     },
     {
       id: 2,
       type: 'Text',
       children: [],
       data: {
-        value: 'Text In Section'
+        value: 'Example'
       },
-      styles: {
-        backgroundColor: 'red'
-      }
     },
   ],
   [
     {
       id: 1,
       type: 'Section',
-      children: [2]
+      name: 'Button in Section',
+      children: [2],
     },
     {
       id: 2,
@@ -31,22 +30,23 @@ const fakeData = [
     {
       id: 3,
       type: 'Text',
+      children: [],
       data: {
-        value: 'Text In Section'
+        value: 'Example'
       },
-      children: []
     },
   ],
   [
     {
       id: 1,
       type: 'Text',
+      name: 'Text',
+      children: [],
       data: {
-        value: 'Only Text'
+        value: 'Example'
       },
-      children: []
     }
   ]
 ]
 
-export default fakeData
+export default elementData

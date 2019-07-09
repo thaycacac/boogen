@@ -1,10 +1,11 @@
 import ElementContainer from '../container/ElementContainer'
-import fakeData from './fakeData'
+import elementData from './elementData'
 
 const addItem = (rootData: any): any => {
   if (rootData.children) {
     // TODO: change this in fake data
-    const listChildren = fakeData[0].filter(
+    // @ts-ignore
+    const listChildren = elementData[0].filter(
       (element: any) => rootData.children.includes(element.id)
     )
     listChildren.map((child: any) => {
