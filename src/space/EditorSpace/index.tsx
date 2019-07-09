@@ -36,7 +36,6 @@ class EditorSpace extends React.Component<any> {
     const positionX = event.nativeEvent.offsetX
     const positionY = event.nativeEvent.offsetY
     const scrollTop = window.scrollY
-    console.log('position: ', positionX, positionY)
     const distance = 7
 
     let casePosition: TypePosition = ''

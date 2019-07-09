@@ -29,22 +29,42 @@ function updatePositionElement(dragId: string, dropId: string ) {
   }
   switch(INTERACTION.position) {
     case 'INSIDE':
+      if(dropChildren[dropChildren.length - 1] === dragId) {
+        dropContainer.setState({ children: dropChildren })
+        INTERACTION.reset()
+        return
+      }
       dropChildren.push(dragId)
       dropContainer.setState({ children: dropChildren })
       INTERACTION.reset()
       return
     case 'BOTTOM':
+      parentDropChildren = parentDropChildren.filter((item: any) => {
+        return item !== dragId
+      })
+      console.log('fsdfdsf', parentDropChildren)
       parentDropChildren.push(dragId)
       break
     case 'TOP':
+      parentDropChildren = parentDropChildren.filter((item: any) => {
+        return item !== dragId
+      })
       parentDropChildren.unshift(dragId)
       break
     case 'LEFT':
+      parentDropChildren = parentDropChildren.filter((item: any) => {
+        return item !== dragId
+      })
       let indexDragLeft = parentDropChildren.indexOf(dropId)
+      if(parentDropChildren[indexDragLeft - 1] === dragId) break
       parentDropChildren.splice(indexDragLeft, 0, dragId)
       break
     case 'RIGHT':
+      parentDropChildren = parentDropChildren.filter((item: any) => {
+        return item !== dragId
+      })
       let indexDragRight = parentDropChildren.indexOf(dropId)
+      if(parentDropChildren[indexDragRight + 1] === dragId) break
       parentDropChildren.splice(indexDragRight + 1, 0, dragId)
       break
   }
