@@ -1,5 +1,4 @@
 import React from 'react'
-import { camelCase } from 'lodash'
 
 function EnhanceElement(Element: any) {
   return class extends Element {

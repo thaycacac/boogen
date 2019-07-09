@@ -20,12 +20,10 @@ class Button extends Component<any> {
       <Subscribe to={[container]}>
         {
           () => {
-            const { value } = container.state
             return <input
               type='text'
-              value={value}
               onChange={
-                (value: any) => container.setState({value})
+                (e: any) => container.setStyle('background', e.target.value)
               }
             />
           }

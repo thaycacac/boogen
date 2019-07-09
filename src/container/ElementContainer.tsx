@@ -1,5 +1,4 @@
 import CoreContainer from './CoreContainer'
-import StyleContainer from './StyleContainer'
 import { camelCase } from 'lodash'
 
 class ElementContainer extends CoreContainer {
@@ -99,6 +98,7 @@ class ElementContainer extends CoreContainer {
       if(styleOfRule && styleOfRule[camelCase(key)] !== '') {
         return keyIndex
       }
+      return indexLastRule
     })
     return existIndexRule !== indexLastRule && existIndexRule ? existIndexRule : indexLastRule
   }

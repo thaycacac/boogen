@@ -27,30 +27,6 @@ class Text extends Component<any> {
                     })
                   }}
                 />
-                <InputController
-                  placeholder="Hello world"
-                  type="text"
-                  value={value}
-                  onChange={(e: any) => {
-                    elementContainer.setState({
-                      data: {
-                        value: e
-                      }
-                    })
-                  }}
-                />
-                <InputController
-                  placeholder="Hello world"
-                  type="text"
-                  value={value}
-                  onChange={(e: any) => {
-                    elementContainer.setState({
-                      data: {
-                        value: e
-                      }
-                    })
-                  }}
-                />
               </>
             }
           }
