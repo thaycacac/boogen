@@ -5,19 +5,22 @@ class FooterSpace extends Component<any> {
   render() {
     return (
       <WrapAll>
-        <div>Copyright © 2019</div>
+        <span>Thaycacac © 2019</span>
       </WrapAll>
     )
   }
 }
 
-const WrapAll = styled.div`
+const WrapAll = styled.footer`
   height: 20px;
-  background: #9f60ff;
-  color: #dcd3ff;
+  background: #535353;
+  color: grey;
   display: flex;
   align-items: center;
   justify-content: center;
+  span {
+    font-size: 12px;
+  }
 `
 
 export default FooterSpace

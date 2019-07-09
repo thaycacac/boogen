@@ -34,15 +34,15 @@ class ElementContainer extends CoreContainer {
    */
   public getStyle(key: string): string {
     let value = ''
-    const { styleContext, id } = this.state
+    const { styleContext } = this.state
     const cssRules = styleContext.cssRules
     Object.keys(cssRules).find(keyIndex => {
-      // ["#boogen-abcde, "", "", "background-color", "", "red", "", "}"]
-      const splitRule = cssRules[keyIndex].cssText.split(/:|{|;| /)
-      if (splitRule[3] === key) {
-        value = splitRule[5]
+      // ["#boogen-abcde, " background-color", " red", " }"]
+      const splitRule = cssRules[keyIndex].cssText.split(/:|{|;/)
+      if (this.formatText(splitRule[1]) === key) {
+        value = this.formatText(splitRule[2])
       }
-      return splitRule[3] === key
+      return splitRule[1] === key
     })
     return value
   }
@@ -51,9 +51,9 @@ class ElementContainer extends CoreContainer {
     const { styleContext } = this.state
     const cssRules = styleContext.cssRules
     const index = Object.keys(cssRules).find(keyIndex => {
-      // ["#boogen-abcde, "", "", "background-color", "", "red", "", "}"]
-      const splitRule = cssRules[keyIndex].cssText.split(/:|{|;| /)
-      return splitRule[3] === key
+      // ["#boogen-abcde, " background-color", " red", " }"]
+      const splitRule = cssRules[keyIndex].cssText.split(/:|{|;/)
+      return this.formatText(splitRule[1]) === key
     })
     return index
   }

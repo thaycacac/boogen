@@ -28,7 +28,9 @@ class ControllerSpace extends Component<any> {
 }
 
 const WrappAll = styled.div`
-  width: 350px;
+  width: 250px;
+  height: calc(100vh - 80px);
+  overflow: scroll;
   padding: 10px;
 `
 

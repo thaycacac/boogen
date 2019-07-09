@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useRef, useState } from 'react'
 import styled from 'styled-components'
 
-interface IInput {
+interface ICustom {
   label: string
   placeholder?: string,
   type?: string,
@@ -10,7 +10,7 @@ interface IInput {
   container: any
 }
 
-const Input:FunctionComponent<IInput> = ({
+const Custom:FunctionComponent<ICustom> = ({
   label = 'Content',
   placeholder = 'Please input here',
   type = 'text',
@@ -74,4 +74,4 @@ const UILabel = styled.label`
   margin-top: 15px;
 `
 
-export default Input
+export default Custom

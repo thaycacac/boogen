@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import EnhanceElement from '../../../core/EnhanceElement'
 import styled from 'styled-components'
-import { SketchPicker } from 'react-color'
+import { TwitterPicker } from 'react-color'
 import { Subscribe } from 'unstated'
-import { InputController } from '../../controller'
+import { InputController, MultipleInputController } from '../../controller'
 class Section extends Component {
   static type = 'Section'
 
@@ -19,6 +19,9 @@ class Section extends Component {
                 typeChange="style"
                 container={container}
               />
+              <TwitterPicker onChangeComplete={ (color) => {
+                container.setStyle('background-color', color.hex)
+              }}/>
               <InputController
                 label="Width"
                 keyCSS="width"
@@ -31,6 +34,18 @@ class Section extends Component {
                 typeChange="style"
                 container={container}
               />
+              <MultipleInputController
+                label="Padding"
+                keyCSS="padding"
+                typeChange="style"
+                container={container}
+              />
+              <MultipleInputController
+                label="Margin"
+                keyCSS="margin"
+                typeChange="style"
+                container={container}
+              />
               <textarea
                 onChange={
                   (event: any) => {
@@ -38,9 +53,6 @@ class Section extends Component {
                   }
                 }
               />
-              <SketchPicker onChangeComplete={ (color) => {
-                container.setStyle('background', color.hex)
-              }}/>
             </>
           }
         }

@@ -41,7 +41,8 @@ class ElementorSpace extends Component<any> {
 }
 
 const WrapAll = styled.div`
-  width: 250px;
+  width: 180px;
+  padding: 10px;
   height: calc(100vh - 60px);
   overflow: scroll;
   .demo {

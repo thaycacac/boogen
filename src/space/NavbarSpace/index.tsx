@@ -5,7 +5,7 @@ class NavbarSpace extends Component<any> {
   render() {
     return (
       <WrapAll>
-        <p className="title">Bootstrap generate</p>
+        <p className="title">Boogen</p>
       </WrapAll>
     )
   }
@@ -13,8 +13,8 @@ class NavbarSpace extends Component<any> {
 
 const WrapAll = styled.div`
   height: 40px;
-  background: #563d7c;
-  color: #ececec;
+  background: black;
+  color: white;
   display: flex;
   justify-items: center;
   align-items: center;
