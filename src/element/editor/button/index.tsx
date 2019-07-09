@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import EnhanceElement from '../../../core/EnhanceElement'
 import { Subscribe } from 'unstated'
 import styled from 'styled-components'
+import { InputController, MultipleInputController } from '../../../element/controller'
 
 /**
  * @param Text - Text inner button
@@ -20,12 +21,26 @@ class Button extends Component<any> {
       <Subscribe to={[container]}>
         {
           () => {
-            return <input
-              type='text'
-              onChange={
-                (e: any) => container.setStyle('background', e.target.value)
-              }
+            return <>
+            <InputController
+              label="Background"
+              keyCSS="background-color"
+              typeChange="style"
+              container={container}
             />
+            <MultipleInputController
+              label="Padding"
+              keyCSS="padding"
+              typeChange="style"
+              container={container}
+            />
+            <MultipleInputController
+              label="Margin"
+              keyCSS="margin"
+              typeChange="style"
+              container={container}
+            />
+            </>
           }
         }
       </Subscribe>
@@ -46,6 +61,9 @@ const UIButton = styled.button<any>`
   padding: 0.25em 1em;
   border: 2px solid palevioletred;
   border-radius: 3px;
+  &:focus {
+    outline: none;
+  }
 `
 
 export default EnhanceElement(Button)

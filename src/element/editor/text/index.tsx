@@ -58,6 +58,9 @@ class Text extends Component<any> {
 }
 
 const Span = styled.span`
+  &:focus {
+    outline: none;
+  }
 `
 
 export default EnhanceElement(Text)
