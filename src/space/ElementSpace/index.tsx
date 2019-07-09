@@ -56,14 +56,14 @@ const DrapItem = styled.div`
   align-items: center;
   text-align: center;
   justify-content: center;
-  padding: 10px;
+  padding: 5px;
   cursor: all-scroll;
   &:hover {
     box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.5);
   }
   img {
-    width: 80px;
-    margin: 0 auto 3px auto;
+    width: 45px;
+    margin: 0 auto 0px auto;
     display: block;
   }
 
@@ -73,10 +73,10 @@ const Label = styled.label`
   text-align: center;
   color: #484848;
   border-bottom: 2px solid transparent;
-  font-size: 11px;
+  font-size: 9px;
   text-transform: uppercase;
   transition: color .1s ease-in-out;
-  margin-top: 15px;
+  margin: 0px;
 `
 
 export default ElementorSpace
