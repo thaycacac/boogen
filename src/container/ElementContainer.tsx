@@ -47,6 +47,10 @@ class ElementContainer extends CoreContainer {
     return value
   }
 
+  /**
+   * @description - Return index of rule if it exist or return 0
+   * @param key - Key of css
+   */
   private getIndexExistRule(key: string): any {
     const { styleContext } = this.state
     const cssRules = styleContext.cssRules

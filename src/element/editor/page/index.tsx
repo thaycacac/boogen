@@ -29,7 +29,6 @@ class Page extends Component<any> {
     EditorSpaceContainer.setState({
       selectedId: initIdPage
     }, null)
-    console.log(initData)
     return RenderElement(initIdPage, '')
   }
 }

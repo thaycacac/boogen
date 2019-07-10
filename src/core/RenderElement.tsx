@@ -6,7 +6,6 @@ import StyleContext from '../space/EditorSpace/StyleContext'
 import uuid from 'uuid'
 
 function RenderElement(id: string, parentId: string) {
-  const container = StoreElement.get(id)
   // get element container from store
   const elementContainer = StoreElement.get(id)
   // get name type of container
@@ -19,7 +18,7 @@ function RenderElement(id: string, parentId: string) {
       {
         styleContext => {
           return (
-            <Subscribe to={[container]} key={id}>
+            <Subscribe to={[elementContainer]} key={id}>
               {
                 elementContainer => {
                   const { id, children, data, styles, className } = elementContainer.state
