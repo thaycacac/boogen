@@ -1,5 +1,6 @@
 import React, { FunctionComponent, useRef, useState } from 'react'
 import styled from 'styled-components'
+import { EditorSpaceContainer } from '../../../container'
 
 interface IMultipleInput {
   label: string
@@ -43,6 +44,9 @@ const MultipleInput:FunctionComponent<IMultipleInput> = ({
           updateBottom(e.target.value)
           break
       }
+      EditorSpaceContainer.setState({
+        selectedId: container.state.id
+      }, null)
     }
   }
   const refInput = useRef(null)

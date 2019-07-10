@@ -1,5 +1,6 @@
 import React, { FunctionComponent, useRef, useState, useEffect } from 'react'
 import styled from 'styled-components'
+import { EditorSpaceContainer } from '../../../container'
 
 interface IInput {
   label: string
@@ -39,6 +40,9 @@ const Input:FunctionComponent<IInput> = ({
       })
     }
     updateValue(e.target.value)
+    EditorSpaceContainer.setState({
+      selectedId: container.state.id
+    }, null)
   }
   const refInput = useRef(null)
 
