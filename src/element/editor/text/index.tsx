@@ -11,28 +11,27 @@ class Text extends Component<any> {
 
   static Inspector(container: ElementContainer) {
     return (
-      <Subscribe to={[container]}>
-          {
-            () => {
-              return <>
-                <InputController
-                  label="Content"
-                  typeChange="data"
-                  container={container}
-                />
-                <InputController
-                  label="Color"
-                  keyCSS="color"
-                  typeChange="style"
-                  container={container}
-                />
-                <TwitterPicker onChangeComplete={ (color) => {
-                container.setStyle('color', color.hex)
-              }}/>
-              </>
-            }
-          }
-        </Subscribe>
+      <Subscribe to={[container]}>{
+        () => {
+          return <>
+            <InputController
+              label="Content"
+              typeChange="data"
+              container={container}
+            />
+            <InputController
+              label="Color"
+              keyCSS="color"
+              typeChange="style"
+              container={container}
+            />
+            <TwitterPicker onChangeComplete={ (color) => {
+            container.setStyle('color', color.hex)
+          }}/>
+          </>
+        }
+        }
+      </Subscribe>
     )
   }
 

@@ -24,7 +24,6 @@ class ElementContainer extends CoreContainer {
       styleContext.insertRule(`#boogen-${id}{${key}: ${value}}`, styleContext.cssRules.length)
       this.checkLastRuleAndDelete(styleContext, id)
     }
-    console.log(styleContext)
   }
 
   /**

@@ -1,7 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import Selection from './Selection'
-import Styles from './Styles'
 import INTERACTION, { TypePosition } from '../../reuse/interaction'
 import {
   convertDataToContainer,
@@ -121,6 +120,10 @@ class EditorSpace extends React.Component<any> {
 
   render() {
     return <>
+      <style data-css="extra"></style>
+      <style data-css="large"></style>
+      <style data-css="medium"></style>
+      <style data-css="small"></style>
       <WrapperEditorSpace
         onDragStartCapture={this.handleDragStartCapture}
         onDragOverCapture={this.handleDrapOverCapture}
@@ -128,9 +131,7 @@ class EditorSpace extends React.Component<any> {
         onDropCapture={this.handleDropCapture}
         onMouseDown={this.handleMouseDown}
       >
-        <Styles>
-          <Page/>
-        </Styles>
+        <Page/>
         <Flow ref={e => this.refFlow = e as HTMLInputElement}/>
         <DropHover ref={e => this.dropElement = e as HTMLInputElement} />
         <Subscribe to={[EditorSpaceContainer]}>

@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { TwitterPicker } from 'react-color'
 import { Subscribe } from 'unstated'
 import { InputController, MultipleInputController } from '../../controller'
-import { ElementContainer } from '../../../container';
+import { ElementContainer, StyleContainer } from '../../../container'
 
 class Section extends Component {
   static type = 'Section'

@@ -7,7 +7,7 @@ import { EditorSpaceContainer } from '../../../container'
 const initIdPage = uuid()
 const initIdSection  = uuid()
 
-// Auto run and create element container
+// eslint-disable-next-line
 const initData = {
   idPage: new ElementContainer({
     id: initIdPage,

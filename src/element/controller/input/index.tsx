@@ -27,6 +27,7 @@ const Input:FunctionComponent<IInput> = ({
     } else {
       updateValue(container.state.data.value)
     }
+    // eslint-disable-next-line
   }, [container.state.data.value])
 
   const handleOnChange = (e: any) => {

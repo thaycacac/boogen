@@ -1,13 +1,15 @@
 import { Container } from 'unstated'
 
-class StyleContainer extends Container<any> {
-  setStyle() {
 
-  }
-
-  getStyle() {
-
-  }
+type StyleState = {
+  instance: any
 }
 
-export default StyleContainer
+class StyleContainer extends Container<StyleState> {
+  state = {
+    instance: null
+  }
+
+}
+
+export default new StyleContainer()
