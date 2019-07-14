@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import ThemeProviderContext from './theme'
 import { Provider } from 'unstated'
+import ContainerWrapAll from './space/EditorSpace/ContainerContext'
 import {
   NavbarSpace,
   EditorSpace,
@@ -14,15 +15,17 @@ const App: React.FC = () => {
   return (
     <ThemeProviderContext>
       <Provider>
-        <WrapApp>
-          <NavbarSpace className="header-space" />
-          <div className="main-space">
-            <ElementorSpace />
-            <EditorSpace />
-            <ControllerSpace />
-          </div>
-          <FooterSpace className="footer-space" />
-        </WrapApp>
+        <ContainerWrapAll>
+          <WrapApp>
+            <NavbarSpace className="header-space" />
+            <div className="main-space">
+              <ElementorSpace />
+              <EditorSpace />
+              <ControllerSpace />
+            </div>
+            <FooterSpace className="footer-space" />
+          </WrapApp>
+        </ContainerWrapAll>
       </Provider>
     </ThemeProviderContext>
   );
