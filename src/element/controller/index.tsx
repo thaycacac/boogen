@@ -6,4 +6,4 @@ export { default as InputController } from './input'
 
 export { default as MultipleInputController } from './multiple-input'
 
-export { default as Custom } from './custom'
+export { default as CustomController } from './custom'

@@ -3,7 +3,10 @@ import EnhanceElement from '../../../core/EnhanceElement'
 import styled from 'styled-components'
 import { TwitterPicker } from 'react-color'
 import { Subscribe } from 'unstated'
-import { InputController, MultipleInputController } from '../../controller'
+import {
+  InputController,
+  MultipleInputController,
+  CustomController } from '../../controller'
 import { ElementContainer } from '../../../container'
 
 class Section extends Component {
@@ -48,12 +51,9 @@ class Section extends Component {
                 typeChange="style"
                 container={container}
               />
-              <textarea
-                onChange={
-                  (event: any) => {
-                    container.customStyle(event.target.value)
-                  }
-                }
+              <CustomController
+                label="Custom CSS"
+                container={container}
               />
             </>
           }

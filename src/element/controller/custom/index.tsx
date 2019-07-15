@@ -1,30 +1,24 @@
-import React, { FunctionComponent, useRef, useState } from 'react'
+import React, { FunctionComponent, useRef, useState, useEffect } from 'react'
 import styled from 'styled-components'
 
 interface ICustom {
   label: string
-  placeholder?: string,
-  type?: string,
-  typeChange: 'style' | 'text'
-  keyCSS?: string,
   container: any
 }
 
 const Custom:FunctionComponent<ICustom> = ({
   label = 'Content',
-  placeholder = 'Please input here',
-  type = 'text',
-  typeChange,
-  keyCSS,
   container
 }) => {
 
-  const [value, updateValue] = useState(container.getStyle(keyCSS))
+  const [value, updateValue] = useState(container.getAllStyle())
+
+  // useEffect(() => {
+  //   updateValue(container.getAllStyle())
+  // }, [container.state.id])
 
   const handleOnChange = (e: any) => {
-    if (typeChange === 'style') {
-      container.setStyle(keyCSS, e.target.value)
-    }
+    container.setCustomStyle(e.target.value)
     updateValue(e.target.value)
   }
   const refInput = useRef(null)
@@ -32,9 +26,8 @@ const Custom:FunctionComponent<ICustom> = ({
   return(
     <>
       <UILabel>{ label }</UILabel>
-      <UIInput
-        placeholder={placeholder}
-        type={type}
+      <UITextarea
+        rows={10}
         value={value}
         ref={refInput}
         onChange={handleOnChange}
@@ -43,13 +36,12 @@ const Custom:FunctionComponent<ICustom> = ({
   )
 }
 
-const UIInput = styled.input`
-  height: 40px;
+const UITextarea = styled.textarea`
   vertical-align: middle;
   display: inline-block;
   max-width: 100%;
   width: 100%;
-  padding: 0 10px;
+  padding: 10px;
   background: #fff;
   color: #666;
   border: 1px solid #e5e5e5;
