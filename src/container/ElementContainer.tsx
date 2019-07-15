@@ -12,54 +12,38 @@ class ElementContainer extends CoreContainer {
    * @param  key - Key of style css
    * @param value - Value of style css
    */
-  public setStyle(key: string, value: string): void {
+  public setStyle(key: string, value: string) {
     const { id, styleContext } = this.state
-
-    const indexExistRule = this.getIndexExistRule(key)
-    if (indexExistRule) {
-      styleContext.insertRule(`#boogen-${id}{${key}: ${value}}`,styleContext.cssRules.length)
-      this.checkLastRuleAndDelete(styleContext, id)
-      styleContext.deleteRule(indexExistRule)
-    } else {
-      styleContext.insertRule(`#boogen-${id}{${key}: ${value}}`, styleContext.cssRules.length)
-      this.checkLastRuleAndDelete(styleContext, id)
-    }
-    console.log(styleContext)
+    const CSSStyleDeclaration: CSSStyleDeclaration = this.getCSSStyleDeclaration(id)
+    console.log(CSSStyleDeclaration);
+    CSSStyleDeclaration.setProperty(key, value, "")
+    CSSStyleDeclaration.setProperty('border-radius', '15px', "")
+    console.log('ALL', styleContext);
   }
 
   /**
    * @description - Get value of style
    * @param  key - Key of style css
-   * @param value - Value of style css
    */
   public getStyle(key: string): string {
-    let value = ''
-    const { styleContext } = this.state
-    const cssRules = styleContext.cssRules
-    Object.keys(cssRules).find(keyIndex => {
-      // ["#boogen-abcde, " background-color", " red", " }"]
-      const splitRule = cssRules[keyIndex].cssText.split(/:|{|;/)
-      if (this.formatText(splitRule[1]) === key) {
-        value = this.formatText(splitRule[2])
-      }
-      return splitRule[1] === key
-    })
-    return value
+    const CSSStyleDeclaration: CSSStyleDeclaration = this.getCSSStyleDeclaration(this.state.id)
+    return CSSStyleDeclaration.getPropertyValue(key)
   }
 
+
   /**
-   * @description - Return index of rule if it exist or return 0
-   * @param key - Key of css
+   * @description - Get CSSStyleDeclaration of element
+   * @param id - Id of container
    */
-  private getIndexExistRule(key: string): any {
-    const { styleContext } = this.state
-    const cssRules = styleContext.cssRules
-    const index = Object.keys(cssRules).find(keyIndex => {
-      // ["#boogen-abcde, " background-color", " red", " }"]
-      const splitRule = cssRules[keyIndex].cssText.split(/:|{|;/)
-      return this.formatText(splitRule[1]) === key
-    })
-    return index
+  private getCSSStyleDeclaration(id: string): CSSStyleDeclaration {
+    const instanceStyle: any = document.styleSheets[2]
+    const arrInstanceStyle: Array<object> = Array.from(instanceStyle.cssRules)
+    const rule: any = arrInstanceStyle.find((rule : any) => rule.selectorText === `#boogen-${id}`)
+    if(!rule){
+      instanceStyle.insertRule(`#boogen-${id}{}`, arrInstanceStyle.length)
+      return instanceStyle.cssRules[arrInstanceStyle.length].style
+    }
+    return rule.style
   }
 
   /**

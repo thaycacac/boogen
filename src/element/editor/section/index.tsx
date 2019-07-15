@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { TwitterPicker } from 'react-color'
 import { Subscribe } from 'unstated'
 import { InputController, MultipleInputController } from '../../controller'
-import { ElementContainer } from '../../../container';
+import { ElementContainer } from '../../../container'
 
 class Section extends Component {
   static type = 'Section'
@@ -15,22 +15,32 @@ class Section extends Component {
         {
           () => {
             return <>
-              <InputController
+              {/* <InputController
                 label="Background"
                 keyCSS="background-color"
                 typeChange="style"
                 container={container}
-              />
+              /> */}
               <TwitterPicker onChangeComplete={ (color) => {
                 container.setStyle('background-color', color.hex)
               }}/>
-              <InputController
+              {/* <SubscribeStyle to={container} bind={'background'} key={container.state.id}>
+                  {
+                      (containerStyle: any, rule: any) => {
+                          // console.log("styles.style['background']",valueStyle)
+                          return <UIInput onChange={value => {
+                              container.setStyle({ background: value })
+                          }} value={rule.style['background']} />
+                      }
+                  }
+              </SubscribeStyle> */}
+              {/* <InputController
                 label="Width"
                 keyCSS="width"
                 typeChange="style"
                 container={container}
-              />
-              <InputController
+              /> */}
+              {/* <InputController
                 label="Height"
                 keyCSS="height"
                 typeChange="style"
@@ -54,7 +64,7 @@ class Section extends Component {
                     container.customStyle(event.target.value)
                   }
                 }
-              />
+              /> */}
             </>
           }
         }
