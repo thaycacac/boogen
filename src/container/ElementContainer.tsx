@@ -59,10 +59,7 @@ class ElementContainer extends CoreContainer {
   }
 
   /**
-   * @description - User can custom css by write css good-looking
-   *   if exist index in list first delete css rule that index, then insert
-   *   new css rule. Else then insert css rule in last. Finally check css rule
-   *   created, if empty then delete it.
+   * @description - User can custom css by write css
    * @param css - List css as object
    */
   public setCustomStyle(css: any) {

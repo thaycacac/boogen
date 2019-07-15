@@ -13,9 +13,9 @@ const Custom:FunctionComponent<ICustom> = ({
 
   const [value, updateValue] = useState(container.getAllStyle())
 
-  // useEffect(() => {
-  //   updateValue(container.getAllStyle())
-  // }, [container.state.id])
+  useEffect(() => {
+    updateValue(container.getAllStyle())
+  }, [container.state.id])
 
   const handleOnChange = (e: any) => {
     container.setCustomStyle(e.target.value)
