@@ -26,9 +26,9 @@ class Text extends Component<any> {
                   typeChange="style"
                   container={container}
                 />
-                <TwitterPicker onChangeComplete={ (color) => {
+                {/* <TwitterPicker onChangeComplete={ (color) => {
                 container.setStyle('color', color.hex)
-              }}/>
+              }}/> */}
               </>
             }
           }

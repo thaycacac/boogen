@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useRef, useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { EditorSpaceContainer } from '../../../container'
+import { ContainerContextAll } from '../../../space/EditorSpace/ContainerWrapAll'
 
 interface IInput {
   label: string

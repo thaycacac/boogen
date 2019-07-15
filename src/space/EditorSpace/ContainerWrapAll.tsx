@@ -1,16 +1,16 @@
 import React from 'react'
 import { EditorSpaceContainer, StoreElement } from '../../container'
 import { Subscribe } from 'unstated'
-export const ContainerContext = React.createContext(null)
+export const ContainerContextAll = React.createContext(null)
 
 function ContainerWrapAll({children}: any) {
   return <Subscribe to={[EditorSpaceContainer]}>{
     container => {
       const id = container.state.selectedId
       const elementContainer = StoreElement.get(id)
-      return <ContainerContext.Provider value={elementContainer}>
+      return <ContainerContextAll.Provider value={elementContainer}>
         { children }
-      </ContainerContext.Provider>
+      </ContainerContextAll.Provider>
     }
   }
   </Subscribe>

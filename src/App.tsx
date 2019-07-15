@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import ThemeProviderContext from './theme'
 import { Provider } from 'unstated'
-import ContainerWrapAll from './space/EditorSpace/ContainerContext'
+import ContainerWrapAll from './space/EditorSpace/ContainerWrapAll'
 import {
   NavbarSpace,
   EditorSpace,
