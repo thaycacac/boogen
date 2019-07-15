@@ -17,7 +17,6 @@ class ElementContainer extends CoreContainer {
     const CSSStyleDeclaration: CSSStyleDeclaration = this.getCSSStyleDeclaration(id)
     console.log(CSSStyleDeclaration);
     CSSStyleDeclaration.setProperty(key, value, "")
-    CSSStyleDeclaration.setProperty('border-radius', '15px', "")
     console.log('ALL', styleContext);
   }
 
@@ -29,7 +28,6 @@ class ElementContainer extends CoreContainer {
     const CSSStyleDeclaration: CSSStyleDeclaration = this.getCSSStyleDeclaration(this.state.id)
     return CSSStyleDeclaration.getPropertyValue(key)
   }
-
 
   /**
    * @description - Get CSSStyleDeclaration of element

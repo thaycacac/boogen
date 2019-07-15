@@ -1,7 +1,6 @@
 import React, { FunctionComponent, useRef, useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { EditorSpaceContainer } from '../../../container'
-import { ContainerContextAll } from '../../../space/EditorSpace/ContainerWrapAll'
 
 interface IInput {
   label: string
@@ -23,12 +22,16 @@ const Input:FunctionComponent<IInput> = ({
 
   const [value, updateValue] = useState('')
   useEffect(() => {
-    if(typeChange === 'style') {
-      updateValue(container.getStyle(keyCSS))
-    } else {
+    if (typeChange === 'data') {
       updateValue(container.state.data.value)
     }
   }, [container.state.data.value])
+
+  useEffect(() => {
+    if (typeChange === 'style') {
+      updateValue(container.getStyle(keyCSS))
+    }
+  }, [container.state.id])
 
   const handleOnChange = (e: any) => {
     if (typeChange === 'style') {
