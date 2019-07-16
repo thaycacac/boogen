@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { elementData } from '../../utils'
 import INTERACTION from '../../reuse/interaction'
+import Button from '../../element/advance/components/button'
 
 class ElementorSpace extends Component<any> {
 
@@ -20,18 +21,19 @@ class ElementorSpace extends Component<any> {
           elementData.map((item, index) => {
             const dataString: any = JSON.stringify(item)
             return (
-                <DrapItem
-                  key={`element-${index}`}
-                  onDragStartCapture={this.handleDragStart}
-                  data-element={dataString}
-                  draggable
-                >
-                  <img src={require(`../../assets/images/${item[0].type}.png`)} alt=""/>
-                  <Label>{ item[0].name }</Label>
-                </DrapItem>
+              <DrapItem
+                key={`element-${index}`}
+                onDragStartCapture={this.handleDragStart}
+                data-element={dataString}
+                draggable
+              >
+                <img src={require(`../../assets/images/${item[0].type}.png`)} alt=""/>
+                <Label>{ item[0].name }</Label>
+              </DrapItem>
             )
           })
         }
+        <Button color="danger">Danger</Button>
       </WrapAll>
     )
   }
