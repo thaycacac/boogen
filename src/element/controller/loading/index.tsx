@@ -2,11 +2,11 @@ import React, { FunctionComponent } from 'react'
 import styled from 'styled-components'
 
 interface ILoading {
-  keyButton?: number,
+  keyButton?: number
 }
 
-const Loading:FunctionComponent<ILoading> = () => {
-    return <UILoading />
+const Loading: FunctionComponent<ILoading> = () => {
+  return <UILoading />
 }
 
 const UILoading = styled.div`
@@ -18,8 +18,12 @@ const UILoading = styled.div`
   margin: 10px;
   animation: spin 2s linear infinite;
   @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 `
 

@@ -1,8 +1,8 @@
-import MixinError from './mixins-error';
+import MixinError from './mixins-error'
 
 export const defaultProps = {
   '$enable-hover-media-query': false,
-};
+}
 
 /**
  * @public Css helper for hovering.
@@ -11,7 +11,7 @@ export const defaultProps = {
  * @returns {string}
  */
 export function hover(content: any) {
-  if (!content) throw new MixinError('content is required');
+  if (!content) throw new MixinError('content is required')
   // TODO: re-enable along with mq4-hover-shim
   //  @if $enable-hover-media-query {
   //    // See Media Queries Level 4: https://drafts.csswg.org/mediaqueries/#hover
@@ -21,7 +21,7 @@ export function hover(content: any) {
   //    }
   //  }
   //  @else {
-  return `&:hover, &.hover { ${content} }`;
+  return `&:hover, &.hover { ${content} }`
 }
 
 /**
@@ -31,12 +31,15 @@ export function hover(content: any) {
  * @param {string} content
  * @returns {string}
  */
-export function hoverFocus(enableHoverMediaQuery = defaultProps['$enable-hover-media-query'], content: any) {
+export function hoverFocus(
+  enableHoverMediaQuery = defaultProps['$enable-hover-media-query'],
+  content: any,
+) {
   if (enableHoverMediaQuery) {
     return `
       &:focus, &.focus { ${content} }
       ${hover(content)}
-    `;
+    `
   }
   return `
     &:focus,
@@ -45,7 +48,7 @@ export function hoverFocus(enableHoverMediaQuery = defaultProps['$enable-hover-m
     &.hover {
       ${content}
     }
-  `;
+  `
 }
 
 /**
@@ -55,7 +58,10 @@ export function hoverFocus(enableHoverMediaQuery = defaultProps['$enable-hover-m
  * @param {string} content
  * @returns {string}
  */
-export function plainHoverFocus(enableHoverMediaQuery = defaultProps['$enable-hover-media-query'], content: any) {
+export function plainHoverFocus(
+  enableHoverMediaQuery = defaultProps['$enable-hover-media-query'],
+  content: any,
+) {
   if (enableHoverMediaQuery) {
     return `
       &,
@@ -64,7 +70,7 @@ export function plainHoverFocus(enableHoverMediaQuery = defaultProps['$enable-ho
         ${content}
       }
       ${hover(content)}
-    `;
+    `
   }
   return `
     &,
@@ -74,7 +80,7 @@ export function plainHoverFocus(enableHoverMediaQuery = defaultProps['$enable-ho
     &.hover {
       ${content}
     }
-  `;
+  `
 }
 
 /**
@@ -84,7 +90,10 @@ export function plainHoverFocus(enableHoverMediaQuery = defaultProps['$enable-ho
  * @param {string} content
  * @returns {string}
  */
-export function hoverFocusActive(enableHoverMediaQuery = defaultProps['$enable-hover-media-query'], content: any) {
+export function hoverFocusActive(
+  enableHoverMediaQuery = defaultProps['$enable-hover-media-query'],
+  content: any,
+) {
   if (enableHoverMediaQuery) {
     return `
       &:focus,
@@ -94,7 +103,7 @@ export function hoverFocusActive(enableHoverMediaQuery = defaultProps['$enable-h
         ${content}
       }
       ${hover(content)}
-    `;
+    `
   }
   return `
     &:focus,
@@ -105,13 +114,12 @@ export function hoverFocusActive(enableHoverMediaQuery = defaultProps['$enable-h
     &.hover {
       ${content}
     }
-  `;
+  `
 }
 
-
-hover.focus = hoverFocus;
-hover.plainFocus = plainHoverFocus;
-hover.activeFocus = hoverFocusActive;
+hover.focus = hoverFocus
+hover.plainFocus = plainHoverFocus
+hover.activeFocus = hoverFocusActive
 
 export default {
   defaultProps,
@@ -119,4 +127,4 @@ export default {
   hoverFocus,
   plainHoverFocus,
   hoverFocusActive,
-};
+}

@@ -1,7 +1,7 @@
 export const defaultProps = {
   '$border-radius': '.25rem',
   '$enable-rounded': true,
-};
+}
 
 /**
  * @public
@@ -10,13 +10,16 @@ export const defaultProps = {
  * @param {string} radius
  * @returns {string}
  */
-export function borderRadius(enableRounded = defaultProps['$enable-rounded'], radius = defaultProps['$border-radius']) {
+export function borderRadius(
+  enableRounded = defaultProps['$enable-rounded'],
+  radius = defaultProps['$border-radius'],
+) {
   if (enableRounded) {
     return `
       border-radius: ${radius};
-    `;
+    `
   }
-  return '';
+  return ''
 }
 /**
  * @public
@@ -25,14 +28,17 @@ export function borderRadius(enableRounded = defaultProps['$enable-rounded'], ra
  * @param {string} radius
  * @returns {string}
  */
-export function borderTopRadius(enableRounded = defaultProps['$enable-rounded'], radius = defaultProps['$border-radius']) {
+export function borderTopRadius(
+  enableRounded = defaultProps['$enable-rounded'],
+  radius = defaultProps['$border-radius'],
+) {
   if (enableRounded) {
     return `
       border-top-right-radius: ${radius};
       border-top-left-radius: ${radius};
-    `;
+    `
   }
-  return '';
+  return ''
 }
 
 /**
@@ -42,14 +48,17 @@ export function borderTopRadius(enableRounded = defaultProps['$enable-rounded'],
  * @param {string} radius
  * @returns {string}
  */
-export function borderRightRadius(enableRounded = defaultProps['$enable-rounded'], radius = defaultProps['$border-radius']) {
+export function borderRightRadius(
+  enableRounded = defaultProps['$enable-rounded'],
+  radius = defaultProps['$border-radius'],
+) {
   if (enableRounded) {
     return `
       border-bottom-right-radius: ${radius};
       border-top-right-radius: ${radius};
-    `;
+    `
   }
-  return '';
+  return ''
 }
 
 /**
@@ -59,14 +68,17 @@ export function borderRightRadius(enableRounded = defaultProps['$enable-rounded'
  * @param {string} radius
  * @returns {string}
  */
-export function borderBottomRadius(enableRounded = defaultProps['$enable-rounded'], radius = defaultProps['$border-radius']) {
+export function borderBottomRadius(
+  enableRounded = defaultProps['$enable-rounded'],
+  radius = defaultProps['$border-radius'],
+) {
   if (enableRounded) {
     return `
       border-bottom-right-radius: ${radius};
       border-bottom-left-radius: ${radius};
-    `;
+    `
   }
-  return '';
+  return ''
 }
 
 /**
@@ -76,14 +88,17 @@ export function borderBottomRadius(enableRounded = defaultProps['$enable-rounded
  * @param {string} radius
  * @returns {string}
  */
-export function borderLeftRadius(enableRounded = defaultProps['$enable-rounded'], radius = defaultProps['$border-radius']) {
+export function borderLeftRadius(
+  enableRounded = defaultProps['$enable-rounded'],
+  radius = defaultProps['$border-radius'],
+) {
   if (enableRounded) {
     return `
       border-bottom-left-radius: ${radius};
       border-top-left-radius: ${radius};
-    `;
+    `
   }
-  return '';
+  return ''
 }
 
 export default {
@@ -93,4 +108,4 @@ export default {
   right: borderRightRadius,
   bottom: borderBottomRadius,
   left: borderLeftRadius,
-};
+}

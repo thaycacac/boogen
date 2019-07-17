@@ -6,11 +6,7 @@ interface ICustom {
   container: any
 }
 
-const Custom:FunctionComponent<ICustom> = ({
-  label = 'Content',
-  container
-}) => {
-
+const Custom: FunctionComponent<ICustom> = ({ label = 'Content', container }) => {
   const [value, updateValue] = useState(container.getAllStyle())
 
   useEffect(() => {
@@ -23,15 +19,10 @@ const Custom:FunctionComponent<ICustom> = ({
   }
   const refInput = useRef(null)
 
-  return(
+  return (
     <>
-      <UILabel>{ label }</UILabel>
-      <UITextarea
-        rows={10}
-        value={value}
-        ref={refInput}
-        onChange={handleOnChange}
-      />
+      <UILabel>{label}</UILabel>
+      <UITextarea rows={10} value={value} ref={refInput} onChange={handleOnChange} />
     </>
   )
 }
@@ -45,10 +36,10 @@ const UITextarea = styled.textarea`
   background: #fff;
   color: #666;
   border: 1px solid #e5e5e5;
-  transition: .2s ease-in-out;
+  transition: 0.2s ease-in-out;
   overflow: visible;
   box-sizing: border-box;
-  transition-property: color,background-color,border;
+  transition-property: color, background-color, border;
 
   &:focus {
     border-color: #666;
@@ -62,7 +53,7 @@ const UILabel = styled.label`
   border-bottom: 2px solid transparent;
   font-size: 9px;
   text-transform: uppercase;
-  transition: color .1s ease-in-out;
+  transition: color 0.1s ease-in-out;
   margin-top: 15px;
 `
 

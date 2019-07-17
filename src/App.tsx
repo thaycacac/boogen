@@ -2,13 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import ThemeProviderContext from './theme'
 import { Provider } from 'unstated'
-import {
-  NavbarSpace,
-  EditorSpace,
-  ControllerSpace,
-  ElementorSpace,
-  FooterSpace
-} from './space'
+import { NavbarSpace, EditorSpace, ControllerSpace, ElementorSpace, FooterSpace } from './space'
 
 const App: React.FC = () => {
   return (
@@ -25,7 +19,7 @@ const App: React.FC = () => {
         </WrapApp>
       </Provider>
     </ThemeProviderContext>
-  );
+  )
 }
 
 const WrapApp = styled.div`
@@ -37,4 +31,4 @@ const WrapApp = styled.div`
   }
 `
 
-export default App;
+export default App

@@ -1,5 +1,5 @@
-export type TypePosition = 'TOP'|'BOTTOM'|'LEFT'|'RIGHT'|'INSIDE'|''
-export type TypeCategory = 'DRAG'|'MOVE'
+export type TypePosition = 'TOP' | 'BOTTOM' | 'LEFT' | 'RIGHT' | 'INSIDE' | ''
+export type TypeCategory = 'DRAG' | 'MOVE'
 class Interation {
   dropTarget: any = null
   position: TypePosition = ''
@@ -10,7 +10,7 @@ class Interation {
       this.dropTarget = null
       this.position = ''
       this.doing = false
-    },100)
+    }, 100)
   }
 }
 

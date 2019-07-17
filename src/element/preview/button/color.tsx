@@ -42,7 +42,4 @@ const getColorEffect = (variant: string) => {
   }
 }
 
-export {
-  getColor,
-  getColorEffect
-}
+export { getColor, getColorEffect }

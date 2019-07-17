@@ -1,7 +1,7 @@
 import { css } from 'styled-components'
 
 const getSize = (size: string) => {
-  switch(size) {
+  switch (size) {
     case 'medium':
       return sizeMedium
     case 'small':
@@ -12,26 +12,21 @@ const getSize = (size: string) => {
 }
 
 const sizeSmall = css`
-  font-size: .875rem;
-  padding: .25rem .5rem;
-  border-radius: .2rem;
+  font-size: 0.875rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.2rem;
 `
 
 const sizeMedium = css`
   font-size: 1rem;
-  padding: .375rem .75rem;
-  border-radius: .25rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.25rem;
 `
 
 const sizeLarge = css`
   font-size: 1.25rem;
-  padding: .5rem 1rem;
-  border-radius: .3rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
 `
 
-export {
-  getSize,
-  sizeSmall,
-  sizeMedium,
-  sizeLarge
-}
+export { getSize, sizeSmall, sizeMedium, sizeLarge }

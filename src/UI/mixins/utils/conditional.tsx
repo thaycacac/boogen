@@ -6,7 +6,7 @@
  * @returns {*}
  */
 export function ifThen(conditions: any, returnTrue: any) {
-  return ifElse(conditions, returnTrue, '');
+  return ifElse(conditions, returnTrue, '')
 }
 
 /**
@@ -18,10 +18,10 @@ export function ifThen(conditions: any, returnTrue: any) {
  * @returns {*}
  */
 export function ifElse(conditions: any, returnTrue: any, returnFalse: any) {
-  return conditions ? returnTrue : returnFalse;
+  return conditions ? returnTrue : returnFalse
 }
 
 export default {
   ifThen,
   ifElse,
-};
+}

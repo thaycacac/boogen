@@ -1,15 +1,11 @@
-/**
- * A button with natures
- */
-
-import React from 'react';
-import PropTypes, { any } from 'prop-types';
-import styled from 'styled-components';
-import cn from 'classnames';
-import omit from 'lodash.omit';
+import React from 'react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
+import cn from 'classnames'
+import omit from 'lodash.omit'
 // @ts-ignore
-import mapToCssModules from 'map-to-css-modules';
-import { button } from '../mixins/button';
+import mapToCssModules from 'map-to-css-modules'
+import { button } from '../mixins/button'
 
 export const defaultProps = {
   tag: 'button',
@@ -57,7 +53,7 @@ export const defaultProps = {
     '$btn-border-radius-sm': '.2rem',
     '$btn-transition': 'all .2s ease-in-out',
   },
-};
+}
 export const propTypes = {
   /** Toggles active CSS color. */
   active: PropTypes.bool,
@@ -74,24 +70,13 @@ export const propTypes = {
   /** @ignore */
   className: PropTypes.string,
   /** Color variables. Can be: */
-  color: PropTypes.oneOf([
-    'link',
-    'primary',
-    'secondary',
-    'success',
-    'info',
-    'warning',
-    'danger',
-  ]),
+  color: PropTypes.oneOf(['link', 'primary', 'secondary', 'success', 'info', 'warning', 'danger']),
   /** Use that property to pass a ref callback to the native button component. */
   ref: PropTypes.func,
   /** Start specified function when on click event is trigger. */
   onClick: PropTypes.func,
   /** Buttons use default size base and can use different size such as: */
-  size: PropTypes.oneOf([
-    'sm',
-    'lg',
-  ]),
+  size: PropTypes.oneOf(['sm', 'lg']),
   /** Toggles drop up CSS style. */
   dropup: PropTypes.bool,
   /** Replace the default component tag by the one specified. Can be: */
@@ -146,36 +131,37 @@ export const propTypes = {
    * See example <a href="https://www.npmjs.com/package/map-to-css-modules" target="_blank">here</a>.
    */
   cssModule: PropTypes.object,
-};
-interface IButtonUnstyled {
-  disabled?: any,
-  onClick?: any,
-  active?: any,
-  block?: any,
-  className?: any,
-  cssModule?: any,
-  dropup?: any,
-  color?: any,
-  outline?: any,
-  size?: any,
-  ref?: any,
-  tag?: any,
-  hover?: any,
-  focus?: any,
 }
-class ButtonUnstyled extends React.Component<IButtonUnstyled> { // eslint-disable-line react/prefer-stateless-function
-  static propTypes: any = propTypes;
+interface IButtonUnstyled {
+  disabled?: any
+  onClick?: any
+  active?: any
+  block?: any
+  className?: any
+  cssModule?: any
+  dropup?: any
+  color?: any
+  outline?: any
+  size?: any
+  ref?: any
+  tag?: any
+  hover?: any
+  focus?: any
+}
+class ButtonUnstyled extends React.Component<IButtonUnstyled> {
+  // eslint-disable-line react/prefer-stateless-function
+  static propTypes: any = propTypes
 
-  static defaultProps = defaultProps;
+  static defaultProps = defaultProps
 
   onClick = (e: any) => {
     if (this.props.disabled) {
-      e.preventDefault();
-      return;
+      e.preventDefault()
+      return
     }
 
     if (this.props.onClick) {
-      this.props.onClick(e);
+      this.props.onClick(e)
     }
   }
 
@@ -196,98 +182,105 @@ class ButtonUnstyled extends React.Component<IButtonUnstyled> { // eslint-disabl
       hover,
       focus,
       ...attributes
-    } = omit(this.props, ['theme']);
+    } = omit(this.props, ['theme'])
     /* eslint-enable prefer-const */
 
-    const classes = mapToCssModules(cn(className, 'btn', {
-      hover,
-      focus,
-      dropup,
-      active,
-      disabled,
-      [`btn-${size}`]: size,
-      'btn-block': block,
-    }, `btn${outline ? '-outline' : ''}-${color}`), cssModule);
+    const classes = mapToCssModules(
+      cn(
+        className,
+        'btn',
+        {
+          hover,
+          focus,
+          dropup,
+          active,
+          disabled,
+          [`btn-${size}`]: size,
+          'btn-block': block,
+        },
+        `btn${outline ? '-outline' : ''}-${color}`,
+      ),
+      cssModule,
+    )
 
     // @ts-ignore
     if (attributes.href && Tag === 'button') {
-      Tag = 'a';
+      Tag = 'a'
     }
 
     return (
       <Tag
-        type={(Tag === 'button' && attributes.onClick) ? 'button' : undefined}
+        type={Tag === 'button' && attributes.onClick ? 'button' : undefined}
         className={classes}
         ref={ref}
         {...attributes}
         onClick={this.onClick}
       />
-    );
+    )
   }
 }
 /**
  * Use our default **link**, **colored** or **outlined** `Buttons` blocks, to emphasize part of your page.
  * You can also use different `size` or another `tag` instead of `<Button />`.
  */
-const Button = styled(ButtonUnstyled)`
-  ${(props) => `
+const UIButton = styled(ButtonUnstyled)`
+  ${props => `
     ${button(
-    props.theme['$enable-shadows'],
-    props.theme['$enable-hover-media-query'],
-    props.theme['$enable-transitions'],
-    props.theme['$enable-rounded'],
-    props.theme['$font-weight-normal'],
-    props.theme['$btn-font-weight'],
-    props.theme['$btn-line-height'],
-    props.theme['$btn-transition'],
-    props.theme['$btn-border-width'],
-    props.theme['$btn-padding-x'],
-    props.theme['$btn-padding-y'],
-    props.theme['$font-size-base'],
-    props.theme['$btn-border-radius'],
-    props.theme['$btn-box-shadow'],
-    props.theme['$btn-focus-box-shadow'],
-    props.theme['$btn-active-box-shadow'],
-    props.theme['$cursor-disabled'],
-    props.theme['$link-color'],
-    props.theme['$link-hover-color'],
-    props.theme['$link-hover-decoration'],
-    props.theme['$btn-link-disabled-color'],
-    props.theme['$btn-padding-x-lg'],
-    props.theme['$btn-padding-y-lg'],
-    props.theme['$font-size-lg'],
-    props.theme['$btn-border-radius-lg'],
-    props.theme['$btn-padding-x-sm'],
-    props.theme['$btn-padding-y-sm'],
-    props.theme['$font-size-sm'],
-    props.theme['$btn-border-radius-sm'],
-    props.theme['$btn-block-spacing-y'],
-    props.theme['$btn-primary-color'],
-    props.theme['$btn-primary-bg'],
-    props.theme['$btn-primary-border'],
-    props.theme['$btn-secondary-color'],
-    props.theme['$btn-secondary-bg'],
-    props.theme['$btn-secondary-border'],
-    props.theme['$btn-info-color'],
-    props.theme['$btn-info-bg'],
-    props.theme['$btn-info-border'],
-    props.theme['$btn-success-color'],
-    props.theme['$btn-success-bg'],
-    props.theme['$btn-success-border'],
-    props.theme['$btn-warning-color'],
-    props.theme['$btn-warning-bg'],
-    props.theme['$btn-warning-border'],
-    props.theme['$btn-danger-color'],
-    props.theme['$btn-danger-bg'],
-    props.theme['$btn-danger-border'],
-    props.theme['$btn-disabled-opacity'],
-  )}
+      props.theme['$enable-shadows'],
+      props.theme['$enable-hover-media-query'],
+      props.theme['$enable-transitions'],
+      props.theme['$enable-rounded'],
+      props.theme['$font-weight-normal'],
+      props.theme['$btn-font-weight'],
+      props.theme['$btn-line-height'],
+      props.theme['$btn-transition'],
+      props.theme['$btn-border-width'],
+      props.theme['$btn-padding-x'],
+      props.theme['$btn-padding-y'],
+      props.theme['$font-size-base'],
+      props.theme['$btn-border-radius'],
+      props.theme['$btn-box-shadow'],
+      props.theme['$btn-focus-box-shadow'],
+      props.theme['$btn-active-box-shadow'],
+      props.theme['$cursor-disabled'],
+      props.theme['$link-color'],
+      props.theme['$link-hover-color'],
+      props.theme['$link-hover-decoration'],
+      props.theme['$btn-link-disabled-color'],
+      props.theme['$btn-padding-x-lg'],
+      props.theme['$btn-padding-y-lg'],
+      props.theme['$font-size-lg'],
+      props.theme['$btn-border-radius-lg'],
+      props.theme['$btn-padding-x-sm'],
+      props.theme['$btn-padding-y-sm'],
+      props.theme['$font-size-sm'],
+      props.theme['$btn-border-radius-sm'],
+      props.theme['$btn-block-spacing-y'],
+      props.theme['$btn-primary-color'],
+      props.theme['$btn-primary-bg'],
+      props.theme['$btn-primary-border'],
+      props.theme['$btn-secondary-color'],
+      props.theme['$btn-secondary-bg'],
+      props.theme['$btn-secondary-border'],
+      props.theme['$btn-info-color'],
+      props.theme['$btn-info-bg'],
+      props.theme['$btn-info-border'],
+      props.theme['$btn-success-color'],
+      props.theme['$btn-success-bg'],
+      props.theme['$btn-success-border'],
+      props.theme['$btn-warning-color'],
+      props.theme['$btn-warning-bg'],
+      props.theme['$btn-warning-border'],
+      props.theme['$btn-danger-color'],
+      props.theme['$btn-danger-bg'],
+      props.theme['$btn-danger-border'],
+      props.theme['$btn-disabled-opacity'],
+    )}
 `}
-`;
+`
 
-Button.defaultProps = defaultProps;
+UIButton.defaultProps = defaultProps
 // @ts-ignore
-Button.propTypes = propTypes;
+UIButton.propTypes = propTypes
 
-/** @component */
-export default Button;
+export default UIButton

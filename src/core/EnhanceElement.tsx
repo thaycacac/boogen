@@ -3,16 +3,12 @@ import React from 'react'
 function EnhanceElement(Element: any) {
   return class extends Element {
     render() {
-      console.log('Element in core/EnhanceElement', this.props);
+      console.log('Element in core/EnhanceElement', this.props)
       let {
         elementContainer,
         elementContainer: {
-          state: {
-            id,
-            type,
-            className
-          }
-        }
+          state: { id, type, className },
+        },
       } = this.props
       const instance = super.render()
       const { children } = instance.props
@@ -23,14 +19,14 @@ function EnhanceElement(Element: any) {
           'data-element': id,
           'data-type': type,
           // text can't drag
-          'draggable': Element.type !== 'Text',
-          'id': 'boogen-' + id,
+          draggable: Element.type !== 'Text',
+          id: 'boogen-' + id,
           className,
-          ref: (e: any) => elementContainer.state.domElement = e,
+          ref: (e: any) => (elementContainer.state.domElement = e),
           instanceElement: instance,
-          onChange: elementContainer.setState
+          onChange: elementContainer.setState,
         },
-        key: id
+        key: id,
       }
       return React.cloneElement(instance, props)
     }

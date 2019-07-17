@@ -1,7 +1,7 @@
 import INTERACTION from '../reuse/interaction'
 import { StoreElement } from '../container'
 
-function updatePositionElement(dragId: string, dropId: string ) {
+function updatePositionElement(dragId: string, dropId: string) {
   const dropContainer = StoreElement.get(dropId)
   const dropChildren = dropContainer.state.children
   let parentDropContainer = null
@@ -11,25 +11,21 @@ function updatePositionElement(dragId: string, dropId: string ) {
    * If user don't click body editor and position is not inside,
    * then change drop is parent of element current
    */
-  if (dropContainer.state.type !== 'Body' &&
-    INTERACTION.position !== 'INSIDE'
-  ) {
+  if (dropContainer.state.type !== 'Body' && INTERACTION.position !== 'INSIDE') {
     parentDropContainer = StoreElement.get(dropContainer.state.parentId)
     parentDropChildren = parentDropContainer.state.children
-  }
+  } else if (dropContainer.state.type === 'Body' && INTERACTION.position !== 'INSIDE') {
   /**
    * If user click body(it's root) and position is not inside,
    * the system just can push inside
    */
-  else if(dropContainer.state.type === 'Body' &&
-    INTERACTION.position !== 'INSIDE') {
     dropChildren.push(dragId)
     dropContainer.setState({ children: dropChildren })
     INTERACTION.reset()
   }
-  switch(INTERACTION.position) {
+  switch (INTERACTION.position) {
     case 'INSIDE':
-      if(dropChildren[dropChildren.length - 1] === dragId) {
+      if (dropChildren[dropChildren.length - 1] === dragId) {
         dropContainer.setState({ children: dropChildren })
         INTERACTION.reset()
         return
@@ -56,7 +52,7 @@ function updatePositionElement(dragId: string, dropId: string ) {
         return item !== dragId
       })
       let indexDragLeft = parentDropChildren.indexOf(dropId)
-      if(parentDropChildren[indexDragLeft - 1] === dragId) break
+      if (parentDropChildren[indexDragLeft - 1] === dragId) break
       parentDropChildren.splice(indexDragLeft, 0, dragId)
       break
     case 'RIGHT':
@@ -64,7 +60,7 @@ function updatePositionElement(dragId: string, dropId: string ) {
         return item !== dragId
       })
       let indexDragRight = parentDropChildren.indexOf(dropId)
-      if(parentDropChildren[indexDragRight + 1] === dragId) break
+      if (parentDropChildren[indexDragRight + 1] === dragId) break
       parentDropChildren.splice(indexDragRight + 1, 0, dragId)
       break
   }

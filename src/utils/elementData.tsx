@@ -11,7 +11,7 @@ const elementData = [
       type: 'Text',
       children: [],
       data: {
-        value: 'Example'
+        value: 'Example',
       },
     },
   ],
@@ -27,7 +27,7 @@ const elementData = [
       type: 'Text',
       children: [],
       data: {
-        value: 'Example'
+        value: 'Example',
       },
     },
   ],
@@ -38,10 +38,10 @@ const elementData = [
       name: 'Text',
       children: [],
       data: {
-        value: 'Example'
+        value: 'Example',
       },
-    }
-  ]
+    },
+  ],
 ]
 
 export default elementData

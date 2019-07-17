@@ -12,27 +12,25 @@ class Text extends Component<any> {
   static Inspector(container: ElementContainer) {
     return (
       <Subscribe to={[container]}>
-          {
-            () => {
-              return <>
-                <InputController
-                  label="Content"
-                  typeChange="data"
-                  container={container}
-                />
-                <InputController
-                  label="Color"
-                  keyCSS="color"
-                  typeChange="style"
-                  container={container}
-                />
-                {/* <TwitterPicker onChangeComplete={ (color) => {
-                container.setStyle('color', color.hex)
-              }}/> */}
-              </>
-            }
-          }
-        </Subscribe>
+        {() => {
+          return (
+            <>
+              <InputController label="Content" typeChange="data" container={container} />
+              <InputController
+                label="Color"
+                keyCSS="color"
+                typeChange="style"
+                container={container}
+              />
+              <TwitterPicker
+                onChangeComplete={color => {
+                  container.setStyle('color', color.hex)
+                }}
+              />
+            </>
+          )
+        }}
+      </Subscribe>
     )
   }
 
@@ -40,12 +38,15 @@ class Text extends Component<any> {
     const value = event.target.innerHTML
     this.props.elementContainer.setState({
       data: {
-        value: value
-      }
+        value: value,
+      },
     })
-    EditorSpaceContainer.setState({
-      selectedId: this.props.elementContainer.state.id
-    }, null)
+    EditorSpaceContainer.setState(
+      {
+        selectedId: this.props.elementContainer.state.id,
+      },
+      null,
+    )
   }
 
   render() {
@@ -53,9 +54,9 @@ class Text extends Component<any> {
       <Span
         contentEditable={true}
         suppressContentEditableWarning
-        onInputCapture={(e) => this.onChangeText(e)}
+        onInputCapture={e => this.onChangeText(e)}
       >
-        { this.props.elementContainer.state.data.value }
+        {this.props.elementContainer.state.data.value}
       </Span>
     )
   }

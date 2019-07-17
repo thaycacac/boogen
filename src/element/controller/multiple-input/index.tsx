@@ -4,21 +4,20 @@ import { EditorSpaceContainer } from '../../../container'
 
 interface IMultipleInput {
   label: string
-  placeholder?: string,
-  type?: string,
+  placeholder?: string
+  type?: string
   typeChange: 'style' | 'text'
-  keyCSS?: string,
+  keyCSS?: string
   container: any
 }
 
-const MultipleInput:FunctionComponent<IMultipleInput> = ({
+const MultipleInput: FunctionComponent<IMultipleInput> = ({
   label = 'Content',
   type = 'text',
   typeChange,
   keyCSS,
-  container
+  container,
 }) => {
-
   const [top, updateTop] = useState(container.getStyle(keyCSS + '-top'))
   const [left, updateLeft] = useState(container.getStyle(keyCSS + '-left'))
   const [right, updateRight] = useState(container.getStyle(keyCSS + '-right'))
@@ -26,7 +25,7 @@ const MultipleInput:FunctionComponent<IMultipleInput> = ({
 
   const handleOnChange = (e: any, position: string) => {
     if (typeChange === 'style') {
-      switch(position) {
+      switch (position) {
         case 'top':
           container.setStyle(keyCSS + '-top', e.target.value)
           updateTop(e.target.value)
@@ -44,16 +43,19 @@ const MultipleInput:FunctionComponent<IMultipleInput> = ({
           updateBottom(e.target.value)
           break
       }
-      EditorSpaceContainer.setState({
-        selectedId: container.state.id
-      }, null)
+      EditorSpaceContainer.setState(
+        {
+          selectedId: container.state.id,
+        },
+        null,
+      )
     }
   }
   const refInput = useRef(null)
 
-  return(
+  return (
     <>
-      <UILabel>{ label }</UILabel>
+      <UILabel>{label}</UILabel>
       <UIInput
         placeholder="TOP"
         type={type}
@@ -98,10 +100,10 @@ const UIInput = styled.input`
   background: #fff;
   color: #666;
   border: 1px solid #e5e5e5;
-  transition: .2s ease-in-out;
+  transition: 0.2s ease-in-out;
   overflow: visible;
   box-sizing: border-box;
-  transition-property: color,background-color,border;
+  transition-property: color, background-color, border;
   text-align: center;
 
   &:focus {
@@ -116,7 +118,7 @@ const UILabel = styled.label`
   border-bottom: 2px solid transparent;
   font-size: 9px;
   text-transform: uppercase;
-  transition: color .1s ease-in-out;
+  transition: color 0.1s ease-in-out;
 `
 
 const WrapCenter = styled.div`

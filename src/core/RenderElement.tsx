@@ -15,37 +15,31 @@ function RenderElement(id: string, parentId: string) {
   const Element = ListElement[type]
   return (
     <StyleContext.Consumer>
-      {
-        styleContext => {
-          return (
-            <Subscribe to={[elementContainer]} key={id}>
-              {
-                elementContainer => {
-                  const { id, children, data, styles, className } = elementContainer.state
-                  Object.assign(elementContainer.state, {
-                    parentId,
-                    styles,
-                    styleContext,
-                    className: className ? className : `boogen-${uuid().split('-')[0]}`,
-                    data: data ? data : {}
-                  })
-                  const props = {
-                    elementContainer,
-                    ref : (e: any) => elementContainer.state.instance = e
-                  }
-                  return <Element { ...props }>
-                    {
-                      children.map((childrenId: string) =>
-                        RenderElement(childrenId, id)
-                      )
-                    }
-                  </Element>
-                }
+      {styleContext => {
+        return (
+          <Subscribe to={[elementContainer]} key={id}>
+            {elementContainer => {
+              const { id, children, data, styles, className } = elementContainer.state
+              Object.assign(elementContainer.state, {
+                parentId,
+                styles,
+                styleContext,
+                className: className ? className : `boogen-${uuid().split('-')[0]}`,
+                data: data ? data : {},
+              })
+              const props = {
+                elementContainer,
+                ref: (e: any) => (elementContainer.state.instance = e),
               }
+              return (
+                <Element {...props}>
+                  {children.map((childrenId: string) => RenderElement(childrenId, id))}
+                </Element>
+              )
+            }}
           </Subscribe>
-          )
-        }
-      }
+        )
+      }}
     </StyleContext.Consumer>
   )
 }

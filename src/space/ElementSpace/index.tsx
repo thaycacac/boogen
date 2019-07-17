@@ -2,10 +2,8 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { elementData } from '../../utils'
 import INTERACTION from '../../reuse/interaction'
-import Button from '../../element/advance/components/button'
 
 class ElementorSpace extends Component<any> {
-
   handleDragStart = (event: any) => {
     event.stopPropagation()
     const data = event.target.dataset.element
@@ -17,23 +15,20 @@ class ElementorSpace extends Component<any> {
     return (
       <WrapAll>
         <Label>Basic</Label>
-        {
-          elementData.map((item, index) => {
-            const dataString: any = JSON.stringify(item)
-            return (
-              <DrapItem
-                key={`element-${index}`}
-                onDragStartCapture={this.handleDragStart}
-                data-element={dataString}
-                draggable
-              >
-                <img src={require(`../../assets/images/${item[0].type}.png`)} alt=""/>
-                <Label>{ item[0].name }</Label>
-              </DrapItem>
-            )
-          })
-        }
-        <Button color="danger">Danger</Button>
+        {elementData.map((item, index) => {
+          const dataString: any = JSON.stringify(item)
+          return (
+            <DrapItem
+              key={`element-${index}`}
+              onDragStartCapture={this.handleDragStart}
+              data-element={dataString}
+              draggable
+            >
+              <img src={require(`../../assets/images/${item[0].type}.png`)} alt="" />
+              <Label>{item[0].name}</Label>
+            </DrapItem>
+          )
+        })}
       </WrapAll>
     )
   }
@@ -68,7 +63,6 @@ const DrapItem = styled.div`
     margin: 0 auto 0px auto;
     display: block;
   }
-
 `
 
 const Label = styled.label`
@@ -77,7 +71,7 @@ const Label = styled.label`
   border-bottom: 2px solid transparent;
   font-size: 9px;
   text-transform: uppercase;
-  transition: color .1s ease-in-out;
+  transition: color 0.1s ease-in-out;
   margin: 0px;
 `
 

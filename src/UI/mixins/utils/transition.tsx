@@ -1,6 +1,6 @@
 export const defaultProps = {
   '$enable-transitions': true,
-};
+}
 
 /**
  * @public
@@ -14,11 +14,11 @@ export function transition(enableTransitions = defaultProps['$enable-transitions
   if (enableTransitions && args.length) {
     return `
       transition: ${args.join(' ')};
-    `;
+    `
   }
-  return '';
+  return ''
 }
 
 export default {
   transition,
-};
+}

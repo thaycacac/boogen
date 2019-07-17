@@ -1,8 +1,6 @@
 import CoreContainer from './CoreContainer'
-import { camelCase } from 'lodash'
 
 class ElementContainer extends CoreContainer {
-
   setState(state: any, callback: any) {
     return super.setState(state, callback)
   }
@@ -13,9 +11,9 @@ class ElementContainer extends CoreContainer {
    * @param value - Value of style css
    */
   public setStyle(key: string, value: string) {
-    const { id, styleContext } = this.state
+    const { id } = this.state
     const CSSStyleDeclaration: CSSStyleDeclaration = this.getCSSStyleDeclaration(id)
-    CSSStyleDeclaration.setProperty(key, value, "")
+    CSSStyleDeclaration.setProperty(key, value, '')
   }
 
   /**
@@ -34,8 +32,8 @@ class ElementContainer extends CoreContainer {
   private getCSSStyleDeclaration(id: string): CSSStyleDeclaration {
     const instanceStyle: any = document.styleSheets[2]
     const arrInstanceStyle: Array<object> = Array.from(instanceStyle.cssRules)
-    const rule: any = arrInstanceStyle.find((rule : any) => rule.selectorText === `#boogen-${id}`)
-    if(!rule){
+    const rule: any = arrInstanceStyle.find((rule: any) => rule.selectorText === `#boogen-${id}`)
+    if (!rule) {
       instanceStyle.insertRule(`#boogen-${id}{}`, arrInstanceStyle.length)
       return instanceStyle.cssRules[arrInstanceStyle.length].style
     }
@@ -49,11 +47,11 @@ class ElementContainer extends CoreContainer {
     const { id } = this.state
     const instanceStyle: any = document.styleSheets[2]
     const arrInstanceStyle: Array<object> = Array.from(instanceStyle.cssRules)
-    const rule: any = arrInstanceStyle.find((rule : any) => rule.selectorText === `#boogen-${id}`)
+    const rule: any = arrInstanceStyle.find((rule: any) => rule.selectorText === `#boogen-${id}`)
     let allStyle: string = rule.cssText || ''
-    if(!rule){
+    if (!rule) {
       instanceStyle.insertRule(`#boogen-${id}{}`, arrInstanceStyle.length)
-      allStyle =  instanceStyle.cssRules[arrInstanceStyle.length].cssText
+      allStyle = instanceStyle.cssRules[arrInstanceStyle.length].cssText
     }
     return allStyle.split(/ { | }/)[1] === '}' ? 'Empty' : allStyle.split(/ { | }/)[1]
   }

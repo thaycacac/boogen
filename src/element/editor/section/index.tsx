@@ -3,10 +3,7 @@ import EnhanceElement from '../../../core/EnhanceElement'
 import styled from 'styled-components'
 import { TwitterPicker } from 'react-color'
 import { Subscribe } from 'unstated'
-import {
-  InputController,
-  MultipleInputController,
-  CustomController } from '../../controller'
+import { InputController, MultipleInputController, CustomController } from '../../controller'
 import { ElementContainer } from '../../../container'
 
 class Section extends Component {
@@ -15,18 +12,20 @@ class Section extends Component {
   static Inspector(container: ElementContainer) {
     return (
       <Subscribe to={[container]}>
-        {
-          () => {
-            return <>
+        {() => {
+          return (
+            <>
               <InputController
                 label="Background"
                 keyCSS="background-color"
                 typeChange="style"
                 container={container}
               />
-              <TwitterPicker onChangeComplete={ (color) => {
-                container.setStyle('background-color', color.hex)
-              }}/>
+              <TwitterPicker
+                onChangeComplete={color => {
+                  container.setStyle('background-color', color.hex)
+                }}
+              />
               <InputController
                 label="Width"
                 keyCSS="width"
@@ -51,32 +50,25 @@ class Section extends Component {
                 typeChange="style"
                 container={container}
               />
-              <CustomController
-                label="Custom CSS"
-                container={container}
-              />
+              <CustomController label="Custom CSS" container={container} />
             </>
-          }
-        }
+          )
+        }}
       </Subscribe>
     )
   }
 
   render() {
-    return (
-      <UISection>
-        { this.props.children }
-      </UISection>
-    )
+    return <UISection>{this.props.children}</UISection>
   }
 }
 
 const UISection = styled.div`
-  padding : 40px;
+  padding: 40px;
   min-height: 80px;
-  background : #d6d6d6;
+  background: #d6d6d6;
   display: block;
-  box-shadow: 0px 4px 4px rgba(0,0,0,0.25)
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `
 
 export default EnhanceElement(Section)

@@ -10,8 +10,8 @@ export { default as Section } from './section'
 export { default as Button } from './button'
 
 export default {
-  'Text': Text,
-  'Body': Body,
-  'Section': Section,
-  'Button': Button,
+  Text: Text,
+  Body: Body,
+  Section: Section,
+  Button: Button,
 }

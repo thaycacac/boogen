@@ -1,10 +1,10 @@
-import color from '../colors';
-import { borderRadius } from './utils/border-radius';
-import { hover, hoverFocus } from './utils/hover';
-import { boxShadow } from './utils/box-shadow';
-import { transition } from './utils/transition';
-import { ifElse } from './utils/conditional';
-import { linearGradientRe } from './utils/regex';
+import color from '../colors'
+import { borderRadius } from './utils/border-radius'
+import { hover, hoverFocus } from './utils/hover'
+import { boxShadow } from './utils/box-shadow'
+import { transition } from './utils/transition'
+import { ifElse } from './utils/conditional'
+import { linearGradientRe } from './utils/regex'
 
 export const defaultProps = {
   '$enable-shadows': true,
@@ -56,7 +56,7 @@ export const defaultProps = {
   '$btn-danger-color': '#fff',
   '$btn-danger-bg': '#d9534f',
   '$btn-danger-border': '#d9534f',
-};
+}
 
 export function buttonVariant(
   enableShadows = defaultProps['$enable-shadows'],
@@ -64,14 +64,24 @@ export function buttonVariant(
   background?: any,
   border?: any,
   btnActiveBoxShadow = defaultProps['$btn-active-box-shadow'],
-  btnBoxShadow = defaultProps['$btn-box-shadow']
+  btnBoxShadow = defaultProps['$btn-box-shadow'],
 ) {
-  let activeBackground = color(background).darken(0.2).toString();
+  let activeBackground = color(background)
+    .darken(0.2)
+    .toString()
   if (background && background.includes('linear-gradient')) {
-    const res = background.match(linearGradientRe);
-    activeBackground = `linear-gradient(${res.map((v: any) => color(v).darken(0.2).toString()).join(', ')})`;
+    const res = background.match(linearGradientRe)
+    activeBackground = `linear-gradient(${res
+      .map((v: any) =>
+        color(v)
+          .darken(0.2)
+          .toString(),
+      )
+      .join(', ')})`
   }
-  const activeBorder = color(border).darken(0.12).toString();
+  const activeBorder = color(border)
+    .darken(0.12)
+    .toString()
   return `
     color: ${buttonColor};
     background: ${background};
@@ -86,11 +96,19 @@ export function buttonVariant(
 
     &:focus,
     &.focus {
-      ${ifElse(enableShadows, `
-        box-shadow: ${btnBoxShadow}, 0 0 0 2px ${color(border).alpha(0.5).toString()};
-      `, `
-        box-shadow: 0 0 0 2px ${color(border).alpha(0.5).toString()};
-      `)}
+      ${ifElse(
+        enableShadows,
+        `
+        box-shadow: ${btnBoxShadow}, 0 0 0 2px ${color(border)
+          .alpha(0.5)
+          .toString()};
+      `,
+        `
+        box-shadow: 0 0 0 2px ${color(border)
+          .alpha(0.5)
+          .toString()};
+      `,
+      )}
     }
 
     /* Disabled comes first so active can properly restyle */
@@ -104,17 +122,21 @@ export function buttonVariant(
     &.active,
     .show > &.dropdown-toggle {
       color: ${buttonColor};
-      ${ifElse(activeBackground.includes('linear-gradient'), `
+      ${ifElse(
+        activeBackground.includes('linear-gradient'),
+        `
         background: ${activeBackground};
-      `, `
+      `,
+        `
         background-color: ${activeBackground};
         background-image: none;
-      `)}
+      `,
+      )}
 
       border-color: ${activeBorder};
       ${boxShadow(enableShadows, btnActiveBoxShadow)}
     }
-  `;
+  `
 }
 
 export function buttonOutlineVariant(buttonColor: any, buttonColorHover = '#fff') {
@@ -132,7 +154,9 @@ export function buttonOutlineVariant(buttonColor: any, buttonColorHover = '#fff'
 
     &:focus,
     &.focus {
-      box-shadow: 0 0 0 2px ${color(buttonColor).alpha(0.5).toString()};
+      box-shadow: 0 0 0 2px ${color(buttonColor)
+        .alpha(0.5)
+        .toString()};
     }
 
     &.disabled,
@@ -148,17 +172,22 @@ export function buttonOutlineVariant(buttonColor: any, buttonColorHover = '#fff'
       background-color: ${buttonColor};
       border-color: ${buttonColor};
     }
-  `;
+  `
 }
 
 // Button sizes
-export function buttonSize(enableRounded = defaultProps['$enable-rounded'],
-  paddingY: any, paddingX: any, fontSize: any, btnBorderRadius: any) {
+export function buttonSize(
+  enableRounded = defaultProps['$enable-rounded'],
+  paddingY: any,
+  paddingX: any,
+  fontSize: any,
+  btnBorderRadius: any,
+) {
   return `
     padding: ${paddingY} ${paddingX};
     font-size: ${fontSize};
     ${borderRadius(enableRounded, btnBorderRadius)}
-  `;
+  `
 }
 
 export function button(
@@ -266,22 +295,64 @@ export function button(
     /* Alternate buttons */
 
     &.btn-primary {
-      ${buttonVariant($enableShadows, $btnPrimaryColor, $btnPrimaryBg, $btnPrimaryBorder, $btnActiveBoxShadow, $btnBoxShadow)}
+      ${buttonVariant(
+        $enableShadows,
+        $btnPrimaryColor,
+        $btnPrimaryBg,
+        $btnPrimaryBorder,
+        $btnActiveBoxShadow,
+        $btnBoxShadow,
+      )}
     }
     &.btn-secondary {
-      ${buttonVariant($enableShadows, $btnSecondaryColor, $btnSecondaryBg, $btnSecondaryBorder, $btnActiveBoxShadow, $btnBoxShadow)}
+      ${buttonVariant(
+        $enableShadows,
+        $btnSecondaryColor,
+        $btnSecondaryBg,
+        $btnSecondaryBorder,
+        $btnActiveBoxShadow,
+        $btnBoxShadow,
+      )}
     }
     &.btn-info {
-      ${buttonVariant($enableShadows, $btnInfoColor, $btnInfoBg, $btnInfoBorder, $btnActiveBoxShadow, $btnBoxShadow)}
+      ${buttonVariant(
+        $enableShadows,
+        $btnInfoColor,
+        $btnInfoBg,
+        $btnInfoBorder,
+        $btnActiveBoxShadow,
+        $btnBoxShadow,
+      )}
     }
     &.btn-success {
-      ${buttonVariant($enableShadows, $btnSuccessColor, $btnSuccessBg, $btnSuccessBorder, $btnActiveBoxShadow, $btnBoxShadow)}
+      ${buttonVariant(
+        $enableShadows,
+        $btnSuccessColor,
+        $btnSuccessBg,
+        $btnSuccessBorder,
+        $btnActiveBoxShadow,
+        $btnBoxShadow,
+      )}
     }
     &.btn-warning {
-      ${buttonVariant($enableShadows, $btnWarningColor, $btnWarningBg, $btnWarningBorder, $btnActiveBoxShadow, $btnBoxShadow)}
+      ${buttonVariant(
+        $enableShadows,
+        $btnWarningColor,
+        $btnWarningBg,
+        $btnWarningBorder,
+        $btnActiveBoxShadow,
+        $btnBoxShadow,
+      )}
     }
     &.btn-danger {
-      ${buttonVariant($enableShadows, $btnDangerColor, $btnDangerBg, $btnDangerBorder, $btnActiveBoxShadow, $btnBoxShadow)}
+      ${buttonVariant(
+        $enableShadows,
+        $btnDangerColor,
+        $btnDangerBg,
+        $btnDangerBorder,
+        $btnActiveBoxShadow,
+        $btnBoxShadow,
+      )}
     }
 
     &.btn-outline-primary {
@@ -328,17 +399,23 @@ export function button(
 
       ${hover('border-color: transparent;')}
 
-      ${hoverFocus($enableHoverMediaQuery, `
+      ${hoverFocus(
+        $enableHoverMediaQuery,
+        `
         color: ${$linkHoverColor};
         text-decoration: ${$linkHoverDecoration};
         background-color: transparent;
-      `)}
+      `,
+      )}
 
       &:disabled {
         color: ${$btnLinkDisabledColor};
-        ${hoverFocus($enableHoverMediaQuery, `
+        ${hoverFocus(
+          $enableHoverMediaQuery,
+          `
           text-decoration: none;
-        `)}
+        `,
+        )}
       }
     }
 
@@ -402,7 +479,7 @@ export function button(
       padding: 0;
       border-style: none;
     }
-  `;
+  `
 }
 
 export default {
@@ -411,4 +488,4 @@ export default {
   buttonOutlineVariant,
   buttonSize,
   button,
-};
+}

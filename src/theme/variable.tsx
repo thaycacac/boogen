@@ -17,12 +17,12 @@ export const theme = {
     warning: '#ffc107',
     danger: '#dc3545',
     light: '#f8f9fa',
-    dark: '#343a40'
+    dark: '#343a40',
   },
   typography: {
-    fontMono: '\'Courier\', monospace',
-    fontSans: '\'Source Sans Pro\', Arial, sans-serif',
-    fontSerif: '\'Bree Serif\', Times, serif',
+    fontMono: "'Courier', monospace",
+    fontSans: "'Source Sans Pro', Arial, sans-serif",
+    fontSerif: "'Bree Serif', Times, serif",
     fontNormal: 400,
     fontSemibold: 600,
     fontBold: 700,

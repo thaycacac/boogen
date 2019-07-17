@@ -4,22 +4,21 @@ import { EditorSpaceContainer } from '../../../container'
 
 interface IInput {
   label: string
-  placeholder?: string,
-  type?: string,
+  placeholder?: string
+  type?: string
   typeChange: 'style' | 'data'
-  keyCSS?: string,
+  keyCSS?: string
   container: any
 }
 
-const Input:FunctionComponent<IInput> = ({
+const Input: FunctionComponent<IInput> = ({
   label = 'Content',
   placeholder = 'Please input here',
   type = 'text',
   typeChange,
   keyCSS,
-  container
+  container,
 }) => {
-
   const [value, updateValue] = useState('')
   useEffect(() => {
     if (typeChange === 'data') {
@@ -39,20 +38,23 @@ const Input:FunctionComponent<IInput> = ({
     } else {
       container.setState({
         data: {
-          value: e.target.value
-        }
+          value: e.target.value,
+        },
       })
     }
     updateValue(e.target.value)
-    EditorSpaceContainer.setState({
-      selectedId: container.state.id
-    }, null)
+    EditorSpaceContainer.setState(
+      {
+        selectedId: container.state.id,
+      },
+      null,
+    )
   }
   const refInput = useRef(null)
 
-  return(
+  return (
     <>
-      <UILabel>{ label }</UILabel>
+      <UILabel>{label}</UILabel>
       <UIInput
         placeholder={placeholder}
         type={type}
@@ -74,10 +76,10 @@ const UIInput = styled.input`
   background: #fff;
   color: #666;
   border: 1px solid #e5e5e5;
-  transition: .2s ease-in-out;
+  transition: 0.2s ease-in-out;
   overflow: visible;
   box-sizing: border-box;
-  transition-property: color,background-color,border;
+  transition-property: color, background-color, border;
 
   &:focus {
     border-color: #666;
@@ -91,7 +93,7 @@ const UILabel = styled.label`
   border-bottom: 2px solid transparent;
   font-size: 9px;
   text-transform: uppercase;
-  transition: color .1s ease-in-out;
+  transition: color 0.1s ease-in-out;
   margin-top: 15px;
 `
 

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { Subscribe } from 'unstated'
-import { EditorSpaceContainer }from '../../container'
+import { EditorSpaceContainer } from '../../container'
 import { setBorderElement } from '../../utils'
 
 function Selection(props: any) {
@@ -19,11 +19,9 @@ function Selection(props: any) {
 
   return (
     <Subscribe to={[EditorSpaceContainer]}>
-      {
-        () => {
-          return <UISelection ref={ e => refSel = e as HTMLInputElement}/>
-        }
-      }
+      {() => {
+        return <UISelection ref={e => (refSel = e as HTMLInputElement)} />
+      }}
     </Subscribe>
   )
 }

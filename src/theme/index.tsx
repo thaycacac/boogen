@@ -4,11 +4,11 @@ import theme from './variable'
 
 export class ThemeProviderContext extends Component<any> {
   render() {
-    return <ThemeProvider theme={theme}>
-      <>
-        { this.props.children }
-      </>
-    </ThemeProvider>
+    return (
+      <ThemeProvider theme={theme}>
+        <>{this.props.children}</>
+      </ThemeProvider>
+    )
   }
 }
 

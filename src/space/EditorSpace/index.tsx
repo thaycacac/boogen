@@ -7,7 +7,7 @@ import {
   convertDataToContainer,
   updatePositionElement,
   getElementCanInteract,
-  setBorderElement
+  setBorderElement,
 } from '../../utils'
 import { Page } from '../../element/editor'
 import { EditorSpaceContainer, StoreElement } from '../../container'
@@ -15,19 +15,18 @@ import { Subscribe } from 'unstated'
 
 class EditorSpace extends React.Component<any> {
   dropElement!: HTMLElement
-  refFlow: HTMLElement
-  | undefined
+  refFlow: HTMLElement | undefined
 
   handleDragStartCapture = (event: any) => {
     event.stopPropagation()
-    INTERACTION.category='MOVE'
+    INTERACTION.category = 'MOVE'
   }
 
   handleDrapOverCapture = (event: any) => {
     event.preventDefault()
 
     const target = event.target.closest('[data-element]')
-    if(!target) return
+    if (!target) return
 
     const { width, height, top, left } = target.getBoundingClientRect()
 
@@ -41,19 +40,19 @@ class EditorSpace extends React.Component<any> {
     let casePosition: TypePosition = ''
     if (positionX > 0 && positionX < distance) {
       casePosition = 'LEFT'
-      setBorderElement(3, height, left, top +scrollTop, this.refFlow as HTMLElement)
+      setBorderElement(3, height, left, top + scrollTop, this.refFlow as HTMLElement)
     } else if (positionX > width - distance && positionX < width) {
       casePosition = 'RIGHT'
       setBorderElement(2, height, left + width, top + scrollTop, this.refFlow as HTMLElement)
     } else if (positionY > 0 && positionY < distance) {
       casePosition = 'TOP'
       setBorderElement(width, 2, left, top + scrollTop, this.refFlow as HTMLElement)
-    } else if (positionY < height && positionY > (height - distance)) {
+    } else if (positionY < height && positionY > height - distance) {
       casePosition = 'BOTTOM'
       setBorderElement(width, 2, left, top + height + scrollTop, this.refFlow as HTMLElement)
     } else {
       casePosition = 'INSIDE'
-      if ( this.refFlow) {
+      if (this.refFlow) {
         this.refFlow.style.display = 'none'
       }
     }
@@ -70,13 +69,13 @@ class EditorSpace extends React.Component<any> {
 
     const domDrop = getElementCanInteract(event)
     // element can't drop
-    if(!domDrop) return
-    let dropId  = domDrop.dataset.element
+    if (!domDrop) return
+    let dropId = domDrop.dataset.element
 
     let dragId: string = ''
-    switch(INTERACTION.category) {
+    switch (INTERACTION.category) {
       case 'DRAG':
-        const nameDom = event.dataTransfer.getData("element")
+        const nameDom = event.dataTransfer.getData('element')
         const containerElement = convertDataToContainer(nameDom)
         dragId = containerElement.state.id
         break
@@ -88,23 +87,29 @@ class EditorSpace extends React.Component<any> {
 
         const parentContainer = StoreElement.get(parentId)
         const newChildrenOfParent = parentContainer.state.children.filter(
-          (children: string) => children !== id
+          (children: string) => children !== id,
         )
         parentContainer.setState({
-          children: newChildrenOfParent
+          children: newChildrenOfParent,
         })
-        EditorSpaceContainer.setState({
-          selectedId: null
-        }, null)
+        EditorSpaceContainer.setState(
+          {
+            selectedId: null,
+          },
+          null,
+        )
         break
     }
 
     updatePositionElement(dragId, dropId)
-    EditorSpaceContainer.setState({
-      selectedId: dragId
-    }, null)
+    EditorSpaceContainer.setState(
+      {
+        selectedId: dragId,
+      },
+      null,
+    )
 
-    if ( this.refFlow) {
+    if (this.refFlow) {
       this.dropElement.style.display = 'none'
       this.refFlow.style.display = 'none'
     }
@@ -112,37 +117,40 @@ class EditorSpace extends React.Component<any> {
 
   handleMouseDown = (event: any) => {
     const target = getElementCanInteract(event)
-    if(!target) return
+    if (!target) return
     const selectedId = target.dataset.element
-    EditorSpaceContainer.setState({
-      selectedId: selectedId
-    }, null)
+    EditorSpaceContainer.setState(
+      {
+        selectedId: selectedId,
+      },
+      null,
+    )
   }
 
   render() {
-    return <>
-      <WrapperEditorSpace
-        onDragStartCapture={this.handleDragStartCapture}
-        onDragOverCapture={this.handleDrapOverCapture}
-        onDragLeaveCapture={this.handleDragLeaveCapture}
-        onDropCapture={this.handleDropCapture}
-        onMouseDown={this.handleMouseDown}
-      >
-        <Styles>
-          <Page/>
-        </Styles>
-        <Flow ref={e => this.refFlow = e as HTMLInputElement}/>
-        <DropHover ref={e => this.dropElement = e as HTMLInputElement} />
-        <Subscribe to={[EditorSpaceContainer]}>
-          {
-            () => {
+    return (
+      <>
+        <WrapperEditorSpace
+          onDragStartCapture={this.handleDragStartCapture}
+          onDragOverCapture={this.handleDrapOverCapture}
+          onDragLeaveCapture={this.handleDragLeaveCapture}
+          onDropCapture={this.handleDropCapture}
+          onMouseDown={this.handleMouseDown}
+        >
+          <Styles>
+            <Page />
+          </Styles>
+          <Flow ref={e => (this.refFlow = e as HTMLInputElement)} />
+          <DropHover ref={e => (this.dropElement = e as HTMLInputElement)} />
+          <Subscribe to={[EditorSpaceContainer]}>
+            {() => {
               const { selectedId } = EditorSpaceContainer.state
               return <Selection selectedId={selectedId} />
-            }
-          }
-        </Subscribe>
-      </WrapperEditorSpace>
-    </>
+            }}
+          </Subscribe>
+        </WrapperEditorSpace>
+      </>
+    )
   }
 }
 
@@ -163,15 +171,15 @@ const WrapperEditorSpace = styled.div`
 
 const DropHover = styled.div`
   position: fixed;
-	box-sizing: border-box;
-	border: 2px dashed red;
-	pointer-events: none;
-	display: none;
+  box-sizing: border-box;
+  border: 2px dashed red;
+  pointer-events: none;
+  display: none;
   background: none !important;
   z-index: 0;
-  &:after{
+  &:after {
     position: absolute;
-    top:-2px;
+    top: -2px;
     right: -2px;
     bottom: -2px;
     left: -2px;

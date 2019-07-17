@@ -1,6 +1,6 @@
 export const defaultProps = {
   '$enable-shadows': false,
-};
+}
 
 /**
  * @public
@@ -13,12 +13,12 @@ export function boxShadow(enableShadows = defaultProps['$enable-shadows'], ...ar
   if (enableShadows) {
     return `
       box-shadow: ${args.join(' ')};
-    `;
+    `
   }
-  return '';
+  return ''
 }
 
 export default {
   defaultProps,
   boxShadow,
-};
+}
