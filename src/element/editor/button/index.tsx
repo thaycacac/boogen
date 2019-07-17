@@ -1,11 +1,47 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import EnhanceElement from '../../../core/EnhanceElement'
 import { Subscribe } from 'unstated'
-import { InputController, MultipleInputController } from '../../../element/controller'
+import {
+  InputController,
+  MultipleInputController,
+  SelectController,
+} from '../../../element/controller'
 import { ElementContainer } from '../../../container'
 import UIButton from '../../../UI/components/button'
 
-class Button extends Component<any> {
+const type = [
+  { name: 'Link', value: 'link' },
+  { name: 'Primary', value: 'primary' },
+  { name: 'Secondary', value: 'secondary' },
+  { name: 'Success', value: 'success' },
+  { name: 'Info', value: 'info' },
+  { name: 'Warning', value: 'warning' },
+  { name: 'Danger', value: 'danger' },
+]
+const size = [{ name: 'Large', value: 'lg' }, { name: 'Small', value: 'sm' }]
+
+interface StateButton {
+  typeButton: string
+  isOutline: boolean
+  sizeButton: string
+  isBlock: boolean
+  isActive: boolean
+  isDisable: boolean
+}
+
+class Button extends Component<any, StateButton> {
+  constructor(props: any) {
+    super(props)
+    this.state = {
+      typeButton: 'primary',
+      isOutline: false,
+      sizeButton: '',
+      isBlock: false,
+      isActive: true,
+      isDisable: false,
+    }
+  }
+
   static type = 'Button'
   static Inspector(container: ElementContainer) {
     return (
@@ -13,6 +49,26 @@ class Button extends Component<any> {
         {() => {
           return (
             <>
+              <SelectController
+                label="Type Button"
+                listData={type}
+                handleChange={(value: any) => {
+                  const { instance } = container.state
+                  instance.setState({
+                    typeButton: value,
+                  })
+                }}
+              />
+              <SelectController
+                label="Size Button"
+                listData={size}
+                handleChange={(value: any) => {
+                  const { instance } = container.state
+                  instance.setState({
+                    sizeButton: value,
+                  })
+                }}
+              />
               <InputController
                 label="Background"
                 keyCSS="background-color"
@@ -38,7 +94,11 @@ class Button extends Component<any> {
     )
   }
   render() {
-    return <UIButton>{this.props.children}</UIButton>
+    return (
+      <UIButton color={this.state.typeButton} size={this.state.sizeButton}>
+        {this.props.children}
+      </UIButton>
+    )
   }
 }
 

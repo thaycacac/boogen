@@ -5,7 +5,7 @@ import cn from 'classnames'
 import omit from 'lodash.omit'
 // @ts-ignore
 import mapToCssModules from 'map-to-css-modules'
-import { button } from '../mixins/button'
+import { button } from '../../mixins/button'
 
 export const defaultProps = {
   tag: 'button',
