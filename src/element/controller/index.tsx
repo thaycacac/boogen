@@ -9,3 +9,5 @@ export { default as MultipleInputController } from './multiple-input'
 export { default as CustomController } from './custom'
 
 export { default as SelectController } from './select'
+
+export { default as PreviewClassController } from './preview-class'

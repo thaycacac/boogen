@@ -1,17 +1,34 @@
 import React, { FunctionComponent, useRef, useState, useEffect } from 'react'
 import styled from 'styled-components'
+import { EditorSpaceContainer } from '../../../container'
 
 interface ISelect {
   label: string
   listData: Array<object>
+  container: any
   handleChange: (e: any) => void
 }
 
-const Select: FunctionComponent<ISelect> = ({ label = 'Content', listData = [], handleChange }) => {
+const Select: FunctionComponent<ISelect> = ({
+  label = 'Content',
+  listData = [],
+  container,
+  handleChange,
+}) => {
+  const handleOnChange = (e: any) => {
+    handleChange(e.target.value)
+    EditorSpaceContainer.setState(
+      {
+        selectedId: container.state.id,
+      },
+      null,
+    )
+  }
+
   return (
     <>
       <UILabel>{label}</UILabel>
-      <UISelect onChange={e => handleChange(e.target.value)}>
+      <UISelect onChange={e => handleOnChange(e)}>
         {listData.map((item: any) => (
           <option value={item.value}>{item.name}</option>
         ))}

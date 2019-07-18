@@ -65,6 +65,16 @@ class ElementContainer extends CoreContainer {
     const CSSStyleDeclaration: CSSStyleDeclaration = this.getCSSStyleDeclaration(id)
     CSSStyleDeclaration.cssText = css
   }
+
+  /**
+   * @description - Get list class of bootstrap to user can see visually
+   */
+  public getClass() {
+    const { id } = this.state
+    const element: any = document.getElementById(`boogen-${id}`)
+    const listClass: Array<string> = Array.prototype.slice.call(element.classList, 3)
+    return listClass.join(' ')
+  }
 }
 
 export default ElementContainer

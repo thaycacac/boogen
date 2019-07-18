@@ -5,6 +5,7 @@ import {
   InputController,
   MultipleInputController,
   SelectController,
+  PreviewClassController,
 } from '../../../element/controller'
 import { ElementContainer } from '../../../container'
 import UIButton from '../../../UI/components/button'
@@ -49,9 +50,11 @@ class Button extends Component<any, StateButton> {
         {() => {
           return (
             <>
+              <PreviewClassController container={container} />
               <SelectController
                 label="Type Button"
                 listData={type}
+                container={container}
                 handleChange={(value: any) => {
                   const { instance } = container.state
                   instance.setState({
@@ -62,6 +65,7 @@ class Button extends Component<any, StateButton> {
               <SelectController
                 label="Size Button"
                 listData={size}
+                container={container}
                 handleChange={(value: any) => {
                   const { instance } = container.state
                   instance.setState({
