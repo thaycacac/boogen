@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useRef, useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { EditorSpaceContainer } from '../../../container'
+import { updateSelectedElement } from '../../../utils'
 
 interface ISelect {
   label: string
@@ -17,12 +17,7 @@ const Select: FunctionComponent<ISelect> = ({
 }) => {
   const handleOnChange = (e: any) => {
     handleChange(e.target.value)
-    EditorSpaceContainer.setState(
-      {
-        selectedId: container.state.id,
-      },
-      null,
-    )
+    updateSelectedElement(container.state.id)
   }
 
   return (

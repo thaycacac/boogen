@@ -43,12 +43,6 @@ const MultipleInput: FunctionComponent<IMultipleInput> = ({
           updateBottom(e.target.value)
           break
       }
-      EditorSpaceContainer.setState(
-        {
-          selectedId: container.state.id,
-        },
-        null,
-      )
     }
   }
   const refInput = useRef(null)

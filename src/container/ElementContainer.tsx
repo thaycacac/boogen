@@ -1,4 +1,5 @@
 import CoreContainer from './CoreContainer'
+import EditorSpaceContainer from './EditorSpaceContainer'
 
 class ElementContainer extends CoreContainer {
   setState(state: any, callback: any) {
@@ -14,6 +15,14 @@ class ElementContainer extends CoreContainer {
     const { id } = this.state
     const CSSStyleDeclaration: CSSStyleDeclaration = this.getCSSStyleDeclaration(id)
     CSSStyleDeclaration.setProperty(key, value, '')
+
+    // update element selected
+    EditorSpaceContainer.setState(
+      {
+        selectedId: id,
+      },
+      null,
+    )
   }
 
   /**

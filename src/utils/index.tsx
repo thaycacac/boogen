@@ -7,3 +7,5 @@ export { default as elementData } from './elementData'
 export { default as updatePositionElement } from './updatePositionElement'
 
 export { default as setBorderElement } from './setBorderElement'
+
+export { default as updateSelectedElement } from './updateSelectedElement'

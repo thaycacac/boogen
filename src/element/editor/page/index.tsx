@@ -2,7 +2,7 @@ import { Component } from 'react'
 import uuid from 'uuid'
 import { ElementContainer } from '../../../container'
 import RenderElement from '../../../core/RenderElement'
-import { EditorSpaceContainer } from '../../../container'
+import { updateSelectedElement } from '../../../utils'
 
 const initIdPage = uuid()
 const initIdSection = uuid()
@@ -25,12 +25,7 @@ class Page extends Component<any> {
   static type = 'Page'
 
   render() {
-    EditorSpaceContainer.setState(
-      {
-        selectedId: initIdPage,
-      },
-      null,
-    )
+    updateSelectedElement(initIdPage)
     return RenderElement(initIdPage, '')
   }
 }

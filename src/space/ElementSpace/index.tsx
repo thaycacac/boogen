@@ -37,7 +37,7 @@ class ElementorSpace extends Component<any> {
 const WrapAll = styled.div`
   width: 100px;
   padding: 10px;
-  height: calc(100vh - 60px);
+  height: calc(100vh - 460px);
   overflow: scroll;
   .demo {
     margin: 10px;

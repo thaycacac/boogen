@@ -3,8 +3,9 @@ import styled from 'styled-components'
 import { Subscribe } from 'unstated'
 import EnhanceElement from '../../../core/EnhanceElement'
 import { InputController } from '../../controller'
-import { ElementContainer, EditorSpaceContainer } from '../../../container'
+import { ElementContainer } from '../../../container'
 import { TwitterPicker } from 'react-color'
+import { updateSelectedElement } from '../../../utils'
 
 class Text extends Component<any> {
   static type: string = 'Text'
@@ -41,12 +42,7 @@ class Text extends Component<any> {
         value: value,
       },
     })
-    EditorSpaceContainer.setState(
-      {
-        selectedId: this.props.elementContainer.state.id,
-      },
-      null,
-    )
+    updateSelectedElement(this.props.elementContainer.state.id)
   }
 
   render() {

@@ -7,3 +7,5 @@ export { default as FooterSpace } from './FooterSpace'
 export { default as NavbarSpace } from './NavbarSpace'
 
 export { default as ElementorSpace } from './ElementSpace'
+
+export { default as SourceTreeSpace } from './SourceTreeSpace'
