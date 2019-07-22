@@ -2,7 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 import ThemeProviderContext from './theme'
 import { Provider } from 'unstated'
-import { NavbarSpace, EditorSpace, ControllerSpace, ElementorSpace, FooterSpace } from './space'
+import {
+  NavbarSpace,
+  EditorSpace,
+  ControllerSpace,
+  ElementorSpace,
+  FooterSpace,
+  SourceTreeSpace,
+} from './space'
 
 const App: React.FC = () => {
   return (
@@ -11,7 +18,10 @@ const App: React.FC = () => {
         <WrapApp>
           <NavbarSpace className="header-space" />
           <div className="main-space">
-            <ElementorSpace />
+            <WrapLeft>
+              <ElementorSpace />
+              <SourceTreeSpace />
+            </WrapLeft>
             <EditorSpace />
             <ControllerSpace />
           </div>
@@ -29,6 +39,11 @@ const WrapApp = styled.div`
     display: flex;
     height: calc(100vh - 60px);
   }
+`
+
+const WrapLeft = styled.div`
+  display: flex;
+  flex-direction: column;
 `
 
 export default App

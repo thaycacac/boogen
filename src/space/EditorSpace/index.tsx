@@ -131,6 +131,7 @@ class EditorSpace extends React.Component<any> {
     return (
       <>
         <WrapperEditorSpace
+          id="editor-space"
           onDragStartCapture={this.handleDragStartCapture}
           onDragOverCapture={this.handleDrapOverCapture}
           onDragLeaveCapture={this.handleDragLeaveCapture}
