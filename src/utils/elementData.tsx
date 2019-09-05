@@ -42,6 +42,46 @@ const elementData = [
       },
     },
   ],
+  [
+    {
+      id: 1,
+      type: 'Card',
+      name: 'Card',
+      children: [],
+    },
+  ],
+  [
+    {
+      id: 1,
+      type: 'Carousel',
+      name: 'Carousel',
+      children: [],
+    },
+  ],
+  [
+    {
+      id: 1,
+      type: 'Alert',
+      name: 'Alert',
+      children: [],
+    },
+  ],
+  [
+    {
+      id: 1,
+      type: 'Badge',
+      name: 'Badge',
+      children: [],
+    },
+  ],
+  [
+    {
+      id: 1,
+      type: 'Breadcrumb',
+      name: 'Breadcrumb',
+      childrend: [],
+    },
+  ],
 ]
 
 export default elementData

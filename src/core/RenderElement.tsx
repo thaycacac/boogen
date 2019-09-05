@@ -14,7 +14,7 @@ function RenderElement(id: string, parentId: string) {
   // @ts-ignore
   const Element = ListElement[type]
   return (
-    <StyleContext.Consumer>
+    <StyleContext.Consumer key={uuid()}>
       {styleContext => {
         return (
           <Subscribe to={[elementContainer]} key={id}>
