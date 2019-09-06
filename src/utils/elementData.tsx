@@ -63,7 +63,15 @@ const elementData = [
       id: 1,
       type: 'Alert',
       name: 'Alert',
+      children: [2],
+    },
+    {
+      id: 2,
+      type: 'Text',
       children: [],
+      data: {
+        value: 'A simple success alert—check it out!',
+      },
     },
   ],
   [

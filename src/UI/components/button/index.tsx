@@ -148,6 +148,7 @@ interface IButtonUnstyled {
   hover?: any
   focus?: any
 }
+
 class ButtonUnstyled extends React.Component<IButtonUnstyled> {
   // eslint-disable-line react/prefer-stateless-function
   static propTypes: any = propTypes
@@ -219,6 +220,7 @@ class ButtonUnstyled extends React.Component<IButtonUnstyled> {
     )
   }
 }
+
 /**
  * Use our default **link**, **colored** or **outlined** `Buttons` blocks, to emphasize part of your page.
  * You can also use different `size` or another `tag` instead of `<Button />`.
@@ -279,8 +281,7 @@ const UIButton = styled(ButtonUnstyled)`
 `}
 `
 
-UIButton.defaultProps = defaultProps
-// @ts-ignore
-UIButton.propTypes = propTypes
+ButtonUnstyled.defaultProps = defaultProps
+ButtonUnstyled.propTypes = propTypes
 
 export default UIButton
