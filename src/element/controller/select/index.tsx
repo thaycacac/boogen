@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useRef, useState, useEffect } from 'react'
+import React, { FunctionComponent } from 'react'
 import styled from 'styled-components'
 import { updateSelectedElement } from '../../../utils'
 

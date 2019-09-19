@@ -2,7 +2,6 @@ import React, { Component, useState } from 'react'
 import EnhanceElement from '../../../core/EnhanceElement'
 import { Subscribe } from 'unstated'
 import {
-  InputController,
   MultipleInputController,
   SelectController,
   PreviewClassController,
@@ -11,35 +10,25 @@ import { ElementContainer } from '../../../container'
 import UIAlert from '../../../UI/components/alert'
 
 const type = [
-  { name: 'Link', value: 'link' },
   { name: 'Primary', value: 'primary' },
   { name: 'Secondary', value: 'secondary' },
   { name: 'Success', value: 'success' },
   { name: 'Info', value: 'info' },
   { name: 'Warning', value: 'warning' },
   { name: 'Danger', value: 'danger' },
+  { name: 'Light', value: 'light' },
+  { name: 'Dark', value: 'dark' },
 ]
-const size = [{ name: 'Large', value: 'lg' }, { name: 'Small', value: 'sm' }]
 
-interface StateButton {
-  typeButton: string
-  isOutline: boolean
-  sizeButton: string
-  isBlock: boolean
-  isActive: boolean
-  isDisable: boolean
+interface StateAlert {
+  typeAlert: string
 }
 
-class Button extends Component<any, StateButton> {
+class Button extends Component<any, StateAlert> {
   constructor(props: any) {
     super(props)
     this.state = {
-      typeButton: 'primary',
-      isOutline: false,
-      sizeButton: '',
-      isBlock: false,
-      isActive: true,
-      isDisable: false,
+      typeAlert: 'primary',
     }
   }
 
@@ -52,32 +41,15 @@ class Button extends Component<any, StateButton> {
             <>
               <PreviewClassController container={container} />
               <SelectController
-                label="Type Button"
+                label="Type Alert"
                 listData={type}
                 container={container}
                 handleChange={(value: any) => {
                   const { instance } = container.state
                   instance.setState({
-                    typeButton: value,
+                    typeAlert: value,
                   })
                 }}
-              />
-              <SelectController
-                label="Size Button"
-                listData={size}
-                container={container}
-                handleChange={(value: any) => {
-                  const { instance } = container.state
-                  instance.setState({
-                    sizeButton: value,
-                  })
-                }}
-              />
-              <InputController
-                label="Background"
-                keyCSS="background-color"
-                typeChange="style"
-                container={container}
               />
               <MultipleInputController
                 label="Padding"
@@ -98,11 +70,7 @@ class Button extends Component<any, StateButton> {
     )
   }
   render() {
-    return (
-      <UIAlert>
-        {this.props.children}
-      </UIAlert>
-    )
+    return <UIAlert color={this.state.typeAlert}>{this.props.children}</UIAlert>
   }
 }
 
